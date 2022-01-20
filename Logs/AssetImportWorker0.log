@@ -492,3 +492,35 @@ Received Import Request.
 Start importing Assets/Scripts/dijkstra.cs using Guid(053da00efd0cb1a44b1f1e33e86512b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b060b72b907cfec20f4afba2d53e3ad8') in 0.005713 seconds 
   Import took 0.010558 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 381.840609 seconds.
+  path: Assets/Scripts/Dijkstra.cs
+  artifactKey: Guid(053da00efd0cb1a44b1f1e33e86512b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Dijkstra.cs using Guid(053da00efd0cb1a44b1f1e33e86512b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70890f8d430a3b875d8140e5209222df') in 0.005528 seconds 
+  Import took 0.011177 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 23.485787 seconds.
+  path: Assets/Scripts/MapGraph.cs
+  artifactKey: Guid(1ba69ec4eaa0aaa43ab4ea6bcc82d552) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/MapGraph.cs using Guid(1ba69ec4eaa0aaa43ab4ea6bcc82d552) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76539d3e7accb9ace5d66c5713bc21c2') in 0.009952 seconds 
+  Import took 0.014673 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3040.719265 seconds.
+  path: Assets/Prefabs/Units/Archers.prefab
+  artifactKey: Guid(74167f175a471e443b3ac05192b0c88d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Units/Archers.prefab using Guid(74167f175a471e443b3ac05192b0c88d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8817aadacb307172c57d53e879edbc20') in 0.110618 seconds 
+  Import took 0.115728 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.445530 seconds.
+  path: Assets/Prefabs/Units/Archers.prefab
+  artifactKey: Guid(74167f175a471e443b3ac05192b0c88d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Units/Archers.prefab using Guid(74167f175a471e443b3ac05192b0c88d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6eeec7ccef7adcb0dcfdb81d7b31de80') in 0.015609 seconds 
+  Import took 0.019865 seconds .
+
