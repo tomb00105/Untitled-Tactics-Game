@@ -6,33 +6,51 @@ public class Unit : MonoBehaviour
 {
     private Dijkstra dijkstraScript;
 
-    //Unit info delcarations.
-    public string unitName;
-    public string unitDescription;
-    public int hP;
-    public int stamina;
+    //Unit info declarations.
+    public string UnitName
+    { get; protected set; }
+    public string UnitType
+    { get; set; }
+    public string UnitDescription
+    { get; protected set; }
+    public int MaxHP
+    { get; protected set; }
+    public int CurrentHP
+    { get; set; }
+    public int MaxStamina
+    { get; protected set; }
+    public int CurrentStamina
+    { get; set; }
 
     //Initialisation of costs for this unit to move across each type of terrain.
-    public float grassCost;
-    public float aridCost;
-    public float iceCost;
-    public float mountainCost;
-    public float riverCost;
-    public float oceanCost;
+    public float GrassCost
+    { get; set; }
+    public float AridCost
+    { get; set; }
+    public float IceCost
+    { get; set; }
+    public float MountainCost
+    { get; set; }
+    public float RiverCost
+    { get; set; }
+    public float OceanCost
+    { get; set; }
 
     //Dictionary to keep track of the cost for this unit to move to each MapNode.
     public Dictionary<MapNode, float> nodeCostDict = new Dictionary<MapNode, float>();
     public MapNode currentMapNode;
     public List<MapNode> path = new List<MapNode>();
 
-    private void Awake()
+    //Constructor for Units
+    public Unit(string unitName, string unitType, string unitDescription)
     {
-        dijkstraScript = gameObject.GetComponent<Dijkstra>();
-        CheckCurrentNode();
+        UnitName = unitName;
+        UnitType = unitType;
+        UnitDescription = unitDescription;
     }
 
     //Checks which MapNode the unit is currently on.
-    public void CheckCurrentNode()
+    public virtual void CheckCurrentNode()
     {
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, 1f))
         {
@@ -46,7 +64,7 @@ public class Unit : MonoBehaviour
     }
 
     //Decides whether the unit can/will move and where to.
-    public bool MoveDecision()
+    public virtual bool CheckCanMove()
     {
         if (!dijkstraScript.DijkstraCalc())
         {
@@ -67,7 +85,7 @@ public class Unit : MonoBehaviour
     }
 
     //Moves the unit and updates MapNode occupation status.
-    public void Move()
+    public virtual void Move()
     {
         while (transform.position.x != path[path.Count].transform.position.x && transform.position.y != path[path.Count].transform.position.x)
         {
@@ -96,5 +114,10 @@ public class Unit : MonoBehaviour
     public virtual MapNode MovePriority(List<MapNode> possibleMoveList)
     {
         return currentMapNode;
+    }
+
+    public virtual Unit AttackChoice()
+    {
+        return null;
     }
 }

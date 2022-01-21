@@ -9,7 +9,7 @@ public class Dijkstra : MonoBehaviour
     //Declaration of linked unit.
     private Unit unitScript;
     //Initialisation of collections for pathfinding.
-    private Dictionary<MapNode, float> dijkstraDict = new Dictionary<MapNode, float>();
+    public Dictionary<MapNode, float> dijkstraDict = new Dictionary<MapNode, float>();
     private Dictionary<MapNode, MapNode> bestAccessToNode = new Dictionary<MapNode, MapNode>();
     public List<MapNode> path = new List<MapNode>();
     private SimplePriorityQueue<MapNode> priorityQueue = new SimplePriorityQueue<MapNode>();
@@ -27,27 +27,27 @@ public class Dijkstra : MonoBehaviour
             bestAccessToNode.Add(mapNode, null);
             if (mapNode.terrainType == "Grassland")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.grassCost);
+                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.GrassCost);
             }
             else if (mapNode.terrainType == "Arid")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.aridCost);
+                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.AridCost);
             }
             else if (mapNode.terrainType == "Icefield")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.iceCost);
+                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.IceCost);
             }
             else if (mapNode.terrainType == "Mountain")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.mountainCost);
+                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.MountainCost);
             }
             else if (mapNode.terrainType == "River")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.riverCost);
+                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.RiverCost);
             }
             else if (mapNode.terrainType == "Ocean")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.riverCost);
+                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.OceanCost);
             }
         }
     }
@@ -128,7 +128,7 @@ public class Dijkstra : MonoBehaviour
     public List<MapNode> PossibleMoves()
     {
         var possibleMoves = from x in dijkstraDict.Keys
-                            where dijkstraDict[x] <= unitScript.stamina
+                            where dijkstraDict[x] <= unitScript.CurrentStamina
                             select x;
 
         return possibleMoves.ToList();
@@ -145,4 +145,6 @@ public class Dijkstra : MonoBehaviour
         }
         return route;
     }
+
+    
 }
