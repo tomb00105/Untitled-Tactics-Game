@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 2
+  terrainType: Mountain
   isOccupied: 0
   occupyingObject: {fileID: 0}
 --- !u!61 &2695328584215835243

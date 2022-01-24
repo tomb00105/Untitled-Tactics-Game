@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 630981346260397877}
   - component: {fileID: 4611674027310793075}
   - component: {fileID: -7742568806524860124}
+  - component: {fileID: -1875092668095164631}
   m_Layer: 0
   m_Name: Cavalry
   m_TagString: Untagged
@@ -109,3 +110,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &-1875092668095164631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2363432248063378351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb575e7109dce6429a3adc5f165d6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMapNode: {fileID: 0}
+  path: []

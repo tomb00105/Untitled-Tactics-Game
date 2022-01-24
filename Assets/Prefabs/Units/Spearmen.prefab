@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9055515966523715135}
   - component: {fileID: 8121529010163083497}
   - component: {fileID: 4898120498701252402}
+  - component: {fileID: -6403169910958273058}
   m_Layer: 0
   m_Name: Spearmen
   m_TagString: Untagged
@@ -109,3 +110,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &-6403169910958273058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901401348264332062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432ec16f0955aa541af2f44f1cdfbbe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentMapNode: {fileID: 0}
+  path: []

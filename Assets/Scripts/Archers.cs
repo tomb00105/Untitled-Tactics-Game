@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Swordsmen : Unit
+public class Archers : Unit
 {
-    //Constructor for Swordsmen units.
-    public Swordsmen(string unitName, string unitType, string unitDescription) : base(unitName, unitType, unitDescription)
+    //Constructor for Archer units.
+    public Archers(string unitName, string unitType, string unitDescription) : base(unitName, unitType, unitDescription)
     {
-        MaxHP = 20;
+        MaxHP = 10;
         MaxStamina = 5;
-        WeaponDamage = 5;
+        WeaponDamage = 7;
         GrassCost = 1;
         AridCost = 2;
-        IceCost = 2;
-        MountainCost = 3;
+        IceCost = 2.5f;
+        MountainCost = 3.5f;
         RiverCost = 1.5f;
         OceanCost = 10;
     }
@@ -24,16 +24,16 @@ public class Swordsmen : Unit
         CheckCurrentNode();
     }
 
-    //Selects which possible move to take, based on the least number of non-spearmen units adjacent to the node.
+    //Selects which possible move to take, based on the least number of any units on adjacent nodes.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
         MapNode currentBest = null;
         float currentBestScore = Mathf.Infinity;
-        foreach  (MapNode node in possibleMoveList)
+        foreach (MapNode node in possibleMoveList)
         {
-            int i = 0;
+            float i = 0;
             float score;
-            foreach  (MapNode adjacentNode in node.adjacentNodeDict.Keys)
+            foreach (MapNode adjacentNode in node.adjacentNodeDict.Keys)
             {
                 if (adjacentNode.isOccupied && adjacentNode.occupyingObject.CompareTag("Player Unit"))
                 {
@@ -41,10 +41,29 @@ public class Swordsmen : Unit
                     {
                         continue;
                     }
-                    i++;
+                    else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Swordsmen")
+                    {
+                        continue;
+                    }
+                    else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Cavalry")
+                    {
+                        i += 2;
+                        continue;
+                    }
+                    else
+                    {
+                        i++;
+                    }
                 }
             }
-            score = 2 * i + dijkstraScript.dijkstraDict[node];
+            if (i == 0)
+            {
+                score = dijkstraScript.dijkstraDict[node] - 1;
+            }
+            else
+            {
+                score = 2 * i + dijkstraScript.dijkstraDict[node];
+            }
             if (score <= currentBestScore)
             {
                 currentBestScore = score;
@@ -53,38 +72,38 @@ public class Swordsmen : Unit
         }
         return currentBest;
     }
-    //Chooses which unit to attack, prioritising spearmen and grassland;
+    //Checks which targets are in range and then prioritises ones that are below the archers, if they are in mountains, and cavalry above others.
     public override Unit AttackChoice()
     {
+        List<Unit> possibleTargets = new List<Unit>();
         Unit unitToAttack = null;
         float currentBestScore = 0;
-        foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
+        foreach (MapNode mapNode in dijkstraScript.dijkstraDict.Keys)
+        {
+            if (Vector2.Distance(currentMapNode.transform.position, mapNode.transform.position) <= 6 && mapNode.occupyingObject.CompareTag("Player Unit"))
+            {
+                possibleTargets.Add(mapNode.occupyingObject.GetComponent<Unit>());
+            }
+        }
+        foreach (Unit unit in  possibleTargets)
         {
             float score = 0;
-            if (adjacentNode.isOccupied && adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Spearmen")
+            if (currentMapNode.terrainType == "Mountain" && unit.currentMapNode.terrainType != "Mountain")
+            {
+                score += 6;
+            }
+            if (unit.UnitType == "Cavalry")
             {
                 score += 10;
             }
-            else if (adjacentNode.isOccupied && adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Archers")
+            else if (unit.UnitType == "Swordsmen" || unit.UnitType == "Archers")
             {
                 score += 5;
-            }
-            if (adjacentNode.terrainType == "Grassland")
-            {
-                score += 5;
-            }
-            else if (adjacentNode.terrainType == "Icefield")
-            {
-                score -= 5;
-            }
-            else if (adjacentNode.terrainType == "Ocean")
-            {
-                score = -10;
             }
             if (score > currentBestScore)
             {
                 currentBestScore = score;
-                unitToAttack = adjacentNode.occupyingObject.GetComponent<Unit>();
+                unitToAttack = unit;
             }
         }
         if (currentBestScore == -10)
@@ -101,19 +120,19 @@ public class Swordsmen : Unit
     {
         if (target.UnitType == "Spearmen")
         {
-            target.CurrentHP -= Mathf.RoundToInt(damage * 1.5f);
+            target.CurrentHP -= Mathf.RoundToInt(damage * 0.8f);
         }
         else if (target.UnitType == "Cavalry")
         {
-            target.CurrentHP -= Mathf.RoundToInt(damage * 0.8f);
+            target.CurrentHP -= Mathf.RoundToInt(damage * 1.7f);
         }
         else if (target.UnitType == "Swordsmen")
         {
-            target.CurrentHP -= Mathf.RoundToInt(damage);
+            target.CurrentHP -= Mathf.RoundToInt(damage * 1.2f);
         }
         else if (target.UnitType == "Archers")
         {
-            target.CurrentHP -= Mathf.RoundToInt(damage * 1.2f);
+            target.CurrentHP -= Mathf.RoundToInt(damage * 1.3f);
         }
         if (target.CurrentHP <= 0)
         {
@@ -138,19 +157,19 @@ public class Swordsmen : Unit
     {
         if (target.UnitType == "Spearmen")
         {
-            target.CurrentHP -= Mathf.RoundToInt(damage * 1.2f);
+            target.CurrentHP -= Mathf.RoundToInt(damage * 0.6f);
         }
         else if (target.UnitType == "Cavalry")
         {
-            target.CurrentHP -= Mathf.RoundToInt(damage * 0.4f);
+            target.CurrentHP -= Mathf.RoundToInt(damage * 0.85f);
         }
         else if (target.UnitType == "Swordsmen")
         {
-            target.CurrentHP -= Mathf.RoundToInt(damage * 0.5f);
+            target.CurrentHP -= Mathf.RoundToInt(damage * 0.7f);
         }
         else if (target.UnitType == "Archers")
         {
-            target.CurrentHP -= Mathf.RoundToInt(damage);
+            target.CurrentHP -= Mathf.RoundToInt(damage * 1f);
         }
         if (target.CurrentHP <= 0)
         {

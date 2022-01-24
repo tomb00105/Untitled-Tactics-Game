@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1.5
+  terrainType: Arid
   isOccupied: 0
   occupyingObject: {fileID: 0}
 --- !u!61 &1211031369293449575

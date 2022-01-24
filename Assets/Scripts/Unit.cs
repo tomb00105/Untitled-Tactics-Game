@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    private Dijkstra dijkstraScript;
+    protected Dijkstra dijkstraScript;
 
     //Unit info declarations.
     public string UnitName
@@ -20,6 +20,8 @@ public class Unit : MonoBehaviour
     public int MaxStamina
     { get; protected set; }
     public int CurrentStamina
+    { get; set; }
+    public float WeaponDamage
     { get; set; }
 
     //Initialisation of costs for this unit to move across each type of terrain.
@@ -119,5 +121,15 @@ public class Unit : MonoBehaviour
     public virtual Unit AttackChoice()
     {
         return null;
+    }
+
+    public virtual bool Attack(Unit target, float damage)
+    {
+        return false;
+    }
+
+    public virtual bool Reaction(Unit target, float damage)
+    {
+        return false;
     }
 }

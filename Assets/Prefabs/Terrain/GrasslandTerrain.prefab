@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
+  terrainType: Grassland
   isOccupied: 0
   occupyingObject: {fileID: 0}
 --- !u!61 &7925168303723717090
