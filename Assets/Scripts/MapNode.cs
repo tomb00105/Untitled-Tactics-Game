@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MapNode : MonoBehaviour
 {
-    public float cost;
     public string terrainType;
 
     //Dictionary of all MapNodes and distance to them from this MapNode.
@@ -17,6 +16,10 @@ public class MapNode : MonoBehaviour
     public bool isOccupied = false;
     public GameObject occupyingObject;
 
+    private void Awake()
+    {
+        occupyingObject = gameObject;   
+    }
     private void Start()
     {
         //Gets adjacent MapNodes and adds them to the dictionary.

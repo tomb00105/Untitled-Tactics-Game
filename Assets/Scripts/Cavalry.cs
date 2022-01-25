@@ -5,7 +5,9 @@ using UnityEngine;
 public class Cavalry : Unit
 {
     //Constructor for Cavalry units.
-    public Cavalry(string unitName, string unitType, string unitDescription) : base(unitName, unitType, unitDescription)
+   
+
+    private void Awake()
     {
         MaxHP = 15;
         MaxStamina = 8;
@@ -16,10 +18,7 @@ public class Cavalry : Unit
         MountainCost = 4;
         RiverCost = 1.5f;
         OceanCost = 10;
-    }
-
-    private void Awake()
-    {
+        NodeCostDict = new Dictionary<MapNode, float>();
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         CheckCurrentNode();
     }

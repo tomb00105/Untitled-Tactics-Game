@@ -5,7 +5,11 @@ using UnityEngine;
 public class Spearmen : Unit
 {
     //Constructor for Spearmen units.
-    public Spearmen(string unitName, string unitType, string unitDescription) : base(unitName, unitType, unitDescription)
+   
+        
+    
+
+    private void Awake()
     {
         MaxHP = 25;
         MaxStamina = 4;
@@ -16,10 +20,8 @@ public class Spearmen : Unit
         MountainCost = 3;
         RiverCost = 2f;
         OceanCost = 10;
-    }
 
-    private void Awake()
-    {
+        NodeCostDict = new Dictionary<MapNode, float>();
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         CheckCurrentNode();
     }

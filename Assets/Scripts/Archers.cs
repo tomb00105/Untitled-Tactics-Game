@@ -5,7 +5,9 @@ using UnityEngine;
 public class Archers : Unit
 {
     //Constructor for Archer units.
-    public Archers(string unitName, string unitType, string unitDescription) : base(unitName, unitType, unitDescription)
+  
+
+    private void Awake()
     {
         MaxHP = 10;
         MaxStamina = 5;
@@ -16,10 +18,7 @@ public class Archers : Unit
         MountainCost = 3.5f;
         RiverCost = 1.5f;
         OceanCost = 10;
-    }
-
-    private void Awake()
-    {
+        NodeCostDict = new Dictionary<MapNode, float>();
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         CheckCurrentNode();
     }

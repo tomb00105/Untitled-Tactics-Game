@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IcefieldTerrain (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
       value: 54
@@ -240,6 +244,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &90345957 stripped
@@ -302,6 +310,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &95051667 stripped
@@ -319,6 +331,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -381,6 +397,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -488,6 +508,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &201459956 stripped
@@ -550,6 +574,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &212223034 stripped
@@ -567,6 +595,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -674,6 +706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &279342659 stripped
@@ -736,6 +772,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &279434581 stripped
@@ -767,7 +807,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300339815}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -270.56064}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2019983358}
@@ -864,6 +904,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IcefieldTerrain (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
       value: 66
@@ -925,6 +969,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -1075,6 +1123,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &391831203 stripped
@@ -1137,6 +1189,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &424851496 stripped
@@ -1154,6 +1210,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -1261,6 +1321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &503593356 stripped
@@ -1304,7 +1368,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.11747953, g: 0.13049325, b: 0.1509434, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1321,7 +1385,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1345,7 +1409,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: -2, y: -1, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1361,6 +1425,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -1468,6 +1536,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &571382471 stripped
@@ -1529,6 +1601,10 @@ PrefabInstance:
     - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
       propertyPath: m_Name
       value: RiverTerrain (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
@@ -1592,6 +1668,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &584530031 stripped
@@ -1654,6 +1734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &593047102 stripped
@@ -1671,6 +1755,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -1734,6 +1822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IcefieldTerrain (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
       value: 56
@@ -1795,6 +1887,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -1902,6 +1998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &656280351 stripped
@@ -1963,6 +2063,10 @@ PrefabInstance:
     - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_Name
       value: AridTerrain (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
@@ -2026,6 +2130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &787724568 stripped
@@ -2088,6 +2196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &794619675 stripped
@@ -2095,6 +2207,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5793152667972274012, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
   m_PrefabInstance: {fileID: 794619674}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &798789667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 798789669}
+  - component: {fileID: 798789668}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &798789668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798789667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444ab8cc08448df49be3f7e5de3276c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allUnits: []
+  currentUnitTurn: 
+  turnNumber: 0
+--- !u!4 &798789669
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798789667}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.15065, y: -0.9722617, z: -403.8754}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &811755290
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2105,6 +2263,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -2212,6 +2374,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &826203254 stripped
@@ -2274,6 +2440,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &833575008 stripped
@@ -2291,6 +2461,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -2353,6 +2527,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -2460,6 +2638,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &864703431 stripped
@@ -2521,6 +2703,10 @@ PrefabInstance:
     - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
       propertyPath: m_Name
       value: GrasslandTerrain (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
@@ -2584,6 +2770,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain
       objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &922489024 stripped
@@ -2646,6 +2836,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &932548474 stripped
@@ -2663,6 +2857,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -2725,6 +2923,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -2832,6 +3034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &979503063 stripped
@@ -2893,6 +3099,10 @@ PrefabInstance:
     - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_Name
       value: AridTerrain (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
@@ -2956,6 +3166,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1043456449 stripped
@@ -2963,6 +3177,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 981958075337733886, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
   m_PrefabInstance: {fileID: 1043456448}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1048047281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1048047283}
+  - component: {fileID: 1048047282}
+  m_Layer: 5
+  m_Name: UIDocument
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1048047282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048047281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21c074d86024caca2a0034ce4f53f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 6472ea5f230d52840a6591e77006c4d7, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 7aaa9e6b8f4c22e41be66a2c269d93d6, type: 3}
+  m_SortingOrder: 0
+--- !u!4 &1048047283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048047281}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1078270068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2973,6 +3234,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -3035,6 +3300,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -3142,6 +3411,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1130079110 stripped
@@ -3204,6 +3477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1132692788 stripped
@@ -3221,6 +3498,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -3328,6 +3609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1211203974 stripped
@@ -3335,6 +3620,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 981958075337733886, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
   m_PrefabInstance: {fileID: 1211203973}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1227528988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+  m_PrefabInstance: {fileID: 1769918065}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1227528989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227528988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitScript: {fileID: 0}
+  path: []
 --- !u!1001 &1266915491
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3345,6 +3649,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -3452,6 +3760,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1315431258 stripped
@@ -3469,6 +3781,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -3576,6 +3892,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1320613842 stripped
@@ -3637,6 +3957,10 @@ PrefabInstance:
     - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_Name
       value: AridTerrain (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
@@ -3700,6 +4024,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &1342206020 stripped
@@ -3761,6 +4089,10 @@ PrefabInstance:
     - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
       propertyPath: m_Name
       value: GrasslandTerrain (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
@@ -3824,6 +4156,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1430308632 stripped
@@ -3885,6 +4221,10 @@ PrefabInstance:
     - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
       propertyPath: m_Name
       value: RiverTerrain (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
@@ -3948,6 +4288,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1451249602 stripped
@@ -4010,6 +4354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1461749273 stripped
@@ -4027,6 +4375,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -4079,6 +4431,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
   m_PrefabInstance: {fileID: 1545497114}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1545621265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+  m_PrefabInstance: {fileID: 1744673030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1545621266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545621265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitScript: {fileID: 0}
+  path: []
 --- !u!1001 &1654793134
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4089,6 +4460,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -4196,6 +4571,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1681651109 stripped
@@ -4257,6 +4636,10 @@ PrefabInstance:
     - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
       propertyPath: m_Name
       value: RiverTerrain (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
@@ -4320,6 +4703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1721203781 stripped
@@ -4381,6 +4768,10 @@ PrefabInstance:
     - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
       propertyPath: m_Name
       value: GrasslandTerrain (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
@@ -4444,6 +4835,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &1735705744 stripped
@@ -4506,6 +4901,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1742695435 stripped
@@ -4524,9 +4923,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordsmen (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy Unit
+      objectReference: {fileID: 0}
+    - target: {fileID: 345123628914118029, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 345123628914118029, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 345123628914118029, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 345123628914118029, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 345123628914118029, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_RootOrder
@@ -4584,6 +5003,10 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -4646,6 +5069,10 @@ PrefabInstance:
     - target: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_Name
       value: Swordsmen
+      objectReference: {fileID: 0}
+    - target: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_TagString
+      value: Player Unit
       objectReference: {fileID: 0}
     - target: {fileID: 345123628914118029, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_SortingOrder
@@ -4752,6 +5179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1807208224 stripped
@@ -4814,6 +5245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1850734047 stripped
@@ -4831,6 +5266,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -4938,6 +5377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1872298422 stripped
@@ -4999,6 +5442,10 @@ PrefabInstance:
     - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
       propertyPath: m_Name
       value: MountainTerrain (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
@@ -5062,6 +5509,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain
       objectReference: {fileID: 0}
+    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &1919449116 stripped
@@ -5079,6 +5530,10 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -5186,6 +5641,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1965594128 stripped
@@ -5200,6 +5659,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 300339816}
     m_Modifications:
+    - target: {fileID: 4533861390701678616, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4533861390701678617, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5247,6 +5710,10 @@ PrefabInstance:
     - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_Name
       value: AridTerrain
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
@@ -5310,6 +5777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &2076240370 stripped
@@ -5372,6 +5843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &2095017317 stripped
@@ -5433,6 +5908,10 @@ PrefabInstance:
     - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_Name
       value: AridTerrain (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}

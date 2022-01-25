@@ -21,44 +21,45 @@ public class Dijkstra : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Cost: " + unitScript.AridCost.ToString());
         //Populates the collections for node access and edge cost of each node.
-        foreach (MapNode mapNode in GameObject.Find("MapGraph").GetComponent<MapGraph>().graphCostDict.Keys)
+        /*foreach (MapNode mapNode in GameObject.Find("MapGraph").GetComponent<MapGraph>().graphCostDict.Keys)
         {
             bestAccessToNode.Add(mapNode, null);
             if (mapNode.terrainType == "Grassland")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.GrassCost);
+                unitScript.NodeCostDict.Add(mapNode, unitScript.GrassCost);
             }
             else if (mapNode.terrainType == "Arid")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.AridCost);
+                unitScript.nodeCostDict.Add(mapNode, unitScript.AridCost);
             }
             else if (mapNode.terrainType == "Icefield")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.IceCost);
+                unitScript.nodeCostDict.Add(mapNode, unitScript.IceCost);
             }
             else if (mapNode.terrainType == "Mountain")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.MountainCost);
+                unitScript.nodeCostDict.Add(mapNode, unitScript.MountainCost);
             }
             else if (mapNode.terrainType == "River")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.RiverCost);
+                unitScript.nodeCostDict.Add(mapNode, unitScript.RiverCost);
             }
             else if (mapNode.terrainType == "Ocean")
             {
-                unitScript.nodeCostDict.Add(mapNode, mapNode.cost * unitScript.OceanCost);
+                unitScript.nodeCostDict.Add(mapNode, unitScript.OceanCost);
             }
-        }
+        }*/
     }
 
     //Generates a graph with the total cost of moving to each node.
-    public bool DijkstraCalc()
+    public bool DijkstraCalc(Dictionary<MapNode, float> costDict)
     {
         Dictionary<MapNode, bool> visited = new Dictionary<MapNode, bool>();
         MapNode currentNode;
         //Sets up the priority queue and initial values.
-        foreach (KeyValuePair<MapNode, float> mapNode in unitScript.nodeCostDict)
+        foreach (KeyValuePair<MapNode, float> mapNode in costDict)
         {
             if (mapNode.Key == gameObject.GetComponent<Unit>().currentMapNode)
             {
@@ -119,12 +120,15 @@ public class Dijkstra : MonoBehaviour
                 {
                     if (gameObject.CompareTag("Enemy Unit"))
                     {
-                        if (nextNode.occupyingObject.CompareTag("Player Unit"))
+                        if (nextNode.isOccupied)
                         {
-                            continue;
+                            if (nextNode.occupyingObject.CompareTag("Player Unit"))
+                            {
+                                continue;
+                            }
                         }
-                        float newScore = unitScript.nodeCostDict[currentNode] + unitScript.nodeCostDict[nextNode];
-                        if (newScore < nextNode.cost)
+                        float newScore = unitScript.NodeCostDict[currentNode] + unitScript.NodeCostDict[nextNode];
+                        if (newScore < dijkstraDict[nextNode])
                         {
                             dijkstraDict[nextNode] = newScore;
                             bestAccessToNode[nextNode] = currentNode;
@@ -137,8 +141,8 @@ public class Dijkstra : MonoBehaviour
                         {
                             continue;
                         }
-                        float newScore = unitScript.nodeCostDict[currentNode] + unitScript.nodeCostDict[nextNode];
-                        if (newScore < nextNode.cost)
+                        float newScore = unitScript.NodeCostDict[currentNode] + unitScript.NodeCostDict[nextNode];
+                        if (newScore < dijkstraDict[nextNode])
                         {
                             dijkstraDict[nextNode] = newScore;
                             bestAccessToNode[nextNode] = currentNode;
@@ -180,13 +184,25 @@ public class Dijkstra : MonoBehaviour
     //Builds a path to the selected node.
     public List<MapNode> BuildPath(MapNode startNode, MapNode targetNode)
     {
+        Debug.Log("startNode: " + startNode.name.ToString() + " targetNode: " + targetNode.name.ToString());
         List<MapNode> route = new List<MapNode>();
         MapNode currentNode = targetNode;
-        while (targetNode != startNode)
+        while (currentNode != startNode)
         {
             route.Add(currentNode);
-            currentNode = bestAccessToNode[currentNode];
+            Debug.Log("Route Count: " + route.Count + " " + currentNode.GetType().ToString());
+            Debug.Log("Best access to node: " + bestAccessToNode[currentNode].name.ToString());
+            if (bestAccessToNode.ContainsKey(currentNode))
+            {
+                currentNode = bestAccessToNode[currentNode];
+            }
+            else
+            {
+                route.Reverse();
+                return route;
+            }
         }
+        route.Reverse();
         return route;
     }
 }

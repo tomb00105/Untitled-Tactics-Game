@@ -13,13 +13,13 @@ public class Unit : MonoBehaviour
     { get; set; }
     public string UnitDescription
     { get; protected set; }
-    public int MaxHP
+    public float MaxHP
     { get; protected set; }
-    public int CurrentHP
+    public float CurrentHP
     { get; set; }
-    public int MaxStamina
+    public float MaxStamina
     { get; protected set; }
-    public int CurrentStamina
+    public float CurrentStamina
     { get; set; }
     public float WeaponDamage
     { get; set; }
@@ -38,18 +38,14 @@ public class Unit : MonoBehaviour
     public float OceanCost
     { get; set; }
 
+    public Dictionary<MapNode, float> NodeCostDict
+    { get; set; }
     //Dictionary to keep track of the cost for this unit to move to each MapNode.
-    public Dictionary<MapNode, float> nodeCostDict = new Dictionary<MapNode, float>();
     public MapNode currentMapNode;
     public List<MapNode> path = new List<MapNode>();
 
     //Constructor for Units
-    public Unit(string unitName, string unitType, string unitDescription)
-    {
-        UnitName = unitName;
-        UnitType = unitType;
-        UnitDescription = unitDescription;
-    }
+    
 
     //Checks which MapNode the unit is currently on.
     public virtual void CheckCurrentNode()
@@ -66,9 +62,9 @@ public class Unit : MonoBehaviour
     }
 
     //Decides whether the unit can/will move and where to.
-    public virtual bool CheckCanMove()
+    public virtual bool CheckCanMove(Dictionary<MapNode, float> costDict)
     {
-        if (!dijkstraScript.DijkstraCalc())
+        if (!dijkstraScript.DijkstraCalc(costDict))
         {
             Debug.Log("Cannot move!");
             return false;
@@ -89,7 +85,7 @@ public class Unit : MonoBehaviour
     //Moves the unit and updates MapNode occupation status.
     public virtual void Move()
     {
-        while (transform.position.x != path[path.Count].transform.position.x && transform.position.y != path[path.Count].transform.position.x)
+        /*while (transform.position.x != path[path.Count - 1].transform.position.x && transform.position.y != path[path.Count - 1].transform.position.x)
         {
             int i = 0;
             if (transform.position.x != path[i].transform.position.x)
@@ -104,10 +100,11 @@ public class Unit : MonoBehaviour
             {
                 i++;
             }
-        }
+        }*/
+        transform.position = path[path.Count - 1].transform.position;
         currentMapNode.isOccupied = false;
-        currentMapNode.occupyingObject = null;
-        currentMapNode = path[path.Count];
+        currentMapNode.occupyingObject = currentMapNode.gameObject;
+        CheckCurrentNode();
         currentMapNode.isOccupied = true;
         currentMapNode.occupyingObject = gameObject;
     }
