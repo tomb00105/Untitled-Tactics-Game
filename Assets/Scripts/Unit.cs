@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Unit : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class Unit : MonoBehaviour
     public float CurrentStamina
     { get; set; }
     public float WeaponDamage
+    { get; set; }
+
+    public bool AttackOrDefence
     { get; set; }
 
     //Initialisation of costs for this unit to move across each type of terrain.
@@ -83,7 +87,7 @@ public class Unit : MonoBehaviour
     }
 
     //Moves the unit and updates MapNode occupation status.
-    public virtual void Move()
+    public void Move()
     {
         /*while (transform.position.x != path[path.Count - 1].transform.position.x && transform.position.y != path[path.Count - 1].transform.position.x)
         {
@@ -101,7 +105,7 @@ public class Unit : MonoBehaviour
                 i++;
             }
         }*/
-        transform.position = path[path.Count - 1].transform.position;
+        transform.position = path.Last().transform.position;
         currentMapNode.isOccupied = false;
         currentMapNode.occupyingObject = currentMapNode.gameObject;
         CheckCurrentNode();

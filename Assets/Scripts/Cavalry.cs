@@ -12,6 +12,7 @@ public class Cavalry : Unit
         MaxHP = 15;
         MaxStamina = 8;
         WeaponDamage = 8;
+        AttackOrDefence = true;
         GrassCost = 1;
         AridCost = 1;
         IceCost = 3;

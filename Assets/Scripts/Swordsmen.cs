@@ -16,6 +16,7 @@ public class Swordsmen : Unit
         MaxStamina = 5;
         CurrentStamina = 5;
         WeaponDamage = 5;
+        AttackOrDefence = true;
         GrassCost = 1;
         AridCost = 2;
         IceCost = 2;
@@ -67,6 +68,13 @@ public class Swordsmen : Unit
         float currentBestScore = Mathf.Infinity;
         foreach  (MapNode node in possibleMoveList)
         {
+            List<GameObject> unitDistList = new List<GameObject>();
+            float distanceVar = 0;
+
+            foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
+            {
+                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position);
+            }
             int i = 0;
             float score;
             foreach  (MapNode adjacentNode in node.adjacentNodeDict.Keys)
@@ -81,13 +89,22 @@ public class Swordsmen : Unit
                     i++;
                 }
             }
-            score = 2 * i + dijkstraScript.dijkstraDict[node];
+            if (AttackOrDefence)
+            {
+                score = i * 2 + distanceVar;
+            }
+            else
+            {
+                score = i * 2;
+            }
+            Debug.Log(node.name.ToString() + " Score: " + score.ToString() + " Current Best Score: " + currentBestScore.ToString());
             if (score <= currentBestScore)
             {
                 currentBestScore = score;
                 currentBest = node;
             }
         }
+        Debug.Log("Best Node to move to: " + currentBest.name.ToString());
         return currentBest;
     }
     //Chooses which unit to attack, prioritising spearmen and grassland;

@@ -14,6 +14,7 @@ public class Spearmen : Unit
         MaxHP = 25;
         MaxStamina = 4;
         WeaponDamage = 5;
+        AttackOrDefence = false;
         GrassCost = 1;
         AridCost = 2;
         IceCost = 2;

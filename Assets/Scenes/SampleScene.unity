@@ -2239,6 +2239,8 @@ MonoBehaviour:
   allUnits: []
   currentUnitTurn: 
   turnNumber: 0
+  startupComplete: 0
+  runOnce: 0
 --- !u!4 &798789669
 Transform:
   m_ObjectHideFlags: 0
@@ -3637,7 +3639,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitScript: {fileID: 0}
   path: []
 --- !u!1001 &1266915491
 PrefabInstance:
@@ -4448,7 +4449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitScript: {fileID: 0}
   path: []
 --- !u!1001 &1654793134
 PrefabInstance:
@@ -5084,11 +5084,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_LocalPosition.z

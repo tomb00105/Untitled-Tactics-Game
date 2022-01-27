@@ -12,6 +12,7 @@ public class Archers : Unit
         MaxHP = 10;
         MaxStamina = 5;
         WeaponDamage = 7;
+        AttackOrDefence = false;
         GrassCost = 1;
         AridCost = 2;
         IceCost = 2.5f;

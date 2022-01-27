@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,10 +54,11 @@ public class GameManager : MonoBehaviour
             foreach (Unit unit in turnUnits.Keys)
             {
                 unit.CheckCanMove(unit.NodeCostDict);
-                while (unit.transform.position.x != unit.path[unit.path.Count - 1].transform.position.x && unit.transform.position.y != unit.path[unit.path.Count - 1].transform.position.y)
+                /*while (unit.transform.position.x != unit.path.Last().transform.position.x && unit.transform.position.y != unit.path.Last().transform.position.y)
                 {
                     unit.Move();
-                }
+                }*/
+                unit.gameObject.transform.position = unit.path.Last().transform.position;
                 unit.Attack(unit.AttackChoice(), unit.WeaponDamage);
                 if (unit.CurrentHP > 0)
                 {

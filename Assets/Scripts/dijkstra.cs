@@ -127,9 +127,12 @@ public class Dijkstra : MonoBehaviour
                                 continue;
                             }
                         }
-                        float newScore = unitScript.NodeCostDict[currentNode] + unitScript.NodeCostDict[nextNode];
+                        float newScore = dijkstraDict[currentNode] + unitScript.NodeCostDict[nextNode];
+                        Debug.Log("Current Next Node Cost: " + dijkstraDict[nextNode].ToString());
+                        Debug.Log("newScore: " + newScore.ToString());
                         if (newScore < dijkstraDict[nextNode])
                         {
+                            Debug.Log("Score Changed!");
                             dijkstraDict[nextNode] = newScore;
                             bestAccessToNode[nextNode] = currentNode;
                             priorityQueue.UpdatePriority(nextNode, newScore);
@@ -141,7 +144,7 @@ public class Dijkstra : MonoBehaviour
                         {
                             continue;
                         }
-                        float newScore = unitScript.NodeCostDict[currentNode] + unitScript.NodeCostDict[nextNode];
+                        float newScore = dijkstraDict[currentNode] + unitScript.NodeCostDict[nextNode];
                         if (newScore < dijkstraDict[nextNode])
                         {
                             dijkstraDict[nextNode] = newScore;
@@ -171,6 +174,7 @@ public class Dijkstra : MonoBehaviour
         //Ensures that the unit can't end it's turn on the same space as another unit.
         if (gameObject.CompareTag("Enemy Unit"))
         {
+            Debug.Log("Current stamina: " + unitScript.CurrentStamina.ToString());
             possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && !x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Enemy Unit")).Select(x => x.Key).ToList();
         }
         else
@@ -199,10 +203,18 @@ public class Dijkstra : MonoBehaviour
             else
             {
                 route.Reverse();
+                foreach (MapNode routeNode in route)
+                {
+                    Debug.Log("Route Node " + (route.IndexOf(routeNode)).ToString() + ": " + routeNode.name.ToString());
+                }
                 return route;
             }
         }
         route.Reverse();
+        foreach (MapNode routeNode in route)
+        {
+            Debug.Log("Route Node " + route.IndexOf(routeNode) + ": " + routeNode.name.ToString());
+        }
         return route;
     }
 }
