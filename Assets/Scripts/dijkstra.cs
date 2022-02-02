@@ -154,16 +154,16 @@ public class Dijkstra : MonoBehaviour
                     }
                 }
             }
-            //Checks if the only remaining nodes cannot be reached.
-            if (priorityQueue.GetPriority(priorityQueue.First) == Mathf.Infinity)
-            {
-                return true;
-            }
             //Exits the while loop if there are no nodes left in the priority queue.
             if (priorityQueue.Count == 0)
             {
                 return true;
             }
+            //Checks if the only remaining nodes cannot be reached.
+           /* if (priorityQueue.GetPriority(priorityQueue.First) == Mathf.Infinity)
+            {
+                return true;
+            }*/
         }
     }
 
@@ -175,11 +175,11 @@ public class Dijkstra : MonoBehaviour
         if (gameObject.CompareTag("Enemy Unit"))
         {
             Debug.Log("Current stamina: " + unitScript.CurrentStamina.ToString());
-            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && !x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Enemy Unit")).Select(x => x.Key).ToList();
+            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && (!x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Enemy Unit") || !x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Player Unit"))).Select(x => x.Key).ToList();
         }
         else
         {
-            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && !x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Player Unit")).Select(x => x.Key).ToList();
+            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && !x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Enemy Unit") && !x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Player Unit")).Select(x => x.Key).ToList();
         }
 
         return possibleMoves;

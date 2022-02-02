@@ -4,27 +4,62 @@ using UnityEngine;
 
 public class Spearmen : Unit
 {
-    //Constructor for Spearmen units.
-   
-        
-    
-
     private void Awake()
     {
+        CheckCurrentNode();
+    }
+    private void Start()
+    {
+        UnitName = "Test";
+        UnitType = "Spearmen";
+        UnitDescription = "Spear";
         MaxHP = 25;
+        CurrentHP = 25;
         MaxStamina = 4;
+        CurrentStamina = 4;
         WeaponDamage = 5;
-        AttackOrDefence = false;
+        AttackOrDefence = true;
         GrassCost = 1;
         AridCost = 2;
         IceCost = 2;
         MountainCost = 3;
         RiverCost = 2f;
         OceanCost = 10;
-
         NodeCostDict = new Dictionary<MapNode, float>();
+        foreach (MapNode node in GameObject.Find("MapGraph").GetComponent<MapGraph>().graphCostDict.Keys)
+        {
+            if (node.terrainType == "Grassland")
+            {
+                NodeCostDict.Add(node, GrassCost);
+                //Debug.Log("Grass Cost: " + NodeCostDict[node].ToString());
+            }
+            else if (node.terrainType == "Arid")
+            {
+                NodeCostDict.Add(node, AridCost);
+            }
+            else if (node.terrainType == "Icefield")
+            {
+                NodeCostDict.Add(node, IceCost);
+            }
+            else if (node.terrainType == "Mountain")
+            {
+                NodeCostDict.Add(node, MountainCost);
+            }
+            else if (node.terrainType == "River")
+            {
+                NodeCostDict.Add(node, RiverCost);
+            }
+            else if (node.terrainType == "Ocean")
+            {
+                NodeCostDict.Add(node, OceanCost);
+            }
+            else
+            {
+                Debug.LogWarning("NO TERRAIN TYPE FOR THIS NODE: " + node.name.ToString());
+            }
+        }
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
-        CheckCurrentNode();
+        GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
     }
 
     //Selects which possible move to take, based on the least number of non-cavalry units adjacent to the node.
@@ -34,6 +69,13 @@ public class Spearmen : Unit
         float currentBestScore = Mathf.Infinity;
         foreach (MapNode node in possibleMoveList)
         {
+            List<GameObject> unitDistList = new List<GameObject>();
+            float distanceVar = 0;
+
+            foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
+            {
+                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position);
+            }
             int i = 0;
             float score;
             foreach (MapNode adjacentNode in node.adjacentNodeDict.Keys)
@@ -42,12 +84,19 @@ public class Spearmen : Unit
                 {
                     if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Cavalry")
                     {
+                        i--;
                         continue;
                     }
-                    i++;
                 }
             }
-            score = 2 * i + dijkstraScript.dijkstraDict[node];
+            if (AttackOrDefence)
+            {
+                score = i * 2 + distanceVar;
+            }
+            else
+            {
+                score = i * 2;
+            }
             if (score <= currentBestScore)
             {
                 currentBestScore = score;
@@ -90,7 +139,7 @@ public class Spearmen : Unit
                 unitToAttack = adjacentNode.occupyingObject.GetComponent<Unit>();
             }
         }
-        if (currentBestScore == -10)
+        if (currentBestScore <= -10)
         {
             return null;
         }
@@ -102,6 +151,11 @@ public class Spearmen : Unit
     //Damages the target based on the unit type and returns true if the unit is wiped out.
     public override bool Attack(Unit target, float damage)
     {
+        if (target == null)
+        {
+            Debug.Log("NO TARGET");
+            return false;
+        }
         if (target.UnitType == "Spearmen")
         {
             target.CurrentHP -= Mathf.RoundToInt(damage * 0.9f);
@@ -120,6 +174,9 @@ public class Spearmen : Unit
         }
         if (target.CurrentHP <= 0)
         {
+            target.currentMapNode.isOccupied = false;
+            target.currentMapNode.occupyingObject = target.currentMapNode.gameObject;
+            Destroy(target.gameObject);
             return true;
         }
         else
@@ -157,6 +214,9 @@ public class Spearmen : Unit
         }
         if (target.CurrentHP <= 0)
         {
+            target.currentMapNode.isOccupied = false;
+            target.currentMapNode.occupyingObject = target.currentMapNode.gameObject;
+            Destroy(target.gameObject);
             return true;
         }
         else

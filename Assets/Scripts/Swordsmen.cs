@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Swordsmen : Unit
 {
-    //Constructor for Swordsmen units.
-    
+    private void Awake()
+    {
+        CheckCurrentNode();
+    }
     private void Start()
     {
         UnitName = "Test";
@@ -29,7 +31,7 @@ public class Swordsmen : Unit
             if (node.terrainType == "Grassland")
             {
                 NodeCostDict.Add(node, GrassCost);
-                Debug.Log("Grass Cost: " + NodeCostDict[node].ToString());
+                //Debug.Log("Grass Cost: " + NodeCostDict[node].ToString());
             }
             else if (node.terrainType == "Arid")
             {
@@ -57,7 +59,6 @@ public class Swordsmen : Unit
             }
         }
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
-        CheckCurrentNode();
         GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
     }
 
@@ -115,13 +116,19 @@ public class Swordsmen : Unit
         foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
         {
             float score = 0;
-            if (adjacentNode.isOccupied && adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Spearmen")
+            if (adjacentNode.isOccupied)
             {
-                score += 10;
-            }
-            else if (adjacentNode.isOccupied && adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Archers")
-            {
-                score += 5;
+                if (adjacentNode.occupyingObject.CompareTag("Player Unit"))
+                {
+                    if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Spearmen")
+                    {
+                        score += 10;
+                    }
+                    else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Archers")
+                    {
+                        score += 5;
+                    }
+                }
             }
             if (adjacentNode.terrainType == "Grassland")
             {
@@ -182,7 +189,6 @@ public class Swordsmen : Unit
             target.currentMapNode.isOccupied = false;
             target.currentMapNode.occupyingObject = target.currentMapNode.gameObject;
             Destroy(target.gameObject);
-            
             return true;
         }
         else

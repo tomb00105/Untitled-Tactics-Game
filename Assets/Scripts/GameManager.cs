@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
         turnUnits.Clear();
         foreach (GameObject unit in GameObject.FindGameObjectsWithTag(unitTurn))
         {
+            unit.GetComponent<Unit>().path.Clear();
+            unit.GetComponent<Dijkstra>().path.Clear();
             turnUnits.Add(unit.GetComponent<Unit>(), false);
             //unit.GetComponent<Unit>().CurrentHP += 2;
             unit.GetComponent<Unit>().CurrentStamina = unit.GetComponent<Unit>().MaxStamina;
@@ -58,21 +60,26 @@ public class GameManager : MonoBehaviour
                 {
                     unit.Move();
                 }*/
+                unit.currentMapNode.isOccupied = false;
+                unit.currentMapNode.occupyingObject = unit.currentMapNode.gameObject;
+                unit.currentMapNode = unit.path.Last();
+                unit.currentMapNode.isOccupied = true;
+                unit.currentMapNode.occupyingObject = unit.gameObject;
                 unit.gameObject.transform.position = unit.path.Last().transform.position;
                 unit.Attack(unit.AttackChoice(), unit.WeaponDamage);
-                if (unit.CurrentHP > 0)
-                {
-                }
-                else
-                {
-                    Destroy(unit.gameObject);
-                }
             }
             EndTurn(unitTurn);
         }
         else if (unitTurn == "Player Unit")
         {
-
+            int turnTaken = 0;
+            while (turnTaken < GameObject.FindGameObjectsWithTag("Player Unit").Count())
+            {
+                turnTaken = 10;
+                //TURN ON PLAYER UI.
+                //CHECK HOW MANY UNITS HAVE TAKEN THEIR TURN/IF THE PLAYER HAS PRESSED END TURN.
+            }
+            EndTurn(unitTurn);
         }
     }
 
