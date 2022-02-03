@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Unit : MonoBehaviour
 {
+    private UIController uIController;
     protected Dijkstra dijkstraScript;
 
     //Unit info declarations.
@@ -28,6 +29,12 @@ public class Unit : MonoBehaviour
     public bool AttackOrDefence
     { get; set; }
 
+    public List<string> Advantages
+    { get; set; }
+
+    public List<string> Disadvantages
+    { get; set; }
+
     //Initialisation of costs for this unit to move across each type of terrain.
     public float GrassCost
     { get; set; }
@@ -48,8 +55,11 @@ public class Unit : MonoBehaviour
     public MapNode currentMapNode;
     public List<MapNode> path = new List<MapNode>();
 
-    //Constructor for Units
-    
+    private void Awake()
+    {
+        uIController = GameObject.Find("UIController").GetComponent<UIController>();
+    }
+
 
     //Checks which MapNode the unit is currently on.
     public virtual void CheckCurrentNode()
@@ -132,5 +142,16 @@ public class Unit : MonoBehaviour
     public virtual bool Reaction(Unit target, float damage)
     {
         return false;
+    }
+
+    public void OnMouseDown()
+    {
+        if (GameObject.Find("GameManager").GetComponent<GameManager>().currentUnitTurn == "Player Unit")
+        {
+            if (GameObject.Find("Unit Panel").activeInHierarchy)
+            {
+                uIController.PopulateUnitPanels(this);
+            }
+        }
     }
 }

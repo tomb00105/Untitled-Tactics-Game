@@ -4,12 +4,15 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    public UIController uIController;
     public List<Unit> allUnits = new List<Unit>();
-    public Dictionary<Unit, bool> turnUnits = new Dictionary<Unit, bool>();
+    public List<Unit> turnUnits = new List<Unit>();
+    public Dictionary<Unit, bool> turnUnitsDict = new Dictionary<Unit, bool>();
     public string currentUnitTurn;
     public int turnNumber = 0;
     public bool startupComplete = false;
     public bool runOnce = false;
+    public bool turnTaken = false;
 
     private void Awake()
     {
@@ -41,7 +44,8 @@ public class GameManager : MonoBehaviour
         {
             unit.GetComponent<Unit>().path.Clear();
             unit.GetComponent<Dijkstra>().path.Clear();
-            turnUnits.Add(unit.GetComponent<Unit>(), false);
+            turnUnits.Add(unit.GetComponent<Unit>());
+            turnUnitsDict.Add(unit.GetComponent<Unit>(), false);
             //unit.GetComponent<Unit>().CurrentHP += 2;
             unit.GetComponent<Unit>().CurrentStamina = unit.GetComponent<Unit>().MaxStamina;
         }
@@ -51,9 +55,10 @@ public class GameManager : MonoBehaviour
 
     public void TakeTurn(string unitTurn)
     {
+        turnTaken = false;
         if (unitTurn == "Enemy Unit")
         {
-            foreach (Unit unit in turnUnits.Keys)
+            foreach (Unit unit in turnUnits)
             {
                 unit.CheckCanMove(unit.NodeCostDict);
                 /*while (unit.transform.position.x != unit.path.Last().transform.position.x && unit.transform.position.y != unit.path.Last().transform.position.y)
@@ -72,24 +77,28 @@ public class GameManager : MonoBehaviour
         }
         else if (unitTurn == "Player Unit")
         {
-            int turnTaken = 0;
-            while (turnTaken < GameObject.FindGameObjectsWithTag("Player Unit").Count())
+            while (!turnTaken)
             {
-                turnTaken = 10;
-                //TURN ON PLAYER UI.
-                //CHECK HOW MANY UNITS HAVE TAKEN THEIR TURN/IF THE PLAYER HAS PRESSED END TURN.
+                turnTaken = true;
+                uIController.TurnOnUI(new List<string> { "End Turn Button", "Unit Panel" });
+                if (turnTaken)
+                {
+                    EndTurn("Player Unit");
+                    break;
+                }
             }
-            EndTurn(unitTurn);
         }
     }
 
     public bool EndTurn(string unitTurn)
     {
-        foreach (Unit unit in turnUnits.Keys)
+        foreach (Unit unit in turnUnits)
         {
+            //CHANGES FOR ALL UNITS WHO HAVE JUST TAKEN THEIR TURN
         }
         if (unitTurn == "Player Unit")
         {
+            uIController.TurnOffUI(new List<string> { "End Turn Button", "Unit Panel", "Unit Info Panel", "Move Panel", "Terrain Panel", "Attack Panel" });
             //TURN OFF UI AND OTHER UNWANTED INTERACTIONS
             unitTurn = "Enemy Unit";
         }
