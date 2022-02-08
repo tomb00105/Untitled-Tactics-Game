@@ -124,6 +124,7 @@ public class Dijkstra : MonoBehaviour
                         {
                             if (nextNode.occupyingObject.CompareTag("Player Unit"))
                             {
+                                dijkstraDict.Remove(nextNode);
                                 continue;
                             }
                         }
@@ -142,6 +143,7 @@ public class Dijkstra : MonoBehaviour
                     {
                         if (nextNode.occupyingObject.CompareTag("Enemy Unit"))
                         {
+                            dijkstraDict.Remove(nextNode);
                             continue;
                         }
                         float newScore = dijkstraDict[currentNode] + unitScript.NodeCostDict[nextNode];
@@ -175,11 +177,11 @@ public class Dijkstra : MonoBehaviour
         if (gameObject.CompareTag("Enemy Unit"))
         {
             Debug.Log("Current stamina: " + unitScript.CurrentStamina.ToString());
-            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && (!x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Enemy Unit") || !x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Player Unit"))).Select(x => x.Key).ToList();
+            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && !x.Key.GetComponent<MapNode>().isOccupied).Select(x => x.Key).ToList();
         }
         else
         {
-            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && !x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Enemy Unit") && !x.Key.GetComponent<MapNode>().occupyingObject.CompareTag("Player Unit")).Select(x => x.Key).ToList();
+            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && !x.Key.GetComponent<MapNode>().isOccupied).Select(x => x.Key).ToList();
         }
 
         return possibleMoves;

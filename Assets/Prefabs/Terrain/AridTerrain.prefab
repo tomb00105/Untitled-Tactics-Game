@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1817650489
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -898230397530926682, guid: 924cce1b2c5c8314fb80f70553ae13b3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -96,7 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa9cdd61a17cd345bcdb3f4111dfdcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 1.5
   terrainType: Arid
   isOccupied: 0
   occupyingObject: {fileID: 0}

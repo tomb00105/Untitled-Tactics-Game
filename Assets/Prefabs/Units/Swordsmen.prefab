@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 345123628914118029}
   - component: {fileID: 7416648575780560453}
   - component: {fileID: 1773028980711719770}
-  m_Layer: 0
+  - component: {fileID: 1707491309}
+  m_Layer: 7
   m_Name: Swordsmen
-  m_TagString: Untagged
+  m_TagString: Player Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1352936937
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -1245463778174109893, guid: ed2bfb8b1c28bee4cbe383ed600937d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,4 +124,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMapNode: {fileID: 0}
+  path: []
+--- !u!114 &1707491309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219614287044044759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   path: []

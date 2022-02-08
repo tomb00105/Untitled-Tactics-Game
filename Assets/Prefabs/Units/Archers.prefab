@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7735874157867040109}
   - component: {fileID: 4724153400542992918}
   - component: {fileID: 4223115891890226540}
-  m_Layer: 0
+  - component: {fileID: -528504538151895039}
+  m_Layer: 7
   m_Name: Archers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1352936937
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 4021495498742948121, guid: 8537c02b0a29c6d47bd56fb2c4a18bc0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,4 +124,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMapNode: {fileID: 0}
+  path: []
+--- !u!114 &-528504538151895039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735874157867040108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   path: []

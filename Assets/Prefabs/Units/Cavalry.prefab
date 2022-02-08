@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4611674027310793075}
   - component: {fileID: -7742568806524860124}
   - component: {fileID: -1875092668095164631}
-  m_Layer: 0
+  - component: {fileID: -6019603749199117555}
+  m_Layer: 7
   m_Name: Cavalry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,8 +71,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1352936937
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -7155725431086923771, guid: ab7f8f3268209ae42a18fb6a2da60a48, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,4 +124,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentMapNode: {fileID: 0}
+  path: []
+--- !u!114 &-6019603749199117555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2363432248063378351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   path: []

@@ -268,10 +268,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IcefieldTerrain (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
       value: 54
@@ -335,10 +331,6 @@ PrefabInstance:
       value: Swordsmen (1)
       objectReference: {fileID: 0}
     - target: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_TagString
       value: Enemy Unit
       objectReference: {fileID: 0}
@@ -388,24 +380,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
---- !u!1 &86587756 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-  m_PrefabInstance: {fileID: 86587755}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &86587757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 86587756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: []
 --- !u!1001 &90345956
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -460,10 +434,6 @@ PrefabInstance:
     - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
       propertyPath: m_Name
       value: MountainTerrain (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
@@ -527,10 +497,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &95051667 stripped
@@ -548,10 +514,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (15)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -617,7 +579,7 @@ GameObject:
   - component: {fileID: 124971094}
   - component: {fileID: 124971093}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Unit Panel Attack Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -686,7 +648,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 124971094}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693329458}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: UnitPanelAttackButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &124971094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,10 +844,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IcefieldTerrain (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
       value: 65
@@ -937,12 +907,12 @@ GameObject:
   - component: {fileID: 169598191}
   - component: {fileID: 169598190}
   m_Layer: 5
-  m_Name: Unit Info Panel
+  m_Name: Info Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &169598189
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1198,10 +1168,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (20)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &201459956 stripped
@@ -1264,10 +1230,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &212223034 stripped
@@ -1285,10 +1247,6 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -1396,10 +1354,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (18)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &279342659 stripped
@@ -1462,10 +1416,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &279434581 stripped
@@ -1497,7 +1447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300339815}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 402.78558}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2019983358}
@@ -1595,7 +1545,7 @@ GameObject:
   - component: {fileID: 306974976}
   - component: {fileID: 306974975}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Attack Panel Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1728,10 +1678,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IcefieldTerrain (14)
       objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
       value: 66
@@ -1793,10 +1739,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -1886,7 +1828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368947462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -402.78558}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 300339816}
@@ -1947,10 +1889,6 @@ PrefabInstance:
     - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
       propertyPath: m_Name
       value: GrasslandTerrain (19)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
@@ -2014,10 +1952,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &424851496 stripped
@@ -2035,10 +1969,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -2091,6 +2021,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
   m_PrefabInstance: {fileID: 435497171}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &498351770
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_Name
+      value: Swordsmen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
 --- !u!1001 &503593355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2146,10 +2133,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &503593356 stripped
@@ -2204,14 +2187,14 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 2
+    height: 2
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
   orthographic size: 12
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2234,7 +2217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -1, z: -20}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2250,10 +2233,6 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -2361,10 +2340,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &571382471 stripped
@@ -2426,10 +2401,6 @@ PrefabInstance:
     - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
       propertyPath: m_Name
       value: RiverTerrain (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
@@ -2499,24 +2470,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
---- !u!1 &582636099 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
-  m_PrefabInstance: {fileID: 582636098}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &582636100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 582636099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: []
 --- !u!1001 &584530030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2571,10 +2524,6 @@ PrefabInstance:
     - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
       propertyPath: m_Name
       value: MountainTerrain (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
@@ -2637,10 +2586,6 @@ PrefabInstance:
     - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
       propertyPath: m_Name
       value: RiverTerrain (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
@@ -2721,10 +2666,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanTerrain (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
       value: 36
@@ -2787,10 +2728,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IcefieldTerrain (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
       value: 56
@@ -2852,10 +2789,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -2963,10 +2896,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &656280351 stripped
@@ -2984,10 +2913,6 @@ PrefabInstance:
     - target: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
       propertyPath: m_Name
       value: Spearmen
-      objectReference: {fileID: 0}
-    - target: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
       propertyPath: m_TagString
@@ -3039,24 +2964,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
---- !u!1 &661767262 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
-  m_PrefabInstance: {fileID: 661767261}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &661767263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 661767262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: []
 --- !u!1 &674575626
 GameObject:
   m_ObjectHideFlags: 0
@@ -3220,8 +3127,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0557cb1d00a2f4fb61d5e7caa965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endTurnButton: {fileID: 1257676748}
+  unitPanel: {fileID: 1057370676}
+  infoPanel: {fileID: 169598188}
+  terrainPanel: {fileID: 1752330676}
+  movePanel: {fileID: 1455165934}
+  attackPanel: {fileID: 1913871886}
   gameManager: {fileID: 798789668}
   highlightedObjects: []
+  selectedInfoUnit: {fileID: 0}
+  selectedInfoMapNode: {fileID: 0}
+  selectedMoveMapNode: {fileID: 0}
+  selectedAttackUnit: {fileID: 0}
   playerTurn: 0
 --- !u!4 &693329459
 Transform:
@@ -3291,10 +3208,6 @@ PrefabInstance:
     - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_Name
       value: AridTerrain (12)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
@@ -3450,7 +3363,7 @@ GameObject:
   - component: {fileID: 780329679}
   - component: {fileID: 780329678}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Attack Panel Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3469,7 +3382,7 @@ RectTransform:
   m_Children:
   - {fileID: 9273235}
   m_Father: {fileID: 1913871887}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3519,7 +3432,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 780329679}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693329458}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: AttackPanelBackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &780329679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3613,10 +3538,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (17)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &787724568 stripped
@@ -3679,10 +3600,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &794619675 stripped
@@ -3719,7 +3636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444ab8cc08448df49be3f7e5de3276c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uIController: {fileID: 0}
+  uIController: {fileID: 693329458}
   allUnits: []
   turnUnits: []
   currentUnitTurn: 
@@ -3751,10 +3668,6 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -3862,10 +3775,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &826203254 stripped
@@ -3928,10 +3837,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &833575008 stripped
@@ -3949,10 +3854,6 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -4015,10 +3916,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -4126,10 +4023,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &864703431 stripped
@@ -4149,7 +4042,7 @@ GameObject:
   - component: {fileID: 865817989}
   - component: {fileID: 865817988}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Move Panel Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4194,7 +4087,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Stamina:'
+  m_text: 'Terrain:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4326,10 +4219,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &890508239 stripped
@@ -4350,7 +4239,7 @@ GameObject:
   - component: {fileID: 903503422}
   - component: {fileID: 903503421}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Move Panel Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4419,7 +4308,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 903503422}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693329458}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: MovePanelBackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &903503422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4513,10 +4414,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain
       objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &922489024 stripped
@@ -4524,140 +4421,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 981958075337733886, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
   m_PrefabInstance: {fileID: 922489023}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &922489454
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 922489455}
-  - component: {fileID: 922489457}
-  - component: {fileID: 922489456}
-  m_Layer: 5
-  m_Name: Text (TMP) (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &922489455
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922489454}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1752330677}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -75}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0, y: 1}
---- !u!114 &922489456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922489454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'Bonus:'
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &922489457
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 922489454}
-  m_CullTransparentMesh: 1
 --- !u!1001 &931280133
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4714,33 +4477,11 @@ PrefabInstance:
       value: Cavalry (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2363432248063378351, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2363432248063378351, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
       propertyPath: m_TagString
       value: Enemy Unit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
---- !u!1 &931280134 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2363432248063378351, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
-  m_PrefabInstance: {fileID: 931280133}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &931280135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 931280134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: []
 --- !u!1001 &932548473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4796,10 +4537,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &932548474 stripped
@@ -4817,10 +4554,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -4883,10 +4616,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -4994,10 +4723,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (13)
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &979503063 stripped
@@ -5018,7 +4743,7 @@ GameObject:
   - component: {fileID: 986624677}
   - component: {fileID: 986624676}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Info Panel Back Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5087,7 +4812,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 986624677}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693329458}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: InfoPanelBackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &986624677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5315,10 +5052,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1018714008 stripped
@@ -5380,10 +5113,6 @@ PrefabInstance:
     - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
       propertyPath: m_Name
       value: RiverTerrain (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
@@ -5485,10 +5214,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -5686,10 +5411,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanTerrain (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
       value: 38
@@ -5796,10 +5517,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1130079110 stripped
@@ -5862,10 +5579,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (10)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1132692788 stripped
@@ -5873,140 +5586,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 351411488964582065, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
   m_PrefabInstance: {fileID: 1132692787}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1137151210
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1137151211}
-  - component: {fileID: 1137151213}
-  - component: {fileID: 1137151212}
-  m_Layer: 5
-  m_Name: Text (TMP) (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1137151211
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137151210}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1913871887}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -80}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0, y: 1}
---- !u!114 &1137151212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137151210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1137151213
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137151210}
-  m_CullTransparentMesh: 1
 --- !u!1 &1167135943
 GameObject:
   m_ObjectHideFlags: 0
@@ -6151,10 +5730,6 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -6501,10 +6076,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1211203974 stripped
@@ -6524,7 +6095,7 @@ GameObject:
   - component: {fileID: 1228307000}
   - component: {fileID: 1228306999}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Attack Panel Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6658,7 +6229,7 @@ GameObject:
   - component: {fileID: 1232399008}
   - component: {fileID: 1232399007}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Terrain Panel Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6676,11 +6247,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1752330677}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -55}
+  m_AnchoredPosition: {x: 10, y: -35}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1232399007
@@ -6779,140 +6350,6 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232399005}
-  m_CullTransparentMesh: 1
---- !u!1 &1234831224
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1234831225}
-  - component: {fileID: 1234831227}
-  - component: {fileID: 1234831226}
-  m_Layer: 5
-  m_Name: Text (TMP) (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1234831225
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234831224}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1752330677}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -35}
-  m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0, y: 1}
---- !u!114 &1234831226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234831224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'Move Cost:'
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &1234831227
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1234831224}
   m_CullTransparentMesh: 1
 --- !u!1 &1244671322
 GameObject:
@@ -7200,7 +6637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1257676749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7320,7 +6757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 630981346260397877, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 630981346260397877, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7374,10 +6811,6 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain
-      objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -7576,7 +7009,7 @@ GameObject:
   - component: {fileID: 1291853933}
   - component: {fileID: 1291853932}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Attack Panel Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7887,10 +7320,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (15)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1315431258 stripped
@@ -7908,10 +7337,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (8)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -8019,10 +7444,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1320613842 stripped
@@ -8084,10 +7505,6 @@ PrefabInstance:
     - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_Name
       value: AridTerrain (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
@@ -8285,10 +7702,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &1342206020 stripped
@@ -8350,10 +7763,6 @@ PrefabInstance:
     - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
       propertyPath: m_Name
       value: GrasslandTerrain (14)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
@@ -8551,10 +7960,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1430308632 stripped
@@ -8617,10 +8022,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1433622320 stripped
@@ -8641,7 +8042,7 @@ GameObject:
   - component: {fileID: 1450605829}
   - component: {fileID: 1450605828}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Unit Panel Info Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8710,7 +8111,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1450605829}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693329458}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: UnitPanelInfoButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1450605829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8803,10 +8216,6 @@ PrefabInstance:
     - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
       propertyPath: m_Name
       value: GrasslandTerrain (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
@@ -8951,10 +8360,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1461749273 stripped
@@ -8974,7 +8379,7 @@ GameObject:
   - component: {fileID: 1469354600}
   - component: {fileID: 1469354599}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Move Panel Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9240,10 +8645,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (11)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -9709,10 +9110,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OceanTerrain (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
       value: 39
@@ -9777,7 +9174,7 @@ GameObject:
   - component: {fileID: 1681039005}
   - component: {fileID: 1681039004}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Unit Panel Move Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9846,7 +9243,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1681039005}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693329458}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: UnitPanelMoveButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1681039005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9939,10 +9348,6 @@ PrefabInstance:
     - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
       propertyPath: m_Name
       value: RiverTerrain (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
@@ -10140,10 +9545,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1717953341 stripped
@@ -10205,10 +9606,6 @@ PrefabInstance:
     - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_Name
       value: AridTerrain (10)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
@@ -10272,10 +9669,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (9)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1727267275 stripped
@@ -10337,10 +9730,6 @@ PrefabInstance:
     - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
       propertyPath: m_Name
       value: MountainTerrain (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
@@ -10404,10 +9793,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1742695435 stripped
@@ -10425,10 +9810,6 @@ PrefabInstance:
     - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_Name
       value: OceanTerrain (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 2034304343204271351, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5019232344736878519, guid: e9cedd1e67c432347b606bcf39111462, type: 3}
       propertyPath: m_RootOrder
@@ -10512,9 +9893,7 @@ RectTransform:
   m_Children:
   - {fileID: 1999655078}
   - {fileID: 1776341231}
-  - {fileID: 1234831225}
   - {fileID: 1232399006}
-  - {fileID: 922489455}
   m_Father: {fileID: 1210794277}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10573,7 +9952,7 @@ GameObject:
   - component: {fileID: 1776341233}
   - component: {fileID: 1776341232}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Terrain Panel Type
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10816,10 +10195,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (12)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1807208224 stripped
@@ -10882,10 +10257,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RiverTerrain (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 7908204346022909010, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c35e7840aee49748a0e14f5a9073b33, type: 3}
 --- !u!4 &1850734047 stripped
@@ -10903,10 +10274,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -11148,10 +10515,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (21)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &1872298422 stripped
@@ -11214,10 +10577,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &1897074077 stripped
@@ -11258,7 +10617,6 @@ RectTransform:
   - {fileID: 1291853931}
   - {fileID: 1945332851}
   - {fileID: 306974974}
-  - {fileID: 1137151211}
   - {fileID: 2090144137}
   - {fileID: 780329677}
   m_Father: {fileID: 1210794277}
@@ -11362,10 +10720,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MountainTerrain
       objectReference: {fileID: 0}
-    - target: {fileID: 7808208503639499241, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae59ec4131b30646951995fbb3dfea2, type: 3}
 --- !u!4 &1919449116 stripped
@@ -11386,7 +10740,7 @@ GameObject:
   - component: {fileID: 1921835244}
   - component: {fileID: 1921835243}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Move Panel Move Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11455,7 +10809,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1921835244}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693329458}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: MovePanelMoveButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1921835244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11640,7 +11006,7 @@ GameObject:
   - component: {fileID: 1945332853}
   - component: {fileID: 1945332852}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Attack Panel Target HP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11774,10 +11140,6 @@ PrefabInstance:
       value: Archers
       objectReference: {fileID: 0}
     - target: {fileID: 7735874157867040108, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7735874157867040108, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
       propertyPath: m_TagString
       value: Enemy Unit
       objectReference: {fileID: 0}
@@ -11827,24 +11189,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
---- !u!1 &1957515976 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7735874157867040108, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
-  m_PrefabInstance: {fileID: 1957515975}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1957515977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957515976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  path: []
 --- !u!1001 &1961856162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11855,10 +11199,6 @@ PrefabInstance:
     - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_Name
       value: IcefieldTerrain (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1267985713913773885, guid: f016698a373868f4284926a70d6d472a, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3994394922977525944, guid: f016698a373868f4284926a70d6d472a, type: 3}
       propertyPath: m_RootOrder
@@ -11966,10 +11306,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain (11)
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &1965594128 stripped
@@ -11989,7 +11325,7 @@ GameObject:
   - component: {fileID: 1999655080}
   - component: {fileID: 1999655079}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Terrain Panel Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12118,10 +11454,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 300339816}
     m_Modifications:
-    - target: {fileID: 4533861390701678616, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4533861390701678617, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -12170,10 +11502,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AridTerrain
       objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
 --- !u!4 &2019983358 stripped
@@ -12193,7 +11521,7 @@ GameObject:
   - component: {fileID: 2025821545}
   - component: {fileID: 2025821544}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Move Panel Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12315,67 +11643,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025821542}
   m_CullTransparentMesh: 1
---- !u!1001 &2054053464
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_Name
-      value: Swordsmen
-      objectReference: {fileID: 0}
-    - target: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_TagString
-      value: Player Unit
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
 --- !u!1 &2055808145
 GameObject:
   m_ObjectHideFlags: 0
@@ -12388,7 +11655,7 @@ GameObject:
   - component: {fileID: 2055808148}
   - component: {fileID: 2055808147}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Move Panel Stamina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12433,7 +11700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Terrain:'
+  m_text: 'Stamina:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12565,10 +11832,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &2076240370 stripped
@@ -12589,7 +11852,7 @@ GameObject:
   - component: {fileID: 2090144139}
   - component: {fileID: 2090144138}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Attack Panel Attack Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12608,7 +11871,7 @@ RectTransform:
   m_Children:
   - {fileID: 1863610794}
   m_Father: {fileID: 1913871887}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -12658,7 +11921,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2090144139}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693329458}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: AttackPanelAttackButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2090144139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12752,10 +12027,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrasslandTerrain (16)
       objectReference: {fileID: 0}
-    - target: {fileID: 3802698992153806915, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 073afc8f0b6ca2f40a49a5b218eecccc, type: 3}
 --- !u!4 &2095017317 stripped
@@ -12817,10 +12088,6 @@ PrefabInstance:
     - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
       propertyPath: m_Name
       value: AridTerrain (9)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4533861390701678623, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4ac23fa56ee88f42b0ca67ef2d7f9f9, type: 3}

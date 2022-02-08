@@ -25,13 +25,12 @@ public class Unit : MonoBehaviour
     { get; set; }
     public float WeaponDamage
     { get; set; }
-
+    public float WeaponRange
+    { get; set; }
     public bool AttackOrDefence
     { get; set; }
-
     public List<string> Advantages
     { get; set; }
-
     public List<string> Disadvantages
     { get; set; }
 
@@ -84,16 +83,20 @@ public class Unit : MonoBehaviour
             return false;
         }
         List<MapNode> moves = dijkstraScript.PossibleMoves();
-        if (moves.Count != 0)
+        if (CompareTag("Enemy Unit"))
         {
-            path = dijkstraScript.BuildPath(currentMapNode, MovePriority(moves));
-            return true;
+            if (moves.Count != 0)
+            {
+                path = dijkstraScript.BuildPath(currentMapNode, MovePriority(moves));
+                return true;
+            }
+            else
+            {
+                Debug.Log("Cannot move as stamina is too low!");
+                return false;
+            }
         }
-        else
-        {
-            Debug.Log("Cannot move as stamina is too low!");
-            return false;
-        }
+        return true;
     }
 
     //Moves the unit and updates MapNode occupation status.
@@ -142,16 +145,5 @@ public class Unit : MonoBehaviour
     public virtual bool Reaction(Unit target, float damage)
     {
         return false;
-    }
-
-    public void OnMouseDown()
-    {
-        if (GameObject.Find("GameManager").GetComponent<GameManager>().currentUnitTurn == "Player Unit")
-        {
-            if (GameObject.Find("Unit Panel").activeInHierarchy)
-            {
-                uIController.PopulateUnitPanels(this);
-            }
-        }
     }
 }
