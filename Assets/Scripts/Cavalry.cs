@@ -25,7 +25,7 @@ public class Cavalry : Unit
         RiverCost = 1.5f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
-        //Setup of MapNode edge costs for Archer Unit.
+        //Setup of MapNode edge costs for cavalry unit.
         foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
         {
             if (node.GetComponent<MapNode>().terrainType == "Grassland")
