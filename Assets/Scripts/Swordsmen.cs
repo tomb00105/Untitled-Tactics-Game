@@ -7,7 +7,7 @@ public class Swordsmen : Unit
     
     private void Awake()
     {
-
+        //Declaration of variables for swordsmen unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         UnitName = "Test";
         UnitType = "Swordsmen";
@@ -26,6 +26,7 @@ public class Swordsmen : Unit
         RiverCost = 1.5f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
+        //Setup of MapNode edge costs for swordsmen unit.
         foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
         {
             if (node.GetComponent<MapNode>().terrainType == "Grassland")

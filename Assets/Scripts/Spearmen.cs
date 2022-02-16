@@ -6,7 +6,7 @@ public class Spearmen : Unit
 {
     private void Awake()
     {
-
+        //Declaration of variables for speakmen unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         UnitName = "Test";
         UnitType = "Spearmen";
@@ -25,6 +25,7 @@ public class Spearmen : Unit
         RiverCost = 2f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
+        //Setup of MapNode edge costs for spearmen unit.
         foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
         {
             if (node.GetComponent<MapNode>().terrainType == "Grassland")

@@ -4,6 +4,7 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    //Declaration of variables and collections for GameManager.
     public UIController uIController;
     public List<Unit> allUnits = new List<Unit>();
     public List<Unit> turnUnits = new List<Unit>();
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        //Populates the respective collections with player and enemy units.
         foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
         {
             allUnits.Add(unit.GetComponent<Unit>());
@@ -38,13 +40,16 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        //Starts the level.
         if (!runOnce)
         {
             runOnce = true;
             currentUnitTurn = "Enemy Unit";
         }
+        //Enemy turn loop.
         if (currentUnitTurn == "Enemy Unit")
         {
+            //Sets up the needed variables for enemy turn.
             if (!turnSetupComplete && !turnSetupInProgress && !turnComplete)
             {
                 turnSetupInProgress = true;
@@ -57,6 +62,7 @@ public class GameManager : MonoBehaviour
                 uIController.selectedInfoMapNode = null;
                 uIController.selectedMoveMapNode = null;
                 uIController.selectedAttackUnit = null;
+                //Resets and sets up variables for each enemy unit.
                 foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Enemy Unit"))
                 {
 
@@ -72,6 +78,7 @@ public class GameManager : MonoBehaviour
                 }
                 turnSetupComplete = true;
             }
+            //Runs the actual enemy turn, unit by unit.
             if (turnSetupComplete && !turnInProgress && !turnComplete)
             {
                 turnInProgress = true;
@@ -95,6 +102,7 @@ public class GameManager : MonoBehaviour
                     turnComplete = true;
                 }
             }
+            //Resets turn variables and sets the current turn to the player.
             if (turnComplete)
             {
                 turnSetupComplete = false;
@@ -104,8 +112,10 @@ public class GameManager : MonoBehaviour
                 turnComplete = false;
             }
         }
+        //Player turn loop.
         if (currentUnitTurn == "Player Unit")
         {
+            //Sets up variables for player turn.
             if (!turnSetupComplete && !turnSetupInProgress && !turnComplete)
             {
                 turnSetupInProgress = true;
@@ -120,6 +130,7 @@ public class GameManager : MonoBehaviour
                 uIController.selectedAttackUnit = null;
                 foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
                 {
+                    //Checks unit current tile.
                     if (unit.transform.position != unit.GetComponent<Unit>().currentMapNode.transform.position)
                     {
                         unit.GetComponent<Unit>().CheckCurrentNode();
@@ -134,6 +145,7 @@ public class GameManager : MonoBehaviour
                     //unit.GetComponent<Unit>().CurrentHP += 2;
                     unit.GetComponent<Unit>().CurrentStamina = unit.GetComponent<Unit>().MaxStamina;
                 }
+                //Opens UI for player turn.
                 uIController.playerCanvas.SetActive(true);
                 uIController.unitPanel.SetActive(true);
                 uIController.endTurnButton.SetActive(true);
@@ -142,8 +154,10 @@ public class GameManager : MonoBehaviour
             }
             if (turnSetupComplete && !turnComplete)
             {
+                //Tells the UIController that it is the player turn and they can use the UI and raycasts.
                 uIController.playerTurn = true;
             }
+            //Resets turn variables and changes turn to enemy turn.
             if (turnComplete)
             {
                 turnSetupComplete = false;
@@ -212,6 +226,7 @@ public class GameManager : MonoBehaviour
         }
     }*/
 
+    //Ends the player turn by setting turn complete to true and disables player UI.
     public bool EndTurn(string unitTurn)
     {
         foreach (Unit unit in turnUnits)

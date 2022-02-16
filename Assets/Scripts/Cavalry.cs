@@ -6,7 +6,7 @@ public class Cavalry : Unit
 {
     private void Start()
     {
-
+        //Delcarations for cavalry unit variables.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         UnitName = "Test";
         UnitType = "Cavalry";
@@ -25,6 +25,7 @@ public class Cavalry : Unit
         RiverCost = 1.5f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
+        //Setup of MapNode edge costs for Archer Unit.
         foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
         {
             if (node.GetComponent<MapNode>().terrainType == "Grassland")

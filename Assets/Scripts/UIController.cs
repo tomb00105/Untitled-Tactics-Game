@@ -7,6 +7,7 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
+    //References to UI elements.
     public GameObject playerCanvas;
     public GameObject endTurnButton;
     public GameObject unitPanel;
@@ -15,6 +16,7 @@ public class UIController : MonoBehaviour
     public GameObject movePanel;
     public GameObject attackPanel;
 
+    //Initialisation of variables.
     public GameManager gameManager;
     public List<GameObject> highlightedObjects = new List<GameObject>();
     public Unit selectedInfoUnit;
@@ -25,11 +27,13 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
+        //Makes sure raycasts are not usable if not the player turn.
         if (!playerTurn)
         {
             return;
         }
 
+        //Allows player to select units via raycast.
         if (unitPanel.activeInHierarchy || terrainPanel.activeInHierarchy)
         {
             if (Input.GetMouseButtonDown(0))
@@ -70,7 +74,7 @@ public class UIController : MonoBehaviour
                 }
             }
         }
-
+        //Allows player to select a space to move to via raycast.
         if (movePanel.activeInHierarchy)
         {
             if (Input.GetMouseButtonDown(0))
@@ -100,7 +104,7 @@ public class UIController : MonoBehaviour
                 }
             }
         }
-
+        //Allows player to select an enemy to attack via raycast.
         if (attackPanel.activeInHierarchy)
         {
             if (Input.GetMouseButtonDown(0))
@@ -130,7 +134,7 @@ public class UIController : MonoBehaviour
             }
         }
     }
-
+    //End Turn Button function.
     public void EndTurnButton()
     {
         UnitPanelsDefault();
@@ -139,7 +143,7 @@ public class UIController : MonoBehaviour
         gameManager.EndTurn("Player Unit");
     }
 
-    public void TurnOnUI(List<string> uIElements)
+    /*public void TurnOnUI(List<string> uIElements)
     {
         foreach (string uIElement in uIElements)
         {
@@ -152,7 +156,9 @@ public class UIController : MonoBehaviour
         {
             GameObject.Find(uIElement).SetActive(false);
         }
-    }
+    }*/ //Deprecated as not funcitonal.
+
+    //Highlights the tiles which a player unit can move to.
     public void MoveHighlight(Unit unit)
     {
         highlightedObjects.Clear();
@@ -166,6 +172,8 @@ public class UIController : MonoBehaviour
             }
         }
     }
+
+    //Highlights the tiles and enemy sprites of enemies the player unit can attack.
     public void AttackHighlight(Unit unit)
     {
         highlightedObjects.Clear();
@@ -183,6 +191,8 @@ public class UIController : MonoBehaviour
             }
         }
     }
+
+    //Removes any highlights and takes the objects out of the list of highlighted objects.
     public void RemoveHighlight()
     {
         foreach (GameObject terrainTile in highlightedObjects)
@@ -192,6 +202,7 @@ public class UIController : MonoBehaviour
         highlightedObjects.Clear();
     }
 
+    //Populates the unit and unit info UI elements with the information of the selected unit.
     public void PopulateUnitPanels(Unit unit)
     {
         unitPanel.transform.Find("Unit Panel Name").GetComponent<TextMeshProUGUI>().text = "Name: " + unit.UnitName;
@@ -242,6 +253,7 @@ public class UIController : MonoBehaviour
         }
     }
 
+    //Sets the unit and unit info UI elements to their default values.
     public void UnitPanelsDefault()
     {
         unitPanel.transform.Find("Unit Panel Name").GetComponent<TextMeshProUGUI>().text = "Name:";
@@ -261,6 +273,7 @@ public class UIController : MonoBehaviour
         infoPanel.transform.Find("Info Panel Disadvantage").GetComponent<TextMeshProUGUI>().text = "Disadv:";
     }
 
+    //Functionality for unit and unit UI panel buttons.
     public void UnitPanelInfoButton()
     {
         unitPanel.SetActive(false);
@@ -287,6 +300,7 @@ public class UIController : MonoBehaviour
         unitPanel.SetActive(true);
     }
 
+    //Populates the terrain panel with the information of the selected tile. NOT CURRENTLY IN USE.
     public void PopulateTerrainPanel(MapNode terrainTile)
     {
         terrainPanel.transform.Find("Terrain Panel Type").GetComponent<TextMeshProUGUI>().text = "Type: " + terrainTile.terrainType;
@@ -299,12 +313,14 @@ public class UIController : MonoBehaviour
             terrainPanel.transform.Find("Terrain Panel Unit").GetComponent<TextMeshProUGUI>().text = "Unit: None";
         }
     }
+    //Sets the terrain panel fields to their default values. NOT CURRENTLY IN USE.
     public void TerrainPanelDefault()
     {
         terrainPanel.transform.Find("Terrain Panel Type").GetComponent<TextMeshProUGUI>().text = "Type:";
         terrainPanel.transform.Find("Terrain Panel Unit").GetComponent<TextMeshProUGUI>().text = "Unit:";
     }
-
+    
+    //Populates the move panel UI element with the information of the selected tile and the selected unit.
     public void PopulateMovePanel(MapNode terrainTile, Unit unit)
     {
         movePanel.transform.Find("Move Panel Terrain").GetComponent<TextMeshProUGUI>().text = "Terrain: " + terrainTile.terrainType;
@@ -312,6 +328,7 @@ public class UIController : MonoBehaviour
         movePanel.transform.Find("Move Panel Cost").GetComponent<TextMeshProUGUI>().text = "Cost: " + unit.GetComponent<Dijkstra>().dijkstraDict[terrainTile].ToString();
     }
 
+    //Sets move panel UI elements values to default.
     public void MovePanelDefault()
     {
         movePanel.transform.Find("Move Panel Terrain").GetComponent<TextMeshProUGUI>().text = "Terrain:";
@@ -319,6 +336,7 @@ public class UIController : MonoBehaviour
         movePanel.transform.Find("Move Panel Cost").GetComponent<TextMeshProUGUI>().text = "Cost:";
     }
 
+    //Functionality for Move panel buttons
     public void MovePanelMoveButton()
     {
         if (selectedMoveMapNode == null)
@@ -349,13 +367,14 @@ public class UIController : MonoBehaviour
         unitPanel.SetActive(true);
     }
 
+    //Populates attack panel UI element with information of selected unit.
     public void PopulateAttackPanel(Unit target, Unit unit)
     {
         attackPanel.transform.Find("Attack Panel Target").GetComponent<TextMeshProUGUI>().text = "Target: " + target.UnitName;
         attackPanel.transform.Find("Attack Panel Target HP").GetComponent<TextMeshProUGUI>().text = "Target HP: " + target.CurrentHP.ToString();
         attackPanel.transform.Find("Attack Panel Base Damage").GetComponent<TextMeshProUGUI>().text = "Base Damage: " + unit.WeaponDamage.ToString();
     }
-
+    //Sets attack panel UI element variables to default.
     public void AttackPanelDefault()
     {
         attackPanel.transform.Find("Attack Panel Target").GetComponent<TextMeshProUGUI>().text = "Target:";
@@ -363,6 +382,7 @@ public class UIController : MonoBehaviour
         attackPanel.transform.Find("Attack Panel Base Damage").GetComponent<TextMeshProUGUI>().text = "Base Damage:";
     }
 
+    //Functionality for attack panel buttons.
     public void AttackPanelAttackButton()
     {
         if (selectedAttackUnit == null)

@@ -6,7 +6,7 @@ public class Archers : Unit
 {
     private void Awake()
     {
-
+        //Declaration of variables for Archer Unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         UnitName = "Test";
         UnitType = "Archers";
@@ -25,6 +25,7 @@ public class Archers : Unit
         RiverCost = 1.5f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
+        //Setup of MapNode edge costs for Archer Unit.
         foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
         {
             if (node.GetComponent<MapNode>().terrainType == "Grassland")
@@ -58,8 +59,9 @@ public class Archers : Unit
             }
         }
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
+        //Ensures that the unit and it's respective current node are set up correctly.
         CheckCurrentNode();
-        GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
+        //GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true; Deprecated but kept for posterity
     }
 
     //Selects which possible move to take, based on the least number of any units on adjacent nodes.
