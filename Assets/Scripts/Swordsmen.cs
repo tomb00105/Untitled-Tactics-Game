@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Swordsmen : Unit
 {
+    
     private void Awake()
     {
-        CheckCurrentNode();
-    }
-    private void Start()
-    {
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         UnitName = "Test";
         UnitType = "Swordsmen";
         UnitDescription = "Sword";
@@ -18,6 +17,7 @@ public class Swordsmen : Unit
         MaxStamina = 5;
         CurrentStamina = 5;
         WeaponDamage = 5;
+        WeaponRange = 2;
         AttackOrDefence = true;
         GrassCost = 1;
         AridCost = 2;
@@ -26,32 +26,32 @@ public class Swordsmen : Unit
         RiverCost = 1.5f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
-        foreach (MapNode node in GameObject.Find("MapGraph").GetComponent<MapGraph>().graphCostDict.Keys)
+        foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
         {
-            if (node.terrainType == "Grassland")
+            if (node.GetComponent<MapNode>().terrainType == "Grassland")
             {
-                NodeCostDict.Add(node, GrassCost);
+                NodeCostDict.Add(node.GetComponent<MapNode>(), GrassCost);
                 //Debug.Log("Grass Cost: " + NodeCostDict[node].ToString());
             }
-            else if (node.terrainType == "Arid")
+            else if (node.GetComponent<MapNode>().terrainType == "Arid")
             {
-                NodeCostDict.Add(node, AridCost);
+                NodeCostDict.Add(node.GetComponent<MapNode>(), AridCost);
             }
-            else if (node.terrainType == "Icefield")
+            else if (node.GetComponent<MapNode>().terrainType == "Icefield")
             {
-                NodeCostDict.Add(node, IceCost);
+                NodeCostDict.Add(node.GetComponent<MapNode>(), IceCost);
             }
-            else if (node.terrainType == "Mountain")
+            else if (node.GetComponent<MapNode>().terrainType == "Mountain")
             {
-                NodeCostDict.Add(node, MountainCost);
+                NodeCostDict.Add(node.GetComponent<MapNode>(), MountainCost);
             }
-            else if (node.terrainType == "River")
+            else if (node.GetComponent<MapNode>().terrainType == "River")
             {
-                NodeCostDict.Add(node, RiverCost);
+                NodeCostDict.Add(node.GetComponent<MapNode>(), RiverCost);
             }
-            else if (node.terrainType == "Ocean")
+            else if (node.GetComponent<MapNode>().terrainType == "Ocean")
             {
-                NodeCostDict.Add(node, OceanCost);
+                NodeCostDict.Add(node.GetComponent<MapNode>(), OceanCost);
             }
             else
             {
@@ -80,15 +80,23 @@ public class Swordsmen : Unit
             float score;
             foreach  (MapNode adjacentNode in node.adjacentNodeDict.Keys)
             {
-                if (adjacentNode.isOccupied && adjacentNode.occupyingObject.CompareTag("Player Unit"))
+                if (adjacentNode.occupyingObject != null)
                 {
-                    if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Swordsmen")
+                    if (adjacentNode.isOccupied && gameManager.playerUnits.Contains(adjacentNode.occupyingObject))
                     {
-                        i--;
-                        continue;
+                        if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Swordsmen")
+                        {
+                            i--;
+                            continue;
+                        }
+                        i++;
                     }
+                }
+                else
+                {
                     i++;
                 }
+                
             }
             if (AttackOrDefence)
             {
@@ -115,41 +123,45 @@ public class Swordsmen : Unit
         float currentBestScore = 0;
         foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
         {
-            float score = 0;
-            if (adjacentNode.isOccupied)
+            if (adjacentNode.occupyingObject != null)
             {
-                if (adjacentNode.occupyingObject.CompareTag("Player Unit"))
+                float score = 0;
+                if (adjacentNode.isOccupied)
                 {
-                    if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Spearmen")
+                    if (adjacentNode.occupyingObject.CompareTag("Player Unit"))
                     {
-                        score += 10;
-                    }
-                    else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Archers")
-                    {
-                        score += 5;
+                        if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Spearmen")
+                        {
+                            score += 10;
+                        }
+                        else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Archers")
+                        {
+                            score += 5;
+                        }
                     }
                 }
+                if (adjacentNode.terrainType == "Grassland")
+                {
+                    score += 5;
+                }
+                else if (adjacentNode.terrainType == "Icefield")
+                {
+                    score -= 5;
+                }
+                else if (adjacentNode.terrainType == "Ocean")
+                {
+                    score = -10;
+                }
+                Debug.Log("Attack Score: " + score.ToString());
+                Debug.Log("Unit Tag: " + adjacentNode.occupyingObject.tag.ToString());
+                if (score >= currentBestScore && adjacentNode.occupyingObject.CompareTag("Player Unit"))
+                {
+                    currentBestScore = score;
+                    unitToAttack = adjacentNode.occupyingObject.GetComponent<Unit>();
+                    Debug.Log("Unit to attack: " + unitToAttack.name.ToString());
+                }
             }
-            if (adjacentNode.terrainType == "Grassland")
-            {
-                score += 5;
-            }
-            else if (adjacentNode.terrainType == "Icefield")
-            {
-                score -= 5;
-            }
-            else if (adjacentNode.terrainType == "Ocean")
-            {
-                score = -10;
-            }
-            Debug.Log("Attack Score: " + score.ToString());
-            Debug.Log("Unit Tag: " + adjacentNode.occupyingObject.tag.ToString());
-            if (score >= currentBestScore && adjacentNode.occupyingObject.CompareTag("Player Unit"))
-            {
-                currentBestScore = score;
-                unitToAttack = adjacentNode.occupyingObject.GetComponent<Unit>();
-                Debug.Log("Unit to attack: " + unitToAttack.name.ToString());
-            }
+            
         }
         if (currentBestScore <= -10)
         {
@@ -187,7 +199,7 @@ public class Swordsmen : Unit
         if (target.CurrentHP <= 0)
         {
             target.currentMapNode.isOccupied = false;
-            target.currentMapNode.occupyingObject = target.currentMapNode.gameObject;
+            target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);
             return true;
         }
@@ -228,7 +240,7 @@ public class Swordsmen : Unit
         if (target.CurrentHP <= 0)
         {
             target.currentMapNode.isOccupied = false;
-            target.currentMapNode.occupyingObject = target.currentMapNode.gameObject;
+            target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);
             return true;
         }

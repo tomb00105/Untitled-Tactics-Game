@@ -7,6 +7,7 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
+    public GameObject playerCanvas;
     public GameObject endTurnButton;
     public GameObject unitPanel;
     public GameObject infoPanel;
@@ -74,16 +75,24 @@ public class UIController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-                if (hit.collider != null)
+                Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(rayPos, Vector2.zero);
+                if (hits.Count() != 0)
                 {
-                    if (highlightedObjects.Contains(hit.collider.gameObject) && hit.collider.gameObject.CompareTag("Terrain"))
+                    foreach (RaycastHit2D hit in hits)
                     {
-                        selectedMoveMapNode = hit.collider.gameObject.GetComponent<MapNode>();
-                        PopulateMovePanel(selectedMoveMapNode, selectedInfoUnit);
+                        if (highlightedObjects.Contains(hit.collider.gameObject) && hit.collider.gameObject.CompareTag("Terrain"))
+                        {
+                            Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            selectedMoveMapNode = hit.collider.gameObject.GetComponent<MapNode>();
+                            PopulateMovePanel(selectedMoveMapNode, selectedInfoUnit);
+                        }
+                        else
+                        {
+                            Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
+                        }
                     }
+                    
                 }
                 else
                 {
@@ -96,17 +105,21 @@ public class UIController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-                RaycastHit2D[] hits = Physics2D.RaycastAll(mousePos2D, Vector2.zero);
+                Vector2 rayPos = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(rayPos, Vector2.zero);
                 foreach (RaycastHit2D hit in hits)
                 {
-                    if (hit.collider != null)
+                    if (hits.Count() != 0)
                     {
                         if (highlightedObjects.Contains(hit.collider.gameObject) && hit.collider.gameObject.CompareTag("Enemy Unit"))
                         {
+                            Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
                             selectedAttackUnit = hit.collider.gameObject.GetComponent<Unit>();
                             PopulateAttackPanel(selectedAttackUnit, selectedInfoUnit);
+                        }
+                        else
+                        {
+                            Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
                         }
                     }
                     else
@@ -120,7 +133,9 @@ public class UIController : MonoBehaviour
 
     public void EndTurnButton()
     {
-        gameManager.turnTaken = true;
+        UnitPanelsDefault();
+        MovePanelDefault();
+        AttackPanelDefault();
         gameManager.EndTurn("Player Unit");
     }
 
@@ -144,7 +159,7 @@ public class UIController : MonoBehaviour
         unit.GetComponent<Dijkstra>().DijkstraCalc(unit.NodeCostDict);
         foreach (MapNode terrainTile in unit.GetComponent<Dijkstra>().PossibleMoves())
         {
-            if (!terrainTile.occupyingObject.CompareTag("Player Unit") && !terrainTile.occupyingObject.CompareTag("Enemy Unit"))
+            if (!terrainTile.isOccupied)
             {
                 terrainTile.GetComponent<SpriteRenderer>().color = Color.blue;
                 highlightedObjects.Add(terrainTile.gameObject);
@@ -157,9 +172,13 @@ public class UIController : MonoBehaviour
         foreach (GameObject enemyUnit in GameObject.FindGameObjectsWithTag("Enemy Unit"))
         {
             float distance = Mathf.Abs(unit.transform.position.x - enemyUnit.transform.position.x) + Mathf.Abs(unit.transform.position.y - enemyUnit.transform.position.y);
+            Debug.Log("Distance to enemy: " + distance.ToString());
+            Debug.Log("Weapon range: " + unit.WeaponRange.ToString());
             if (distance <= unit.WeaponRange)
             {
                 enemyUnit.GetComponent<Unit>().currentMapNode.GetComponent<SpriteRenderer>().color = Color.red;
+                enemyUnit.GetComponent<SpriteRenderer>().color = Color.green;
+                highlightedObjects.Add(enemyUnit.gameObject);
                 highlightedObjects.Add(enemyUnit.GetComponent<Unit>().currentMapNode.gameObject);
             }
         }
@@ -194,6 +213,8 @@ public class UIController : MonoBehaviour
             infoPanel.transform.Find("Info Panel Disadvantage").GetComponent<TextMeshProUGUI>().text = "Disadv: " + string.Join(", ", unit.Disadvantages);
 
         }
+
+        unitPanel.transform.Find("Unit Panel Info Button").gameObject.SetActive(true);
 
         if (unit.CompareTag("Enemy Unit"))
         {
@@ -361,12 +382,16 @@ public class UIController : MonoBehaviour
             AttackPanelDefault();
             unitPanel.SetActive(true);
             selectedAttackUnit = null;
+            RemoveHighlight();
         }
     }
 
     public void AttackPanelBackButton()
     {
-        RemoveHighlight();
+        if (highlightedObjects.Count != 0)
+        {
+            RemoveHighlight();
+        }
         attackPanel.SetActive(false);
         AttackPanelDefault();
         selectedAttackUnit = null;

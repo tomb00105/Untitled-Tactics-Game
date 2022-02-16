@@ -6,7 +6,9 @@ using System.Linq;
 public class Unit : MonoBehaviour
 {
     private UIController uIController;
+    [SerializeField] protected GameManager gameManager;
     protected Dijkstra dijkstraScript;
+    public string unitSide;
 
     //Unit info declarations.
     public string UnitName
@@ -51,12 +53,20 @@ public class Unit : MonoBehaviour
     public Dictionary<MapNode, float> NodeCostDict
     { get; set; }
     //Dictionary to keep track of the cost for this unit to move to each MapNode.
-    public MapNode currentMapNode;
+    public MapNode currentMapNode = null;
     public List<MapNode> path = new List<MapNode>();
 
     private void Awake()
     {
         uIController = GameObject.Find("UIController").GetComponent<UIController>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        CheckCurrentNode();
+
+    }
+
+    private void Start()
+    {
+        CheckCurrentNode();
     }
 
 
@@ -68,10 +78,11 @@ public class Unit : MonoBehaviour
             if (collider.transform.position.x == transform.position.x && collider.transform.position.y == transform.position.y && collider.gameObject != gameObject)
             {
                 currentMapNode = collider.gameObject.GetComponent<MapNode>();
-                collider.gameObject.GetComponent<MapNode>().isOccupied = true;
-                collider.gameObject.GetComponent<MapNode>().occupyingObject = gameObject;
+                currentMapNode.isOccupied = true;
+                currentMapNode.occupyingObject = this.gameObject;
             }
         }
+
     }
 
     //Decides whether the unit can/will move and where to.
@@ -83,6 +94,7 @@ public class Unit : MonoBehaviour
             return false;
         }
         List<MapNode> moves = dijkstraScript.PossibleMoves();
+        Debug.Log("Moves list count: " + moves.Count);
         if (CompareTag("Enemy Unit"))
         {
             if (moves.Count != 0)

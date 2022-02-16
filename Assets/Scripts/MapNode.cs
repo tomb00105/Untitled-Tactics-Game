@@ -18,10 +18,11 @@ public class MapNode : MonoBehaviour
 
     private void Awake()
     {
-        occupyingObject = gameObject;   
+        occupyingObject = null;
     }
     private void Start()
     {
+        
         //Gets adjacent MapNodes and adds them to the dictionary.
         foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, 1f))
         {

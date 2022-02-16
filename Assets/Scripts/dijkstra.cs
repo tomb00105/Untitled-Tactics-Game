@@ -21,7 +21,7 @@ public class Dijkstra : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("Cost: " + unitScript.AridCost.ToString());
+        //Debug.Log("Cost: " + unitScript.AridCost.ToString());
         //Populates the collections for node access and edge cost of each node.
         /*foreach (MapNode mapNode in GameObject.Find("MapGraph").GetComponent<MapGraph>().graphCostDict.Keys)
         {
@@ -58,11 +58,15 @@ public class Dijkstra : MonoBehaviour
     {
         Dictionary<MapNode, bool> visited = new Dictionary<MapNode, bool>();
         MapNode currentNode;
+
+        Debug.Log("Cost Dict Count: " + costDict.Keys.Count);
+
         //Sets up the priority queue and initial values.
         foreach (KeyValuePair<MapNode, float> mapNode in costDict)
         {
             if (mapNode.Key == gameObject.GetComponent<Unit>().currentMapNode)
             {
+                Debug.Log("Current Node added to priority queue");
                 dijkstraDict[mapNode.Key] = 0;
                 priorityQueue.Enqueue(mapNode.Key, 0);
                 visited.Add(mapNode.Key, true);
@@ -72,6 +76,7 @@ public class Dijkstra : MonoBehaviour
             {
                 dijkstraDict[mapNode.Key] = Mathf.Infinity;
                 priorityQueue.Enqueue(mapNode.Key, Mathf.Infinity);
+                Debug.Log("Priority Queue Count: " + priorityQueue.Count);
                 visited.Add(mapNode.Key, false);
             }
         }
@@ -87,30 +92,37 @@ public class Dijkstra : MonoBehaviour
                 int i = 0;
                 if (gameObject.CompareTag("Enemy Unit"))
                 {
-                    if (startNeighbour.isOccupied == true && startNeighbour.occupyingObject.CompareTag("Player Unit"))
+                    if (startNeighbour.occupyingObject != null)
                     {
-                        i++;
+                        if (startNeighbour.isOccupied == true && startNeighbour.occupyingObject.CompareTag("Player Unit"))
+                        {
+                            i++;
+                        }
+                        if (i == startNode.adjacentNodeDict.Keys.Count)
+                        {
+                            Debug.Log("No space to move into!");
+                            return false;
+                        }
                     }
-                    if (i == startNode.adjacentNodeDict.Keys.Count)
-                    {
-                        Debug.Log("No space to move into!");
-                        return false;
-                    }
+                    
                 }
                 else if (gameObject.CompareTag("Player Unit"))
                 {
-
-                    if (startNeighbour.isOccupied == true && startNeighbour.occupyingObject.CompareTag("Enemy Unit"))
+                    if (startNeighbour.occupyingObject != null)
                     {
-                        i++;
+                        if (startNeighbour.isOccupied == true && startNeighbour.occupyingObject.CompareTag("Enemy Unit"))
+                        {
+                            i++;
+                        }
+                        if (i == startNode.adjacentNodeDict.Keys.Count)
+                        {
+                            Debug.Log("No space to move into!");
+                            return false;
+                        }
                     }
-                    if (i == startNode.adjacentNodeDict.Keys.Count)
-                    {
-                        Debug.Log("No space to move into!");
-                        return false;
-                    }
+                    
                 }
-                
+
             }
 
             //Checks each neighbouring node of the current node being investigated and updates their costs and priority.
@@ -120,7 +132,7 @@ public class Dijkstra : MonoBehaviour
                 {
                     if (gameObject.CompareTag("Enemy Unit"))
                     {
-                        if (nextNode.isOccupied)
+                        if (nextNode.occupyingObject != null)
                         {
                             if (nextNode.occupyingObject.CompareTag("Player Unit"))
                             {
@@ -141,11 +153,15 @@ public class Dijkstra : MonoBehaviour
                     }
                     else if (gameObject.CompareTag("Player Unit"))
                     {
-                        if (nextNode.occupyingObject.CompareTag("Enemy Unit"))
+                        if (nextNode.occupyingObject != null)
                         {
-                            dijkstraDict.Remove(nextNode);
-                            continue;
+                            if (nextNode.occupyingObject.CompareTag("Enemy Unit"))
+                            {
+                                dijkstraDict.Remove(nextNode);
+                                continue;
+                            }
                         }
+                        
                         float newScore = dijkstraDict[currentNode] + unitScript.NodeCostDict[nextNode];
                         if (newScore < dijkstraDict[nextNode])
                         {
@@ -162,10 +178,10 @@ public class Dijkstra : MonoBehaviour
                 return true;
             }
             //Checks if the only remaining nodes cannot be reached.
-           /* if (priorityQueue.GetPriority(priorityQueue.First) == Mathf.Infinity)
-            {
-                return true;
-            }*/
+            /* if (priorityQueue.GetPriority(priorityQueue.First) == Mathf.Infinity)
+             {
+                 return true;
+             }*/
         }
     }
 
@@ -177,11 +193,12 @@ public class Dijkstra : MonoBehaviour
         if (gameObject.CompareTag("Enemy Unit"))
         {
             Debug.Log("Current stamina: " + unitScript.CurrentStamina.ToString());
-            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && !x.Key.GetComponent<MapNode>().isOccupied).Select(x => x.Key).ToList();
+            //FIX BY COMPARING MAPNODE POSITION TO POSITION OF ALL UNITS IN A DICTIONARY
+            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && x.Key.GetComponent<MapNode>().occupyingObject == null).Select(x => x.Key).ToList();
         }
         else
         {
-            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && !x.Key.GetComponent<MapNode>().isOccupied).Select(x => x.Key).ToList();
+            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && x.Key.GetComponent<MapNode>().occupyingObject == null).Select(x => x.Key).ToList();
         }
 
         return possibleMoves;

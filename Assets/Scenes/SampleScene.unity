@@ -334,6 +334,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy Unit
       objectReference: {fileID: 0}
+    - target: {fileID: 1773028980711719770, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: unitSide
+      value: Enemy Unit
+      objectReference: {fileID: 0}
     - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -584,7 +588,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &124971092
 RectTransform:
   m_ObjectHideFlags: 0
@@ -652,10 +656,10 @@ MonoBehaviour:
       - m_Target: {fileID: 693329458}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
         m_MethodName: UnitPanelAttackButton
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1545,7 +1549,7 @@ GameObject:
   - component: {fileID: 306974976}
   - component: {fileID: 306974975}
   m_Layer: 5
-  m_Name: Attack Panel Damage
+  m_Name: Attack Panel Base Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2032,6 +2036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordsmen
       objectReference: {fileID: 0}
+    - target: {fileID: 1773028980711719770, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
+      propertyPath: unitSide
+      value: Player Unit
+      objectReference: {fileID: 0}
     - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2416,6 +2424,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6403169910958273058, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
+      propertyPath: unitSide
+      value: Player Unit
+      objectReference: {fileID: 0}
     - target: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
       propertyPath: m_Name
       value: Spearmen (1)
@@ -2601,6 +2613,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4223115891890226540, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
+      propertyPath: unitSide
+      value: Player Unit
+      objectReference: {fileID: 0}
     - target: {fileID: 7735874157867040108, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
       propertyPath: m_Name
       value: Archers (1)
@@ -2910,9 +2926,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6403169910958273058, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
+      propertyPath: unitSide
+      value: Enemy Unit
+      objectReference: {fileID: 0}
     - target: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
       propertyPath: m_Name
       value: Spearmen
+      objectReference: {fileID: 0}
+    - target: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
       propertyPath: m_TagString
@@ -3127,6 +3151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d0557cb1d00a2f4fb61d5e7caa965ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCanvas: {fileID: 1210794273}
   endTurnButton: {fileID: 1257676748}
   unitPanel: {fileID: 1057370676}
   infoPanel: {fileID: 169598188}
@@ -3639,11 +3664,16 @@ MonoBehaviour:
   uIController: {fileID: 693329458}
   allUnits: []
   turnUnits: []
+  playerUnits: []
+  enemyUnits: []
   currentUnitTurn: 
   turnNumber: 0
   startupComplete: 0
   runOnce: 0
-  turnTaken: 0
+  turnComplete: 0
+  turnSetupComplete: 0
+  turnSetupInProgress: 0
+  turnInProgress: 0
 --- !u!4 &798789669
 Transform:
   m_ObjectHideFlags: 0
@@ -4428,6 +4458,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1875092668095164631, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
+      propertyPath: unitSide
+      value: Enemy Unit
+      objectReference: {fileID: 0}
     - target: {fileID: 630981346260397877, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -5929,7 +5963,7 @@ GameObject:
   - component: {fileID: 1210794275}
   - component: {fileID: 1210794274}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Player Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6701,7 +6735,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1257676751}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 693329458}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: EndTurnButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1257676751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6747,6 +6793,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -1875092668095164631, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
+      propertyPath: unitSide
+      value: Player Unit
+      objectReference: {fileID: 0}
     - target: {fileID: 630981346260397877, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -8047,7 +8097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1450605827
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9179,7 +9229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1681039003
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11135,6 +11185,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4223115891890226540, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
+      propertyPath: unitSide
+      value: Enemy Unit
+      objectReference: {fileID: 0}
     - target: {fileID: 7735874157867040108, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
       propertyPath: m_Name
       value: Archers
