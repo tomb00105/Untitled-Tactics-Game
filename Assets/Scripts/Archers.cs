@@ -8,6 +8,8 @@ public class Archers : Unit
     {
         //Declaration of variables for Archer Unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uIController = GameObject.Find("UIController").GetComponent<UIController>();
+
         UnitName = "Test";
         UnitType = "Archers";
         UnitDescription = "Bow";
@@ -62,6 +64,11 @@ public class Archers : Unit
         //Ensures that the unit and it's respective current node are set up correctly.
         CheckCurrentNode();
         //GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true; Deprecated but kept for posterity
+    }
+
+    private void OnDestroy()
+    {
+        gameManager.occupiedTiles.Remove(this);
     }
 
     //Selects which possible move to take, based on the least number of any units on adjacent nodes.
@@ -285,6 +292,7 @@ public class Archers : Unit
         }
         if (target.CurrentHP <= 0)
         {
+            uIController.UnitPanelsDefault();
             target.currentMapNode.isOccupied = false;
             target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);

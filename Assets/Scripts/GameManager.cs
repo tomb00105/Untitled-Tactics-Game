@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public List<Unit> turnUnits = new List<Unit>();
     public List<GameObject> playerUnits = new List<GameObject>();
     public List<GameObject> enemyUnits = new List<GameObject>();
+    public Dictionary<Unit, MapNode> occupiedTiles = new Dictionary<Unit, MapNode>();
     public Dictionary<Unit, bool> turnUnitsDict = new Dictionary<Unit, bool>();
     public Dictionary<Unit, bool> unitMovedDict = new Dictionary<Unit, bool>();
     public Dictionary<Unit, bool> unitAttackedDict = new Dictionary<Unit, bool>();

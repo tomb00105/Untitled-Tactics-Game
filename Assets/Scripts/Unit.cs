@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Unit : MonoBehaviour
 {
-    private UIController uIController;
+    [SerializeField] protected UIController uIController;
     [SerializeField] protected GameManager gameManager;
     protected Dijkstra dijkstraScript;
     public string unitSide;
@@ -80,6 +80,7 @@ public class Unit : MonoBehaviour
                 currentMapNode = collider.gameObject.GetComponent<MapNode>();
                 currentMapNode.isOccupied = true;
                 currentMapNode.occupyingObject = this.gameObject;
+                gameManager.occupiedTiles[this] = currentMapNode;
             }
         }
 

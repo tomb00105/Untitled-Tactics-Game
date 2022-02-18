@@ -140,6 +140,14 @@ public class UIController : MonoBehaviour
         UnitPanelsDefault();
         MovePanelDefault();
         AttackPanelDefault();
+        RemoveHighlight();
+        unitPanel.transform.Find("Unit Panel Info Button").gameObject.SetActive(false);
+        unitPanel.transform.Find("Unit Panel Move Button").gameObject.SetActive(false);
+        unitPanel.transform.Find("Unit Panel Attack Button").gameObject.SetActive(false);
+        unitPanel.SetActive(false);
+        infoPanel.SetActive(false);
+        movePanel.SetActive(false);
+        attackPanel.SetActive(false);
         gameManager.EndTurn("Player Unit");
     }
 
@@ -261,8 +269,9 @@ public class UIController : MonoBehaviour
         unitPanel.transform.Find("Unit Panel HP").GetComponent<TextMeshProUGUI>().text = "HP:";
         unitPanel.transform.Find("Unit Panel Stamina").GetComponent<TextMeshProUGUI>().text = "Stamina: ";
 
-        unitPanel.transform.Find("Unit Panel Move Button").gameObject.SetActive(true);
-        unitPanel.transform.Find("Unit Panel Attack Button").gameObject.SetActive(true);
+        unitPanel.transform.Find("Unit Panel Info Button").gameObject.SetActive(false);
+        unitPanel.transform.Find("Unit Panel Move Button").gameObject.SetActive(false);
+        unitPanel.transform.Find("Unit Panel Attack Button").gameObject.SetActive(false);
 
         infoPanel.transform.Find("Info Panel Name").GetComponent<TextMeshProUGUI>().text = "Name:";
         infoPanel.transform.Find("Info Panel Type").GetComponent<TextMeshProUGUI>().text = "Type:";
@@ -393,11 +402,19 @@ public class UIController : MonoBehaviour
         {
             selectedInfoUnit.Attack(selectedAttackUnit, selectedInfoUnit.WeaponDamage);
             gameManager.unitAttackedDict[selectedInfoUnit] = true;
-            if (selectedInfoUnit.UnitType == "Swordsmen" || selectedInfoUnit.UnitType == "Spearmen")
+            //Use if you want swordsmen and swordsmen to not be able to move after attacking.
+            /*if (selectedInfoUnit.UnitType == "Swordsmen" || selectedInfoUnit.UnitType == "Spearmen")
             {
                 gameManager.unitMovedDict[selectedInfoUnit] = true;
+            }*/
+            if (selectedInfoUnit.CurrentHP > 0)
+            {
+                PopulateUnitPanels(selectedInfoUnit);
             }
-            PopulateUnitPanels(selectedInfoUnit);
+            else if (selectedInfoUnit.CurrentHP <= 0)
+            {
+                UnitPanelsDefault();
+            }
             attackPanel.SetActive(false);
             AttackPanelDefault();
             unitPanel.SetActive(true);

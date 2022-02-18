@@ -8,6 +8,7 @@ public class Dijkstra : MonoBehaviour
 {
     //Declaration of linked unit.
     private Unit unitScript;
+    private GameManager gameManager;
     //Initialisation of collections for pathfinding.
     public Dictionary<MapNode, float> dijkstraDict = new Dictionary<MapNode, float>();
     private Dictionary<MapNode, MapNode> bestAccessToNode = new Dictionary<MapNode, MapNode>();
@@ -17,6 +18,7 @@ public class Dijkstra : MonoBehaviour
     private void Awake()
     {
         unitScript = gameObject.GetComponent<Unit>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void Start()
@@ -194,11 +196,11 @@ public class Dijkstra : MonoBehaviour
         {
             Debug.Log("Current stamina: " + unitScript.CurrentStamina.ToString());
             //FIX BY COMPARING MAPNODE POSITION TO POSITION OF ALL UNITS IN A DICTIONARY
-            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && x.Key.GetComponent<MapNode>().occupyingObject == null).Select(x => x.Key).ToList();
+            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && x.Key.GetComponent<MapNode>().occupyingObject == null && !gameManager.occupiedTiles.Values.Contains<MapNode>(x.Key)).Select(x => x.Key).ToList();
         }
         else
         {
-            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && x.Key.GetComponent<MapNode>().occupyingObject == null).Select(x => x.Key).ToList();
+            possibleMoves = dijkstraDict.Where(x => x.Value <= unitScript.CurrentStamina && x.Key.GetComponent<MapNode>().occupyingObject == null && !gameManager.occupiedTiles.Values.Contains<MapNode>(x.Key)).Select(x => x.Key).ToList();
         }
 
         return possibleMoves;

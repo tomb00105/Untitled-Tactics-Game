@@ -179,9 +179,9 @@
       }
     },
     "io.tinu.asepriteimporter": {
-      "version": "file:C:/Users/geoba/Downloads/unity-aseprite-importer-1.0.4",
+      "version": "file:unity-aseprite-importer-1.0.4",
       "depth": 0,
-      "source": "local",
+      "source": "embedded",
       "dependencies": {
         "com.unity.2d.sprite": "1.0.0"
       }

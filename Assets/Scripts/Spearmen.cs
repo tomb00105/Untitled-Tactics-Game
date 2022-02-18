@@ -8,6 +8,8 @@ public class Spearmen : Unit
     {
         //Declaration of variables for speakmen unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uIController = GameObject.Find("UIController").GetComponent<UIController>();
+
         UnitName = "Test";
         UnitType = "Spearmen";
         UnitDescription = "Spear";
@@ -60,6 +62,11 @@ public class Spearmen : Unit
         }
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
+    }
+
+    private void OnDestroy()
+    {
+        gameManager.occupiedTiles.Remove(this);
     }
 
     //Selects which possible move to take, based on the least number of non-cavalry units adjacent to the node.
@@ -226,6 +233,7 @@ public class Spearmen : Unit
         }
         if (target.CurrentHP <= 0)
         {
+            uIController.UnitPanelsDefault();
             target.currentMapNode.isOccupied = false;
             target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);

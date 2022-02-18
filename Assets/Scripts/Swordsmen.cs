@@ -9,6 +9,8 @@ public class Swordsmen : Unit
     {
         //Declaration of variables for swordsmen unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        uIController = GameObject.Find("UIController").GetComponent<UIController>();
+
         UnitName = "Test";
         UnitType = "Swordsmen";
         UnitDescription = "Sword";
@@ -61,6 +63,11 @@ public class Swordsmen : Unit
         }
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
+    }
+
+    private void OnDestroy()
+    {
+        gameManager.occupiedTiles.Remove(this);
     }
 
     //Selects which possible move to take, based on the least number of non-spearmen units adjacent to the node.
@@ -240,6 +247,7 @@ public class Swordsmen : Unit
         }
         if (target.CurrentHP <= 0)
         {
+            uIController.UnitPanelsDefault();
             target.currentMapNode.isOccupied = false;
             target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);
