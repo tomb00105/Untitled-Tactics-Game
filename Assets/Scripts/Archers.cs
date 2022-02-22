@@ -9,6 +9,7 @@ public class Archers : Unit
         //Declaration of variables for Archer Unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uIController = GameObject.Find("UIController").GetComponent<UIController>();
+        mapGraph = GameObject.Find("MapGraph").GetComponent<MapGraph>();
 
         UnitName = "Test";
         UnitType = "Archers";
@@ -28,49 +29,28 @@ public class Archers : Unit
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
         //Setup of MapNode edge costs for Archer Unit.
-        foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
-        {
-            if (node.GetComponent<MapNode>().terrainType == "Grassland")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), GrassCost);
-                //Debug.Log("Grass Cost: " + NodeCostDict[node].ToString());
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Arid")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), AridCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Icefield")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), IceCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Mountain")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), MountainCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "River")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), RiverCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Ocean")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), OceanCost);
-            }
-            else
-            {
-                Debug.LogWarning("NO TERRAIN TYPE FOR THIS NODE: " + node.name.ToString());
-            }
-        }
+        
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
-        //Ensures that the unit and it's respective current node are set up correctly.
-        CheckCurrentNode();
         //GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true; Deprecated but kept for posterity
     }
 
     private void OnDestroy()
     {
-        gameManager.occupiedTiles.Remove(this);
+        List<MapNode> mapList = new List<MapNode>();
+        foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
+        {
+            mapList.Add(node);
+        }
+        foreach (MapNode mapNode in mapList)
+        {
+            if (mapGraph.tileOccupationDict[mapNode] == this)
+            {
+                mapGraph.tileOccupationDict[mapNode] = null;
+            }
+        }
     }
 
+    
     //Selects which possible move to take, based on the least number of any units on adjacent nodes.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
@@ -78,7 +58,7 @@ public class Archers : Unit
         float currentBestScore = Mathf.Infinity;
         foreach (MapNode node in possibleMoveList)
         {
-            if (node.isOccupied)
+            if (mapGraph.tileOccupationDict[node] != null)
             {
                 continue;
             }
@@ -126,21 +106,21 @@ public class Archers : Unit
             float score;
             foreach (MapNode adjacentNode in node.adjacentNodeDict.Keys)
             {
-                if (adjacentNode.occupyingObject != null)
+                if (mapGraph.tileOccupationDict[adjacentNode] != null)
                 {
-                    if (adjacentNode.isOccupied && gameManager.playerUnits.Contains(adjacentNode.occupyingObject))
+                    if (gameManager.playerUnits.Contains(mapGraph.tileOccupationDict[adjacentNode].gameObject))
                     {
-                        if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Spearmen")
+                        if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Spearmen")
                         {
                             i++;
                             continue;
                         }
-                        else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Swordsmen")
+                        else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Swordsmen")
                         {
                             i++;
                             continue;
                         }
-                        else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Cavalry")
+                        else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Cavalry")
                         {
                             i += 2;
                             continue;
@@ -252,20 +232,18 @@ public class Archers : Unit
         }
         if (target.CurrentHP <= 0)
         {
-            target.currentMapNode.isOccupied = false;
-            target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);
             return true;
         }
         else
         {
-            if (target.UnitType != "Archers" && Vector2.Distance(currentMapNode.transform.position, target.currentMapNode.transform.position) <= 2)
+            if (target.UnitType != "Archers" /*&& Vector2.Distance(currentMapNode.transform.position, target.currentMapNode.transform.position) <= 2*/)
             {
-                target.Reaction(this, target.WeaponDamage);
+                target.Reaction(this.GetComponent<Unit>(), target.WeaponDamage);
             }
-            else if (target.UnitType == "Archers" && Vector2.Distance(currentMapNode.transform.position, target.transform.position) <= 6)
+            else if (target.UnitType == "Archers" /*&& Vector2.Distance(currentMapNode.transform.position, target.transform.position) <= 6*/)
             {
-                target.Reaction(this, target.WeaponDamage);
+                target.Reaction(this.GetComponent<Unit>(), target.WeaponDamage);
             }
             return false;
         }
@@ -293,8 +271,6 @@ public class Archers : Unit
         if (target.CurrentHP <= 0)
         {
             uIController.UnitPanelsDefault();
-            target.currentMapNode.isOccupied = false;
-            target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);
             return true;
         }

@@ -3661,6 +3661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444ab8cc08448df49be3f7e5de3276c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapGraph: {fileID: 368947463}
   uIController: {fileID: 693329458}
   allUnits: []
   turnUnits: []
@@ -3668,6 +3669,7 @@ MonoBehaviour:
   enemyUnits: []
   currentUnitTurn: 
   turnNumber: 0
+  mapSetupComplete: 0
   startupComplete: 0
   runOnce: 0
   turnComplete: 0
@@ -5998,7 +6000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}

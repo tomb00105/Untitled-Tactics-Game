@@ -12,14 +12,6 @@ public class MapNode : MonoBehaviour
     //Dictionary of adjacent MapNodes.
     public Dictionary<MapNode, Vector3> adjacentNodeDict = new Dictionary<MapNode, Vector3>();
 
-    //Used to track if the MapNode currently has anything on it, e.g. a character.
-    public bool isOccupied = false;
-    public GameObject occupyingObject;
-
-    private void Awake()
-    {
-        occupyingObject = null;
-    }
     private void Start()
     {
         

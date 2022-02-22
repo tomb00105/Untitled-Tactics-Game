@@ -7,6 +7,7 @@ public class Unit : MonoBehaviour
 {
     [SerializeField] protected UIController uIController;
     [SerializeField] protected GameManager gameManager;
+    [SerializeField] protected MapGraph mapGraph;
     protected Dijkstra dijkstraScript;
     public string unitSide;
 
@@ -60,36 +61,80 @@ public class Unit : MonoBehaviour
     {
         uIController = GameObject.Find("UIController").GetComponent<UIController>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        CheckCurrentNode();
-
-    }
-
-    private void Start()
-    {
-        CheckCurrentNode();
+        mapGraph = GameObject.Find("MapGraph").GetComponent<MapGraph>();
     }
 
 
     //Checks which MapNode the unit is currently on.
     public virtual void CheckCurrentNode()
     {
-        foreach (Collider2D collider in Physics2D.OverlapCircleAll(transform.position, 1f))
+        if (!mapGraph.tileOccupationDict.Values.Contains(this))
         {
-            if (collider.transform.position.x == transform.position.x && collider.transform.position.y == transform.position.y && collider.gameObject != gameObject)
+            foreach (GameObject mapNode in GameObject.FindGameObjectsWithTag("Terrain"))
             {
-                currentMapNode = collider.gameObject.GetComponent<MapNode>();
-                currentMapNode.isOccupied = true;
-                currentMapNode.occupyingObject = this.gameObject;
-                gameManager.occupiedTiles[this] = currentMapNode;
+                if (transform.position == mapNode.transform.position)
+                {
+                    mapGraph.tileOccupationDict[mapNode.GetComponent<MapNode>()] = this;
+                    currentMapNode = mapNode.GetComponent<MapNode>();
+                }
             }
         }
-
+        else
+        {
+            foreach (GameObject mapNode in GameObject.FindGameObjectsWithTag("Terrain"))
+            {
+                if (mapGraph.tileOccupationDict[mapNode.GetComponent<MapNode>()] == this && transform.position != mapNode.transform.position)
+                {
+                    mapGraph.tileOccupationDict[mapNode.GetComponent<MapNode>()] = null;
+                }
+                if (transform.position == mapNode.transform.position)
+                {
+                    mapGraph.tileOccupationDict[mapNode.GetComponent<MapNode>()] = this;
+                    currentMapNode = mapNode.GetComponent<MapNode>();
+                }
+            }
+        }
     }
 
-    //Decides whether the unit can/will move and where to.
-    public virtual bool CheckCanMove(Dictionary<MapNode, float> costDict)
+    public void NodeCostSetup()
     {
-        if (!dijkstraScript.DijkstraCalc(costDict))
+        foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
+        {
+            if (node.GetComponent<MapNode>().terrainType == "Grassland")
+            {
+                NodeCostDict.Add(node.GetComponent<MapNode>(), GrassCost);
+                //Debug.Log("Grass Cost: " + NodeCostDict[node].ToString());
+            }
+            else if (node.GetComponent<MapNode>().terrainType == "Arid")
+            {
+                NodeCostDict.Add(node.GetComponent<MapNode>(), AridCost);
+            }
+            else if (node.GetComponent<MapNode>().terrainType == "Icefield")
+            {
+                NodeCostDict.Add(node.GetComponent<MapNode>(), IceCost);
+            }
+            else if (node.GetComponent<MapNode>().terrainType == "Mountain")
+            {
+                NodeCostDict.Add(node.GetComponent<MapNode>(), MountainCost);
+            }
+            else if (node.GetComponent<MapNode>().terrainType == "River")
+            {
+                NodeCostDict.Add(node.GetComponent<MapNode>(), RiverCost);
+            }
+            else if (node.GetComponent<MapNode>().terrainType == "Ocean")
+            {
+                NodeCostDict.Add(node.GetComponent<MapNode>(), OceanCost);
+            }
+            else
+            {
+                Debug.LogWarning("NO TERRAIN TYPE FOR THIS NODE: " + node.name.ToString());
+            }
+        }
+    }
+    //Decides whether the unit can/will move and where to.
+    public virtual bool CheckCanMove()
+    {
+        if (!dijkstraScript.DijkstraCalc())
         {
             Debug.Log("Cannot move!");
             return false;
@@ -132,11 +177,7 @@ public class Unit : MonoBehaviour
             }
         }*/
         transform.position = path.Last().transform.position;
-        currentMapNode.isOccupied = false;
-        currentMapNode.occupyingObject = currentMapNode.gameObject;
         CheckCurrentNode();
-        currentMapNode.isOccupied = true;
-        currentMapNode.occupyingObject = gameObject;
     }
 
     //Virtual method for deciding which possible node to move to, will be different for each unit.

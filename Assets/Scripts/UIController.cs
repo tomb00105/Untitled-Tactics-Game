@@ -18,6 +18,7 @@ public class UIController : MonoBehaviour
 
     //Initialisation of variables.
     public GameManager gameManager;
+    private MapGraph mapGraph;
     public List<GameObject> highlightedObjects = new List<GameObject>();
     public Unit selectedInfoUnit;
     public MapNode selectedInfoMapNode;
@@ -25,6 +26,10 @@ public class UIController : MonoBehaviour
     public Unit selectedAttackUnit;
     public bool playerTurn = false;
 
+    private void Awake()
+    {
+        mapGraph = GameObject.Find("MapGraph").GetComponent<MapGraph>();
+    }
     private void Update()
     {
         //Makes sure raycasts are not usable if not the player turn.
@@ -170,14 +175,12 @@ public class UIController : MonoBehaviour
     public void MoveHighlight(Unit unit)
     {
         highlightedObjects.Clear();
-        unit.GetComponent<Dijkstra>().DijkstraCalc(unit.NodeCostDict);
+        unit.GetComponent<Dijkstra>().DijkstraCalc();
         foreach (MapNode terrainTile in unit.GetComponent<Dijkstra>().PossibleMoves())
         {
-            if (!terrainTile.isOccupied)
-            {
-                terrainTile.GetComponent<SpriteRenderer>().color = Color.blue;
-                highlightedObjects.Add(terrainTile.gameObject);
-            }
+            terrainTile.GetComponent<SpriteRenderer>().color = Color.blue;
+            highlightedObjects.Add(terrainTile.gameObject);
+
         }
     }
 
@@ -313,9 +316,9 @@ public class UIController : MonoBehaviour
     public void PopulateTerrainPanel(MapNode terrainTile)
     {
         terrainPanel.transform.Find("Terrain Panel Type").GetComponent<TextMeshProUGUI>().text = "Type: " + terrainTile.terrainType;
-        if (terrainTile.isOccupied)
+        if (mapGraph.tileOccupationDict[terrainTile] != null)
         {
-            terrainPanel.transform.Find("Terrain Panel Unit").GetComponent<TextMeshProUGUI>().text = "Unit: " + terrainTile.occupyingObject.GetComponent<Unit>().UnitType;
+            terrainPanel.transform.Find("Terrain Panel Unit").GetComponent<TextMeshProUGUI>().text = "Unit: " + mapGraph.tileOccupationDict[terrainTile].UnitType;
         }
         else
         {

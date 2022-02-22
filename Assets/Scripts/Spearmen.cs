@@ -9,6 +9,7 @@ public class Spearmen : Unit
         //Declaration of variables for speakmen unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uIController = GameObject.Find("UIController").GetComponent<UIController>();
+        mapGraph = GameObject.Find("MapGraph").GetComponent<MapGraph>();
 
         UnitName = "Test";
         UnitType = "Spearmen";
@@ -28,47 +29,29 @@ public class Spearmen : Unit
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
         //Setup of MapNode edge costs for spearmen unit.
-        foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
-        {
-            if (node.GetComponent<MapNode>().terrainType == "Grassland")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), GrassCost);
-                //Debug.Log("Grass Cost: " + NodeCostDict[node].ToString());
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Arid")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), AridCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Icefield")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), IceCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Mountain")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), MountainCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "River")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), RiverCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Ocean")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), OceanCost);
-            }
-            else
-            {
-                Debug.LogWarning("NO TERRAIN TYPE FOR THIS NODE: " + node.name.ToString());
-            }
-        }
+        
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
     }
 
     private void OnDestroy()
     {
-        gameManager.occupiedTiles.Remove(this);
+        List<MapNode> mapList = new List<MapNode>();
+        foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
+        {
+            mapList.Add(node);
+        }
+        foreach (MapNode mapNode in mapList)
+        {
+            if (mapGraph.tileOccupationDict[mapNode] == this)
+            {
+                mapGraph.tileOccupationDict[mapNode] = null;
+            }
+        }
     }
 
+    
+    
     //Selects which possible move to take, based on the least number of non-cavalry units adjacent to the node.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
@@ -87,15 +70,14 @@ public class Spearmen : Unit
             float score;
             foreach (MapNode adjacentNode in node.adjacentNodeDict.Keys)
             {
-                GameObject occObj = adjacentNode.occupyingObject;
                 /*Debug.Log("Adjacent Node Occupied: " + adjacentNode.isOccupied.ToString());
                 Debug.Log("OccObj: " + occObj.ToString());
                 Debug.Log("OccObjEquals?: " + (occObj == GameObject.Find("Archers")));*/
-                if (occObj != null)
+                if (mapGraph.tileOccupationDict[adjacentNode] != null)
                 {
-                    if (adjacentNode.isOccupied && gameManager.playerUnits.Contains(adjacentNode.occupyingObject))
+                    if (gameManager.playerUnits.Contains(mapGraph.tileOccupationDict[adjacentNode].gameObject))
                     {
-                        if (occObj.GetComponent<Unit>().UnitType == "Cavalry")
+                        if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Cavalry")
                         {
                             i--;
                             continue;
@@ -116,6 +98,7 @@ public class Spearmen : Unit
             {
                 currentBestScore = score;
                 currentBest = node;
+                Debug.Log("Current Best: " + currentBest.name.ToString());
             }
         }
         return currentBest;
@@ -127,14 +110,14 @@ public class Spearmen : Unit
         float currentBestScore = 0;
         foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
         {
-            if (adjacentNode.occupyingObject != null)
+            if (mapGraph.tileOccupationDict[adjacentNode] != null)
             {
                 float score = 0;
-                if (adjacentNode.isOccupied && adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Cavalry")
+                if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Cavalry")
                 {
                     score += 10;
                 }
-                else if (adjacentNode.isOccupied && adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Swordsmen")
+                else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Swordsmen")
                 {
                     score -= 5;
                 }
@@ -153,7 +136,7 @@ public class Spearmen : Unit
                 if (score > currentBestScore)
                 {
                     currentBestScore = score;
-                    unitToAttack = adjacentNode.occupyingObject.GetComponent<Unit>();
+                    unitToAttack = mapGraph.tileOccupationDict[adjacentNode];
                 }
             }
             
@@ -193,8 +176,6 @@ public class Spearmen : Unit
         }
         if (target.CurrentHP <= 0)
         {
-            target.currentMapNode.isOccupied = false;
-            target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);
             return true;
         }
@@ -234,8 +215,6 @@ public class Spearmen : Unit
         if (target.CurrentHP <= 0)
         {
             uIController.UnitPanelsDefault();
-            target.currentMapNode.isOccupied = false;
-            target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);
             return true;
         }

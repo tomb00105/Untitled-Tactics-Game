@@ -9,6 +9,7 @@ public class Cavalry : Unit
         //Delcarations for cavalry unit variables.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uIController = GameObject.Find("UIController").GetComponent<UIController>();
+        mapGraph = GameObject.Find("MapGraph").GetComponent<MapGraph>();
 
         UnitName = "Test";
         UnitType = "Cavalry";
@@ -61,13 +62,23 @@ public class Cavalry : Unit
             }
         }
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
-        CheckCurrentNode();
         GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
     }
 
     private void OnDestroy()
     {
-        gameManager.occupiedTiles.Remove(this);
+        List<MapNode> mapList = new List<MapNode>();
+        foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
+        {
+            mapList.Add(node);
+        }
+        foreach (MapNode mapNode in mapList)
+        {
+            if (mapGraph.tileOccupationDict[mapNode] == this)
+            {
+                mapGraph.tileOccupationDict[mapNode] = null;
+            }
+        }
     }
 
     //Selects which possible move to take, based on the least number of non-archer and non-swordsmen units adjacent to the node.
@@ -88,21 +99,21 @@ public class Cavalry : Unit
             float score;
             foreach (MapNode adjacentNode in node.adjacentNodeDict.Keys)
             {
-                if (adjacentNode.occupyingObject != null)
+                if (mapGraph.tileOccupationDict[adjacentNode] != null)
                 {
-                    if (adjacentNode.isOccupied && gameManager.playerUnits.Contains(adjacentNode.occupyingObject))
+                    if (gameManager.playerUnits.Contains(mapGraph.tileOccupationDict[adjacentNode].gameObject))
                     {
-                        if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Archers")
+                        if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Archers")
                         {
                             i -= 2;
                             continue;
                         }
-                        else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Swordsmen")
+                        else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Swordsmen")
                         {
                             i--;
                             continue;
                         }
-                        else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Spearmen")
+                        else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Spearmen")
                         {
                             i += 2;
                             continue;
@@ -134,16 +145,14 @@ public class Cavalry : Unit
         float currentBestScore = 0;
         foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
         {
-            if (adjacentNode.occupyingObject != null)
+            if (mapGraph.tileOccupationDict[adjacentNode] != null)
             {
                 float score = 0;
-                if (adjacentNode.isOccupied)
-                {
-                    if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Archers")
+                    if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Archers")
                     {
                         score += 10;
                     }
-                    else if (adjacentNode.occupyingObject.GetComponent<Unit>().UnitType == "Swordsmen")
+                    else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Swordsmen")
                     {
                         score += 5;
                     }
@@ -159,14 +168,13 @@ public class Cavalry : Unit
                     {
                         score = -10;
                     }
-                }
-                Debug.Log("Attack Score: " + score.ToString());
-                Debug.Log("Unit Tag: " + adjacentNode.occupyingObject.tag.ToString());
-                if (score >= currentBestScore && adjacentNode.occupyingObject.CompareTag("Player Unit"))
+                //Debug.Log("Attack Score: " + score.ToString());
+                //Debug.Log("Unit Tag: " + mapGraph.tileOccupationDict[adjacentNode].tag.ToString());
+                if (score >= currentBestScore && mapGraph.tileOccupationDict[adjacentNode].CompareTag("Player Unit"))
                 {
                     currentBestScore = score;
-                    unitToAttack = adjacentNode.occupyingObject.GetComponent<Unit>();
-                    Debug.Log("Unit to attack: " + unitToAttack.name.ToString());
+                    unitToAttack = mapGraph.tileOccupationDict[adjacentNode];
+                    //Debug.Log("Unit to attack: " + unitToAttack.name.ToString());
                 }
             }
             
@@ -206,9 +214,6 @@ public class Cavalry : Unit
         }
         if (target.CurrentHP <= 0)
         {
-            Debug.Log("Unit Killed");
-            target.currentMapNode.isOccupied = false;
-            target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);
             return true;
         }
@@ -248,8 +253,6 @@ public class Cavalry : Unit
         if (target.CurrentHP <= 0)
         {
             uIController.UnitPanelsDefault();
-            target.currentMapNode.isOccupied = false;
-            target.currentMapNode.occupyingObject = null;
             Destroy(target.gameObject);
             return true;
         }
