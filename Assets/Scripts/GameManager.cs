@@ -4,6 +4,10 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject swordsmenPrefab;
+    public GameObject spearmenPrefab;
+    public GameObject archersPrefab;
+    public GameObject cavalryPrefab;
     public MapGraph mapGraph;
     //Declaration of variables and collections for GameManager.
     public UIController uIController;
@@ -15,12 +19,15 @@ public class GameManager : MonoBehaviour
     public Dictionary<Unit, bool> unitMovedDict = new Dictionary<Unit, bool>();
     public Dictionary<Unit, bool> unitAttackedDict = new Dictionary<Unit, bool>();
     public string currentUnitTurn;
+    public int levelCode;
     public int turnNumber = 0;
     public bool mapSetupComplete = false;
     public bool startupComplete = false;
     public bool runOnce = false;
     public bool turnComplete = false;
 
+    public bool loading = false;
+    public bool loadComplete = false;
     public bool turnSetupComplete = false;
     public bool turnSetupInProgress = false;
     public bool turnInProgress = false;
@@ -85,10 +92,15 @@ public class GameManager : MonoBehaviour
             startupComplete = true;
         }
         //Starts the level.
-        if (!runOnce && mapSetupComplete && startupComplete)
+        if (!runOnce && mapSetupComplete && startupComplete && !loading)
         {
             runOnce = true;
             currentUnitTurn = "Enemy Unit";
+        }
+
+        if (loading && !loadComplete)
+        {
+            return;
         }
 
         if (uIController.paused)

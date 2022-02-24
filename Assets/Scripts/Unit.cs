@@ -13,17 +13,17 @@ public class Unit : MonoBehaviour
 
     //Unit info declarations.
     public string UnitName
-    { get; protected set; }
+    { get;  set; }
     public string UnitType
     { get; set; }
     public string UnitDescription
-    { get; protected set; }
+    { get; set; }
     public float MaxHP
-    { get; protected set; }
+    { get;  set; }
     public float CurrentHP
     { get; set; }
     public float MaxStamina
-    { get; protected set; }
+    { get; set; }
     public float CurrentStamina
     { get; set; }
     public float WeaponDamage
