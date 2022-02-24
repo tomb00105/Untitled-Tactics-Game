@@ -90,6 +90,12 @@ public class GameManager : MonoBehaviour
             runOnce = true;
             currentUnitTurn = "Enemy Unit";
         }
+
+        if (uIController.paused)
+        {
+            return;
+        }
+
         //Enemy turn loop.
         if (currentUnitTurn == "Enemy Unit")
         {

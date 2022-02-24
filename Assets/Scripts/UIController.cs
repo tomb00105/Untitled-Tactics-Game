@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -15,6 +16,10 @@ public class UIController : MonoBehaviour
     public GameObject terrainPanel;
     public GameObject movePanel;
     public GameObject attackPanel;
+    public GameObject pauseMenuPanel;
+    public GameObject exitMenuPanel;
+    public GameObject exitToMainMenuPanel;
+    public GameObject exitToDesktopPanel;
 
     //Initialisation of variables.
     public GameManager gameManager;
@@ -25,6 +30,7 @@ public class UIController : MonoBehaviour
     public MapNode selectedMoveMapNode;
     public Unit selectedAttackUnit;
     public bool playerTurn = false;
+    public bool paused = false;
 
     private void Awake()
     {
@@ -36,6 +42,24 @@ public class UIController : MonoBehaviour
         if (!playerTurn)
         {
             return;
+        }
+        if (pauseMenuPanel.activeInHierarchy || exitMenuPanel.activeInHierarchy || exitToMainMenuPanel.activeInHierarchy || exitToDesktopPanel.activeInHierarchy)
+        {
+            paused = true;
+            return;
+        }
+        else
+        {
+            paused = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!pauseMenuPanel.activeInHierarchy)
+            {
+                pauseMenuPanel.SetActive(true);
+                endTurnButton.SetActive(false);
+            }
         }
 
         //Allows player to select units via raycast.
@@ -437,4 +461,74 @@ public class UIController : MonoBehaviour
         selectedAttackUnit = null;
         unitPanel.SetActive(true);
     }
+
+    public void PauseMenuResumeButton()
+    {
+        pauseMenuPanel.SetActive(false);
+        endTurnButton.SetActive(true);
+    }
+
+    public void PauseMenuSettingsButton()
+    {
+        Debug.Log("NOT IMPLEMENTED");
+    }
+
+    public void PauseMenuExitButton()
+    {
+        exitMenuPanel.SetActive(true);
+        pauseMenuPanel.SetActive(false);
+    }
+
+    public void ExitMenuToMainMenuButton()
+    {
+        exitToMainMenuPanel.SetActive(true);
+        exitMenuPanel.SetActive(false);
+    }
+
+    
+
+    public void ExitMenuToDesktopButton()
+    {
+        exitToDesktopPanel.SetActive(true);
+        exitMenuPanel.SetActive(false);
+    }
+
+    public void ExitMenuBackButton()
+    {
+        pauseMenuPanel.SetActive(true);
+        exitMenuPanel.SetActive(false);
+    }
+
+    public void ExitToMainMenuAcceptButton()
+    {
+        StartCoroutine(LoadMainMenu());
+    }
+
+    IEnumerator LoadMainMenu()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main Menu", LoadSceneMode.Single);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    public void ExitToMainMenuBackButton()
+    {
+        exitMenuPanel.SetActive(true);
+        exitToMainMenuPanel.SetActive(false);
+    }
+
+    public void ExitToDesktopAcceptButton()
+    {
+        Application.Quit();
+    }
+
+    public void ExitToDesktopBackButton()
+    {
+        exitMenuPanel.SetActive(true);
+        exitToDesktopPanel.SetActive(false);
+    }
+
 }
