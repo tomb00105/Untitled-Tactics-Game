@@ -11,7 +11,6 @@ public class Cavalry : Unit
         uIController = GameObject.Find("UIController").GetComponent<UIController>();
         mapGraph = GameObject.Find("MapGraph").GetComponent<MapGraph>();
 
-        UnitName = "Test";
         UnitType = "Cavalry";
         UnitDescription = "Horse";
         MaxHP = 15;
@@ -29,38 +28,7 @@ public class Cavalry : Unit
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
         //Setup of MapNode edge costs for cavalry unit.
-        foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
-        {
-            if (node.GetComponent<MapNode>().terrainType == "Grassland")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), GrassCost);
-                //Debug.Log("Grass Cost: " + NodeCostDict[node].ToString());
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Arid")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), AridCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Icefield")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), IceCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Mountain")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), MountainCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "River")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), RiverCost);
-            }
-            else if (node.GetComponent<MapNode>().terrainType == "Ocean")
-            {
-                NodeCostDict.Add(node.GetComponent<MapNode>(), OceanCost);
-            }
-            else
-            {
-                Debug.LogWarning("NO TERRAIN TYPE FOR THIS NODE: " + node.name.ToString());
-            }
-        }
+        
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
     }
@@ -78,6 +46,32 @@ public class Cavalry : Unit
             {
                 mapGraph.tileOccupationDict[mapNode] = null;
             }
+            
+        }
+        gameManager.allUnits.Remove(this);
+        if (gameManager.turnUnits.Contains(this))
+        {
+            gameManager.turnUnits.Remove(this);
+        }
+        if (gameManager.playerUnits.Contains(this.gameObject))
+        {
+            gameManager.playerUnits.Remove(this.gameObject);
+        }
+        if (gameManager.enemyUnits.Contains(this.gameObject))
+        {
+            gameManager.enemyUnits.Remove(this.gameObject);
+        }
+        if (gameManager.turnUnitsDict.ContainsKey(this))
+        {
+            gameManager.turnUnitsDict.Remove(this);
+        }
+        if (gameManager.unitMovedDict.ContainsKey(this))
+        {
+            gameManager.unitMovedDict.Remove(this);
+        }
+        if (gameManager.unitAttackedDict.ContainsKey(this))
+        {
+            gameManager.unitAttackedDict.Remove(this);
         }
     }
 

@@ -7,21 +7,21 @@ public class LevelSave
 {
     public int levelCode;
 
-    public List<Unit> allUnits = new List<Unit>();
+    public List<string> allUnits = new List<string>();
 
-    public List<Unit> turnUnits = new List<Unit>();
+    public List<string> turnUnits = new List<string>();
 
-    public Dictionary<Unit, bool> turnUnitsDict = new Dictionary<Unit, bool>();
+    public Dictionary<string, bool> turnUnitsDict = new Dictionary<string, bool>();
 
-    public Dictionary<Unit, bool> unitMovedDict = new Dictionary<Unit, bool>();
+    public Dictionary<string, bool> unitMovedDict = new Dictionary<string, bool>();
 
-    public Dictionary<Unit, bool> unitAttackedDict = new Dictionary<Unit, bool>();
+    public Dictionary<string, bool> unitAttackedDict = new Dictionary<string, bool>();
 
     public string currentUnitTurn;
 
     public int turnNumber;
 
-    public Dictionary<GameObject, List<float>> playerUnitData = new Dictionary<GameObject, List<float>>();
+    public Dictionary<string, List<float>> playerUnitData = new Dictionary<string, List<float>>();
 
-    public Dictionary<GameObject, List<float>> enemyUnitData = new Dictionary<GameObject, List<float>>();
+    public Dictionary<string, List<float>> enemyUnitData = new Dictionary<string, List<float>>();
 }

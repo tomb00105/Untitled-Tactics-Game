@@ -15,7 +15,7 @@ public class Dijkstra : MonoBehaviour
     private Dictionary<MapNode, MapNode> bestAccessToNode = new Dictionary<MapNode, MapNode>();
     public List<MapNode> path = new List<MapNode>();
     private SimplePriorityQueue<MapNode> priorityQueue = new SimplePriorityQueue<MapNode>();
-
+        
     private void Awake()
     {
         unitScript = gameObject.GetComponent<Unit>();

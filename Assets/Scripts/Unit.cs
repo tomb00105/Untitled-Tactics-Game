@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+[System.Serializable]
 public class Unit : MonoBehaviour
 {
     [SerializeField] protected UIController uIController;
@@ -12,8 +13,7 @@ public class Unit : MonoBehaviour
     public string unitSide;
 
     //Unit info declarations.
-    public string UnitName
-    { get;  set; }
+    public string unitName;
     public string UnitType
     { get; set; }
     public string UnitDescription
@@ -59,9 +59,15 @@ public class Unit : MonoBehaviour
 
     private void Awake()
     {
+        gameObject.name = unitName;
         uIController = GameObject.Find("UIController").GetComponent<UIController>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         mapGraph = GameObject.Find("MapGraph").GetComponent<MapGraph>();
+    }
+
+    private void Start()
+    {
+        gameObject.name = unitName;
     }
 
 

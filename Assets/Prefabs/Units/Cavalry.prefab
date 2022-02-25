@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 630981346260397877}
   - component: {fileID: 4611674027310793075}
   - component: {fileID: -7742568806524860124}
-  - component: {fileID: -1875092668095164631}
   - component: {fileID: -6019603749199117555}
+  - component: {fileID: -1875092668095164631}
   m_Layer: 7
   m_Name: Cavalry
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2363432248063378351}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1239297, y: 0.57473564, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,20 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &-1875092668095164631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2363432248063378351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb575e7109dce6429a3adc5f165d6b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMapNode: {fileID: 0}
-  path: []
 --- !u!114 &-6019603749199117555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,4 +123,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: []
+--- !u!114 &-1875092668095164631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2363432248063378351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb575e7109dce6429a3adc5f165d6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIController: {fileID: 0}
+  gameManager: {fileID: 0}
+  mapGraph: {fileID: 0}
+  unitSide: 
+  unitName: 
+  currentMapNode: {fileID: 0}
   path: []

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+[System.Serializable]
 public class GameManager : MonoBehaviour
 {
     public GameObject swordsmenPrefab;
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<Unit, bool> unitMovedDict = new Dictionary<Unit, bool>();
     public Dictionary<Unit, bool> unitAttackedDict = new Dictionary<Unit, bool>();
     public string currentUnitTurn;
-    public int levelCode;
+    public int levelCode = 1;
     public int turnNumber = 0;
     public bool mapSetupComplete = false;
     public bool startupComplete = false;

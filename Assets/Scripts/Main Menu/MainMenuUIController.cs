@@ -9,6 +9,7 @@ public class MainMenuUIController : MonoBehaviour
     public GameObject mainMenuCanvas;
     public GameObject menuPanel;
     public GameObject settingsPanel;
+    public GameObject loadPanel;
     public GameObject exitButton;
 
     public void TestLevelButton()
@@ -24,6 +25,28 @@ public class MainMenuUIController : MonoBehaviour
         {
             yield return null;
         }
+    }
+
+    public void LoadButton()
+    {
+        menuPanel.SetActive(false);
+        loadPanel.SetActive(true);
+    }
+
+    public void LoadPanelLoadLevelButton()
+    {
+        GameObject.Find("SaveManager").GetComponent<SaveBehaviour>().LoadGame();
+    }
+
+    public void LoadPanelLoadSaveButton()
+    {
+        Debug.Log("NOT IMPLEMENTED");
+    }
+
+    public void LoadPanelBackButton()
+    {
+        loadPanel.SetActive(false);
+        menuPanel.SetActive(true);
     }
 
     public void SettingsButton()

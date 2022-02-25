@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 9055515966523715135}
   - component: {fileID: 8121529010163083497}
   - component: {fileID: 4898120498701252402}
-  - component: {fileID: -6403169910958273058}
   - component: {fileID: -1229965904186569104}
+  - component: {fileID: -6403169910958273058}
   m_Layer: 7
   m_Name: Spearmen
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6901401348264332062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6389184, y: 0.97587734, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,20 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &-6403169910958273058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6901401348264332062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432ec16f0955aa541af2f44f1cdfbbe7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMapNode: {fileID: 0}
-  path: []
 --- !u!114 &-1229965904186569104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,4 +123,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: []
+--- !u!114 &-6403169910958273058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901401348264332062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432ec16f0955aa541af2f44f1cdfbbe7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIController: {fileID: 0}
+  gameManager: {fileID: 0}
+  mapGraph: {fileID: 0}
+  unitSide: 
+  unitName: 
+  currentMapNode: {fileID: 0}
   path: []

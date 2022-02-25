@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Swordsmen : Unit
 {
-    
     private void Awake()
     {
         //Declaration of variables for swordsmen unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uIController = GameObject.Find("UIController").GetComponent<UIController>();
         mapGraph = GameObject.Find("MapGraph").GetComponent<MapGraph>();
-
-        UnitName = "Test";
+        
         UnitType = "Swordsmen";
         UnitDescription = "Sword";
         MaxHP = 20;
@@ -48,6 +46,31 @@ public class Swordsmen : Unit
             {
                 mapGraph.tileOccupationDict[mapNode] = null;
             }
+        }
+        gameManager.allUnits.Remove(this);
+        if (gameManager.turnUnits.Contains(this))
+        {
+            gameManager.turnUnits.Remove(this);
+        }
+        if (gameManager.playerUnits.Contains(this.gameObject))
+        {
+            gameManager.playerUnits.Remove(this.gameObject);
+        }
+        if (gameManager.enemyUnits.Contains(this.gameObject))
+        {
+            gameManager.enemyUnits.Remove(this.gameObject);
+        }
+        if (gameManager.turnUnitsDict.ContainsKey(this))
+        {
+            gameManager.turnUnitsDict.Remove(this);
+        }
+        if (gameManager.unitMovedDict.ContainsKey(this))
+        {
+            gameManager.unitMovedDict.Remove(this);
+        }
+        if (gameManager.unitAttackedDict.ContainsKey(this))
+        {
+            gameManager.unitAttackedDict.Remove(this);
         }
     }
 

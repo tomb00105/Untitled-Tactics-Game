@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 4057441162283512519}
   - component: {fileID: 345123628914118029}
   - component: {fileID: 7416648575780560453}
-  - component: {fileID: 1773028980711719770}
   - component: {fileID: 1707491309}
+  - component: {fileID: 9083502524674153706}
   m_Layer: 7
   m_Name: Swordsmen
-  m_TagString: Player Unit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219614287044044759}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,20 +111,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &1773028980711719770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219614287044044759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be22d59eff5fc824c8daba219d4aef88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentMapNode: {fileID: 0}
-  path: []
 --- !u!114 &1707491309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,4 +123,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 053da00efd0cb1a44b1f1e33e86512b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: []
+--- !u!114 &9083502524674153706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 219614287044044759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be22d59eff5fc824c8daba219d4aef88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uIController: {fileID: 0}
+  gameManager: {fileID: 0}
+  mapGraph: {fileID: 0}
+  unitSide: 
+  unitName: 
+  currentMapNode: {fileID: 0}
   path: []

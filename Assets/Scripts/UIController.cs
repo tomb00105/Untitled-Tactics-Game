@@ -240,12 +240,12 @@ public class UIController : MonoBehaviour
     //Populates the unit and unit info UI elements with the information of the selected unit.
     public void PopulateUnitPanels(Unit unit)
     {
-        unitPanel.transform.Find("Unit Panel Name").GetComponent<TextMeshProUGUI>().text = "Name: " + unit.UnitName;
+        unitPanel.transform.Find("Unit Panel Name").GetComponent<TextMeshProUGUI>().text = "Name: " + unit.unitName;
         unitPanel.transform.Find("Unit Panel Type").GetComponent<TextMeshProUGUI>().text = "Type: " + unit.UnitType;
         unitPanel.transform.Find("Unit Panel HP").GetComponent<TextMeshProUGUI>().text = "HP: " + unit.CurrentHP.ToString();
         unitPanel.transform.Find("Unit Panel Stamina").GetComponent<TextMeshProUGUI>().text = "Stamina: " + unit.CurrentStamina.ToString();
 
-        infoPanel.transform.Find("Info Panel Name").GetComponent<TextMeshProUGUI>().text = "Name: " + unit.UnitName;
+        infoPanel.transform.Find("Info Panel Name").GetComponent<TextMeshProUGUI>().text = "Name: " + unit.unitName;
         infoPanel.transform.Find("Info Panel Type").GetComponent<TextMeshProUGUI>().text = "Type: " + unit.UnitType;
         infoPanel.transform.Find("Info Panel HP").GetComponent<TextMeshProUGUI>().text = "HP: " + unit.CurrentHP.ToString();
         infoPanel.transform.Find("Info Panel Stamina").GetComponent<TextMeshProUGUI>().text = "Stamina: " + unit.CurrentStamina.ToString();
@@ -406,7 +406,7 @@ public class UIController : MonoBehaviour
     //Populates attack panel UI element with information of selected unit.
     public void PopulateAttackPanel(Unit target, Unit unit)
     {
-        attackPanel.transform.Find("Attack Panel Target").GetComponent<TextMeshProUGUI>().text = "Target: " + target.UnitName;
+        attackPanel.transform.Find("Attack Panel Target").GetComponent<TextMeshProUGUI>().text = "Target: " + target.unitName;
         attackPanel.transform.Find("Attack Panel Target HP").GetComponent<TextMeshProUGUI>().text = "Target HP: " + target.CurrentHP.ToString();
         attackPanel.transform.Find("Attack Panel Base Damage").GetComponent<TextMeshProUGUI>().text = "Base Damage: " + unit.WeaponDamage.ToString();
     }
@@ -466,6 +466,11 @@ public class UIController : MonoBehaviour
     {
         pauseMenuPanel.SetActive(false);
         endTurnButton.SetActive(true);
+    }
+
+    public void PauseMenuSaveButton()
+    {
+        GameObject.Find("SaveManager").GetComponent<SaveBehaviour>().SaveGame();
     }
 
     public void PauseMenuSettingsButton()
