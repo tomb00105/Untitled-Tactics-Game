@@ -108,7 +108,6 @@ public class Spearmen : Unit
                         }
                     }
                 }
-                
             }
             if (AttackOrDefence)
             {
@@ -143,7 +142,7 @@ public class Spearmen : Unit
                 }
                 else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Swordsmen")
                 {
-                    score -= 5;
+                    score -= 4;
                 }
                 if (adjacentNode.terrainType == "Grassland")
                 {

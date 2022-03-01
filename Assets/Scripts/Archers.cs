@@ -106,7 +106,6 @@ public class Archers : Unit
                     distanceVar -= 1;
                     if (unit.GetComponent<Unit>().UnitType == "Swordsmen" || unit.GetComponent<Unit>().UnitType == "Spearmen" || unit.GetComponent<Unit>().UnitType == "Cavalry")
                     {
-                        Debug.Log("Unit is Swordsmen or Spearmen");
                         distanceVar += 3;
                     }
                 }
@@ -122,10 +121,8 @@ public class Archers : Unit
                 {
                     distanceVar += 0;
                 }
-
-                
             }
-            Debug.Log("distanceVar: " + distanceVar.ToString());
+            //Debug.Log("distanceVar: " + distanceVar.ToString());
             float i = 0;
             float score;
             foreach (MapNode adjacentNode in node.adjacentNodeDict.Keys)
@@ -162,11 +159,11 @@ public class Archers : Unit
                 }
 
             }
-            Debug.Log("i: " + i.ToString());
+            //Debug.Log("i: " + i.ToString());
             if (AttackOrDefence)
             {
                 score = i + distanceVar;
-                Debug.Log("Score: " + score.ToString());
+                //Debug.Log("Score: " + score.ToString());
             }
             else
             {
@@ -189,10 +186,10 @@ public class Archers : Unit
         foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
         {
             float distance = Mathf.Abs(transform.position.x - unit.transform.position.x) + Mathf.Abs(transform.position.y - unit.transform.position.y);
-            Debug.Log("Distance to " + unit.name.ToString() + " is " + distance);
+            //Debug.Log("Distance to " + unit.name.ToString() + " is " + distance);
             if (distance <= 6)
             {
-                Debug.Log("Possible target: " + unit.name.ToString());
+                //Debug.Log("Possible target: " + unit.name.ToString());
                 possibleTargets.Add(unit.GetComponent<Unit>());
             }
         }
@@ -211,8 +208,8 @@ public class Archers : Unit
             {
                 score += 5;
             }
-            Debug.Log("Attack Score: " + score.ToString());
-            Debug.Log("Unit Tag: " + unit.tag.ToString());
+            //Debug.Log("Attack Score: " + score.ToString());
+            //Debug.Log("Unit Tag: " + unit.tag.ToString());
             if (score >= currentBestScore)
             {
                 currentBestScore = score;
@@ -225,8 +222,7 @@ public class Archers : Unit
         }
         else
         {
-
-            Debug.Log("Unit to attack: " + unitToAttack.name.ToString());
+            //Debug.Log("Unit to attack: " + unitToAttack.name.ToString());
             return unitToAttack;
         }
     }
@@ -235,7 +231,7 @@ public class Archers : Unit
     {
         if (target == null)
         {
-            Debug.Log("NO TARGET");
+            //Debug.Log("NO TARGET");
             return false;
         }
         if (target.UnitType == "Spearmen")
@@ -261,11 +257,11 @@ public class Archers : Unit
         }
         else
         {
-            if (target.UnitType != "Archers" /*&& Vector2.Distance(currentMapNode.transform.position, target.currentMapNode.transform.position) <= 2*/)
+            if (target.UnitType != "Archers" && Vector2.Distance(transform.position, target.transform.position) <= 2)
             {
                 target.Reaction(this.GetComponent<Unit>(), target.WeaponDamage);
             }
-            else if (target.UnitType == "Archers" /*&& Vector2.Distance(currentMapNode.transform.position, target.transform.position) <= 6*/)
+            else if (target.UnitType == "Archers" && Vector2.Distance(transform.position, target.transform.position) <= 6)
             {
                 target.Reaction(this.GetComponent<Unit>(), target.WeaponDamage);
             }

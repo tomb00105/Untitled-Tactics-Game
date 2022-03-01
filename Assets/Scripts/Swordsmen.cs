@@ -97,17 +97,16 @@ public class Swordsmen : Unit
                 {
                     if (gameManager.playerUnits.Contains(mapGraph.tileOccupationDict[adjacentNode].gameObject))
                     {
-                        if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Swordsmen")
+                        if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Spearmen")
                         {
                             i--;
                             continue;
                         }
-                        i++;
                     }
                 }
                 else
                 {
-                    i++;
+                    i += 2;
                 }
                 
             }

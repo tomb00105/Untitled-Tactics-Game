@@ -107,12 +107,6 @@ public class Cavalry : Unit
                             i--;
                             continue;
                         }
-                        else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Spearmen")
-                        {
-                            i += 2;
-                            continue;
-                        }
-                        i++;
                     }
                 }
             }
