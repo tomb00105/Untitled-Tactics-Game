@@ -328,25 +328,43 @@ public class GameManager : MonoBehaviour
     public void Wipeout(string defeatedSide)
     {
         levelComplete = true;
-        if (defeatedSide == "Player Unit")
+        if (uIController.playerCanvas != null)
+        {
+            uIController.playerCanvas.SetActive(true);
+        }
+        if (uIController.unitPanel != null)
         {
             uIController.unitPanel.SetActive(false);
+        }
+        if (uIController.endTurnButton != null)
+        {
             uIController.endTurnButton.SetActive(false);
+        }
+        if (uIController.infoPanel != null)
+        {
             uIController.infoPanel.SetActive(false);
+        }
+        if (uIController.movePanel != null)
+        {
             uIController.movePanel.SetActive(false);
+        }
+        if (uIController.attackPanel != null)
+        {
             uIController.attackPanel.SetActive(false);
-            uIController.playerDefeatPanel.SetActive(true);
-            uIController.playerCanvas.SetActive(true);
+        }
+        if (defeatedSide == "Player Unit")
+        {
+            if (uIController.playerDefeatPanel != null)
+            {
+                uIController.playerDefeatPanel.SetActive(true);
+            }
         }
         else if (defeatedSide == "Enemy Unit")
         {
-            uIController.unitPanel.SetActive(false);
-            uIController.endTurnButton.SetActive(false);
-            uIController.infoPanel.SetActive(false);
-            uIController.movePanel.SetActive(false);
-            uIController.attackPanel.SetActive(false);
-            uIController.playerVictoryPanel.SetActive(true);
-            uIController.playerCanvas.SetActive(true);
+            if (uIController.playerVictoryPanel != null)
+            {
+                uIController.playerVictoryPanel.SetActive(true);
+            }
         }
     }
 }

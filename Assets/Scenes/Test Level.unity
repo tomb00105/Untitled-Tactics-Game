@@ -3429,7 +3429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7735874157867040108, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
       propertyPath: m_TagString
-      value: Player Unit
+      value: Enemy Unit
       objectReference: {fileID: 0}
     - target: {fileID: 7735874157867040110, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
       propertyPath: m_RootOrder
@@ -4798,7 +4798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6901401348264332062, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
       propertyPath: m_TagString
-      value: Enemy Unit
+      value: Player Unit
       objectReference: {fileID: 0}
     - target: {fileID: 9055515966523715135, guid: 54c0054d4bef1f04dad5970f18a43f1a, type: 3}
       propertyPath: m_RootOrder

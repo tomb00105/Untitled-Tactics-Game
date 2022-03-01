@@ -51,13 +51,13 @@ public class Archers : Unit
         {
             gameManager.turnUnits.Remove(this);
         }
-        if (gameManager.playerUnits.Contains(this.gameObject))
+        if (gameManager.playerUnits.Contains(gameObject))
         {
-            gameManager.playerUnits.Remove(this.gameObject);
+            gameManager.playerUnits.Remove(gameObject);
         }
-        if (gameManager.enemyUnits.Contains(this.gameObject))
+        if (gameManager.enemyUnits.Contains(gameObject))
         {
-            gameManager.enemyUnits.Remove(this.gameObject);
+            gameManager.enemyUnits.Remove(gameObject);
         }
         if (gameManager.turnUnitsDict.ContainsKey(this))
         {
@@ -171,8 +171,8 @@ public class Archers : Unit
             if (AttackOrDefence)
             {
                 score = i * 2 + distanceVar + totaldistanceVar;
-                Debug.Log("i * 2: " + (i * 2).ToString() + " + distanceVar: " + distanceVar.ToString() + " - totalDistanceVar: " + totaldistanceVar.ToString());
-                Debug.Log("Score: " + score.ToString() + " Node: " + node.name);
+                //Debug.Log("i * 2: " + (i * 2).ToString() + " + distanceVar: " + distanceVar.ToString() + " - totalDistanceVar: " + totaldistanceVar.ToString());
+                //Debug.Log("Score: " + score.ToString() + " Node: " + node.name);
             }
             else
             {
