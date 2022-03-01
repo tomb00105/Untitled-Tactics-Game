@@ -121,7 +121,7 @@ public class Spearmen : Unit
             {
                 currentBestScore = score;
                 currentBest = node;
-                Debug.Log("Current Best: " + currentBest.name.ToString());
+                //Debug.Log("Current Best: " + currentBest.name.ToString());
             }
         }
         return currentBest;
@@ -178,7 +178,7 @@ public class Spearmen : Unit
     {
         if (target == null)
         {
-            Debug.Log("NO TARGET");
+            //Debug.Log("NO TARGET");
             return false;
         }
         if (target.UnitType == "Spearmen")

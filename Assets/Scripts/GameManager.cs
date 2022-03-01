@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
             {
                 if (playerUnit.transform.position.x == terrainTile.transform.position.x && playerUnit.transform.position.y == terrainTile.transform.position.y)
                 {
-                    Debug.Log("Player Unit tile SETUP");
+                    //Debug.Log("Player Unit tile SETUP");
                     mapGraph.tileOccupationDict.Add(terrainTile.GetComponent<MapNode>(), playerUnit.GetComponent<Unit>());
                     playerUnit.GetComponent<Unit>().currentMapNode = terrainTile.GetComponent<MapNode>();
                     break;
@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
             {
                 if (enemyUnit.transform.position.x == terrainTile.transform.position.x && enemyUnit.transform.position.y == terrainTile.transform.position.y)
                 {
-                    Debug.Log("Enemy Unit tile SETUP");
+                    //Debug.Log("Enemy Unit tile SETUP");
                     mapGraph.tileOccupationDict.Add(terrainTile.GetComponent<MapNode>(), enemyUnit.GetComponent<Unit>());
                     enemyUnit.GetComponent<Unit>().currentMapNode = terrainTile.GetComponent<MapNode>();
                     break;
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
             }
             if (!mapGraph.tileOccupationDict.Keys.Contains(terrainTile.GetComponent<MapNode>()))
             {
-                Debug.Log("Tile occupation set to NULL");
+                //Debug.Log("Tile occupation set to NULL");
                 mapGraph.tileOccupationDict.Add(terrainTile.GetComponent<MapNode>(), null);
             }
         }

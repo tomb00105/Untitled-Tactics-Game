@@ -181,7 +181,7 @@ public class Cavalry : Unit
     {
         if (target == null)
         {
-            Debug.Log("NO TARGET");
+            //Debug.Log("NO TARGET");
             return false;
         }
         else if (target.UnitType == "Spearmen")
@@ -207,7 +207,7 @@ public class Cavalry : Unit
         }
         else
         {
-            Debug.Log("Target HP: " + target.CurrentHP.ToString());
+            //Debug.Log("Target HP: " + target.CurrentHP.ToString());
             if (target.UnitType != "Archers" && Vector2.Distance(currentMapNode.transform.position, target.currentMapNode.transform.position) <= 2)
             {
                 target.Reaction(this, target.WeaponDamage);

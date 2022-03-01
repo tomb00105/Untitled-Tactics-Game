@@ -92,7 +92,7 @@ public class Archers : Unit
             foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
             {
                 float distance = Mathf.Abs(node.transform.position.x - unit.transform.position.x) + Mathf.Abs(node.transform.position.y - unit.transform.position.y);
-                Debug.Log("Distance from " + node.name.ToString() + " to " + unit.name.ToString() + " is " + distance.ToString());
+                //Debug.Log("Distance from " + node.name.ToString() + " to " + unit.name.ToString() + " is " + distance.ToString());
                 if (distance > 6 && distance <= 10)
                 {
                     distanceVar += 0;

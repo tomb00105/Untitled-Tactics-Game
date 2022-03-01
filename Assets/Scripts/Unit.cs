@@ -133,7 +133,7 @@ public class Unit : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("NO TERRAIN TYPE FOR THIS NODE: " + node.name.ToString());
+                //Debug.LogWarning("NO TERRAIN TYPE FOR THIS NODE: " + node.name.ToString());
             }
         }
     }
@@ -142,11 +142,11 @@ public class Unit : MonoBehaviour
     {
         if (!dijkstraScript.DijkstraCalc())
         {
-            Debug.Log("Cannot move!");
+            //Debug.Log("Cannot move!");
             return false;
         }
         List<MapNode> moves = dijkstraScript.PossibleMoves();
-        Debug.Log("Moves list count: " + moves.Count);
+        //Debug.Log("Moves list count: " + moves.Count);
         if (CompareTag("Enemy Unit"))
         {
             if (moves.Count != 0)
@@ -156,7 +156,7 @@ public class Unit : MonoBehaviour
             }
             else
             {
-                Debug.Log("Cannot move as stamina is too low!");
+                //Debug.Log("Cannot move as stamina is too low!");
                 return false;
             }
         }

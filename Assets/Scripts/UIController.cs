@@ -72,7 +72,7 @@ public class UIController : MonoBehaviour
                 RaycastHit2D[] hits = Physics2D.RaycastAll(rayPos, Vector2.zero);
                 if (hits.Count() == 0)
                 {
-                    Debug.Log("Raycast hit nothing!");
+                    //Debug.Log("Raycast hit nothing!");
                     /*if (hit.collider.gameObject.CompareTag("Terrain"))
                     {
                         selectedInfoMapNode = hit.collider.gameObject.GetComponent<MapNode>();
@@ -88,7 +88,7 @@ public class UIController : MonoBehaviour
                     {
                         if (hit.transform.gameObject.CompareTag("Player Unit") || hit.transform.gameObject.CompareTag("Enemy Unit"))
                         {
-                            Debug.Log("Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Raycast hit: " + hit.transform.gameObject.name.ToString());
                             selectedInfoUnit = hit.transform.gameObject.GetComponent<Unit>();
                             PopulateUnitPanels(selectedInfoUnit);
                             /*TerrainPanelDefault();
@@ -97,7 +97,7 @@ public class UIController : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Raycast hit: " + hit.transform.gameObject.name.ToString());
                         }
                     }
                     
@@ -117,20 +117,20 @@ public class UIController : MonoBehaviour
                     {
                         if (highlightedObjects.Contains(hit.collider.gameObject) && hit.collider.gameObject.CompareTag("Terrain"))
                         {
-                            Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
                             selectedMoveMapNode = hit.collider.gameObject.GetComponent<MapNode>();
                             PopulateMovePanel(selectedMoveMapNode, selectedInfoUnit);
                         }
                         else
                         {
-                            Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
                         }
                     }
                     
                 }
                 else
                 {
-                    Debug.Log("Not a valid space to move to!");
+                    //Debug.Log("Not a valid space to move to!");
                 }
             }
         }
@@ -147,18 +147,18 @@ public class UIController : MonoBehaviour
                     {
                         if (highlightedObjects.Contains(hit.collider.gameObject) && hit.collider.gameObject.CompareTag("Enemy Unit"))
                         {
-                            Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
                             selectedAttackUnit = hit.collider.gameObject.GetComponent<Unit>();
                             PopulateAttackPanel(selectedAttackUnit, selectedInfoUnit);
                         }
                         else
                         {
-                            Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
                         }
                     }
                     else
                     {
-                        Debug.Log("Not a valid target!");
+                        //Debug.Log("Not a valid target!");
                     }
                 }
             }
@@ -216,8 +216,8 @@ public class UIController : MonoBehaviour
         foreach (GameObject enemyUnit in GameObject.FindGameObjectsWithTag("Enemy Unit"))
         {
             float distance = Mathf.Abs(unit.transform.position.x - enemyUnit.transform.position.x) + Mathf.Abs(unit.transform.position.y - enemyUnit.transform.position.y);
-            Debug.Log("Distance to enemy: " + distance.ToString());
-            Debug.Log("Weapon range: " + unit.WeaponRange.ToString());
+            //Debug.Log("Distance to enemy: " + distance.ToString());
+            //Debug.Log("Weapon range: " + unit.WeaponRange.ToString());
             if (distance <= unit.WeaponRange)
             {
                 enemyUnit.GetComponent<Unit>().currentMapNode.GetComponent<SpriteRenderer>().color = Color.red;
@@ -390,7 +390,7 @@ public class UIController : MonoBehaviour
     {
         if (selectedMoveMapNode == null)
         {
-            Debug.Log("No MapNode chosen!");
+            //Debug.Log("No MapNode chosen!");
             return;
         }
         else
@@ -548,5 +548,4 @@ public class UIController : MonoBehaviour
         exitMenuPanel.SetActive(true);
         exitToDesktopPanel.SetActive(false);
     }
-
 }

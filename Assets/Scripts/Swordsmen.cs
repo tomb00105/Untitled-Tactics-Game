@@ -118,14 +118,14 @@ public class Swordsmen : Unit
             {
                 score = i * 2;
             }
-            Debug.Log(node.name.ToString() + " Score: " + score.ToString() + " Current Best Score: " + currentBestScore.ToString());
+            //Debug.Log(node.name.ToString() + " Score: " + score.ToString() + " Current Best Score: " + currentBestScore.ToString());
             if (score <= currentBestScore)
             {
                 currentBestScore = score;
                 currentBest = node;
             }
         }
-        Debug.Log("Best Node to move to: " + currentBest.name.ToString());
+        //Debug.Log("Best Node to move to: " + currentBest.name.ToString());
         return currentBest;
     }
     //Chooses which unit to attack, prioritising spearmen and grassland;
@@ -187,7 +187,7 @@ public class Swordsmen : Unit
     {
         if (target == null)
         {
-            Debug.Log("NO TARGET");
+            //Debug.Log("NO TARGET");
             return false;
         }
         else if (target.UnitType == "Spearmen")
@@ -213,7 +213,7 @@ public class Swordsmen : Unit
         }
         else
         {
-            Debug.Log("Target HP: " + target.CurrentHP.ToString());
+            //Debug.Log("Target HP: " + target.CurrentHP.ToString());
             if (target.UnitType != "Archers" && Vector2.Distance(transform.position, target.transform.position) <= 2)
             {
                 target.Reaction(GetComponent<Unit>(), target.WeaponDamage);
@@ -228,7 +228,7 @@ public class Swordsmen : Unit
     //If within range when attacked, this unit will retaliate, although will deal less damage than if attacking themselves.
     public override bool Reaction(Unit target, float damage)
     {
-        Debug.Log("Reaction WeaponDamage: " + WeaponDamage.ToString());
+        //Debug.Log("Reaction WeaponDamage: " + WeaponDamage.ToString());
         if (target.UnitType == "Spearmen")
         {
             target.CurrentHP -= Mathf.RoundToInt(damage * 1.2f);
@@ -253,7 +253,7 @@ public class Swordsmen : Unit
         }
         else
         {
-            Debug.Log("Reaction target HP: " + target.CurrentHP.ToString());
+            //Debug.Log("Reaction target HP: " + target.CurrentHP.ToString());
             return false;
         }
     }
