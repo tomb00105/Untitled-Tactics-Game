@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     //References to UI elements.
     public GameObject playerCanvas;
     public GameObject endTurnButton;
+    public GameObject levelStartPanel;
     public GameObject unitPanel;
     public GameObject infoPanel;
     public GameObject terrainPanel;
@@ -30,7 +31,7 @@ public class UIController : MonoBehaviour
     public MapNode selectedMoveMapNode;
     public Unit selectedAttackUnit;
     public bool playerTurn = false;
-    public bool paused = false;
+    public bool paused = true;
 
     private void Awake()
     {
@@ -43,7 +44,7 @@ public class UIController : MonoBehaviour
         {
             return;
         }
-        if (pauseMenuPanel.activeInHierarchy || exitMenuPanel.activeInHierarchy || exitToMainMenuPanel.activeInHierarchy || exitToDesktopPanel.activeInHierarchy)
+        if (pauseMenuPanel.activeInHierarchy || exitMenuPanel.activeInHierarchy || exitToMainMenuPanel.activeInHierarchy || exitToDesktopPanel.activeInHierarchy || levelStartPanel.activeInHierarchy)
         {
             paused = true;
             return;
@@ -235,6 +236,18 @@ public class UIController : MonoBehaviour
             terrainTile.GetComponent<SpriteRenderer>().color = Color.white;
         }
         highlightedObjects.Clear();
+    }
+
+    public void LevelStartPanelStartLevelButton()
+    {
+        levelStartPanel.SetActive(false);
+        paused = false;
+        gameManager.levelStarted = true;
+    }
+
+    public void LevelStartPanelBackButton()
+    {
+        StartCoroutine(LoadMainMenu());
     }
 
     //Populates the unit and unit info UI elements with the information of the selected unit.

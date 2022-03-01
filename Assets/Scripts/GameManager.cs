@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     public bool loading = false;
     public bool loadComplete = false;
+    public bool levelStarted = false;
     public bool turnSetupComplete = false;
     public bool turnSetupInProgress = false;
     public bool turnInProgress = false;
@@ -93,7 +94,7 @@ public class GameManager : MonoBehaviour
             startupComplete = true;
         }
         //Starts the level.
-        if (!runOnce && mapSetupComplete && startupComplete && !loading)
+        if (!runOnce && mapSetupComplete && startupComplete && !loading && levelStarted)
         {
             runOnce = true;
             currentUnitTurn = "Enemy Unit";
@@ -110,7 +111,7 @@ public class GameManager : MonoBehaviour
         }
 
         //Enemy turn loop.
-        if (currentUnitTurn == "Enemy Unit")
+        else if (currentUnitTurn == "Enemy Unit")
         {
             //Sets up the needed variables for enemy turn.
             if (!turnSetupComplete && !turnSetupInProgress && !turnComplete)
@@ -172,7 +173,7 @@ public class GameManager : MonoBehaviour
             }
         }
         //Player turn loop.
-        if (currentUnitTurn == "Player Unit" && startupComplete)
+        else if (currentUnitTurn == "Player Unit" && startupComplete)
         {
             //Sets up variables for player turn.
             if (!turnSetupComplete && !turnSetupInProgress && !turnComplete)
