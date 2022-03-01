@@ -72,12 +72,21 @@ public class Swordsmen : Unit
         {
             gameManager.unitAttackedDict.Remove(this);
         }
+        if (gameManager.enemyUnits.Count == 0)
+        {
+            gameManager.Wipeout("Enemy Unit");
+        }
+        else if (gameManager.playerUnits.Count == 0)
+        {
+            gameManager.Wipeout("Player Unit");
+        }
     }
 
     
     //Selects which possible move to take, based on the least number of non-spearmen units adjacent to the node.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
+        possibleMoveList.Add(currentMapNode);
         MapNode currentBest = null;
         float currentBestScore = Mathf.Infinity;
         foreach  (MapNode node in possibleMoveList)
@@ -87,7 +96,7 @@ public class Swordsmen : Unit
 
             foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
             {
-                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position);
+                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position) / 10;
             }
             int i = 0;
             float score;
@@ -99,16 +108,16 @@ public class Swordsmen : Unit
                     {
                         if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Spearmen")
                         {
+                            i -= 2;
+                            continue;
+                        }
+                        else
+                        {
                             i--;
                             continue;
                         }
                     }
                 }
-                else
-                {
-                    i += 2;
-                }
-                
             }
             if (AttackOrDefence)
             {
@@ -132,7 +141,7 @@ public class Swordsmen : Unit
     public override Unit AttackChoice()
     {
         Unit unitToAttack = null;
-        float currentBestScore = 0;
+        float currentBestScore = Mathf.NegativeInfinity;
         foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
         {
             if (mapGraph.tileOccupationDict[adjacentNode] != null)
@@ -148,6 +157,10 @@ public class Swordsmen : Unit
                     {
                         score += 5;
                     }
+                    else
+                    {
+                        score += 1;
+                    }
                 }
 
                 if (adjacentNode.terrainType == "Grassland")
@@ -162,8 +175,8 @@ public class Swordsmen : Unit
                 {
                     score = -10;
                 }
-                //Debug.Log("Attack Score: " + score.ToString());
-                //Debug.Log("Unit Tag: " + mapGraph.tileOccupationDict[adjacentNode].tag.ToString());
+                Debug.Log("Attack Score: " + score.ToString());
+                Debug.Log("Unit Tag: " + mapGraph.tileOccupationDict[adjacentNode].tag.ToString());
                 if (score >= currentBestScore && mapGraph.tileOccupationDict[adjacentNode].CompareTag("Player Unit"))
                 {
                     currentBestScore = score;

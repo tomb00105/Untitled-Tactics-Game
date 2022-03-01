@@ -21,6 +21,8 @@ public class UIController : MonoBehaviour
     public GameObject exitMenuPanel;
     public GameObject exitToMainMenuPanel;
     public GameObject exitToDesktopPanel;
+    public GameObject playerDefeatPanel;
+    public GameObject playerVictoryPanel;
 
     //Initialisation of variables.
     public GameManager gameManager;
@@ -32,6 +34,8 @@ public class UIController : MonoBehaviour
     public Unit selectedAttackUnit;
     public bool playerTurn = false;
     public bool paused = true;
+
+    public int exitMenuPanelOrigin = 0;
 
     private void Awake()
     {
@@ -493,6 +497,7 @@ public class UIController : MonoBehaviour
 
     public void PauseMenuExitButton()
     {
+        exitMenuPanelOrigin = 0;
         exitMenuPanel.SetActive(true);
         pauseMenuPanel.SetActive(false);
     }
@@ -503,8 +508,6 @@ public class UIController : MonoBehaviour
         exitMenuPanel.SetActive(false);
     }
 
-    
-
     public void ExitMenuToDesktopButton()
     {
         exitToDesktopPanel.SetActive(true);
@@ -513,8 +516,16 @@ public class UIController : MonoBehaviour
 
     public void ExitMenuBackButton()
     {
-        pauseMenuPanel.SetActive(true);
-        exitMenuPanel.SetActive(false);
+        if (exitMenuPanelOrigin == 0)
+        {
+            pauseMenuPanel.SetActive(true);
+            exitMenuPanel.SetActive(false);
+        }
+        else if (exitMenuPanelOrigin == 1)
+        {
+            playerDefeatPanel.SetActive(true);
+            exitMenuPanel.SetActive(false);
+        }
     }
 
     public void ExitToMainMenuAcceptButton()
@@ -547,5 +558,37 @@ public class UIController : MonoBehaviour
     {
         exitMenuPanel.SetActive(true);
         exitToDesktopPanel.SetActive(false);
+    }
+
+    public void PlayerDefeatPanelRestartLevelButton()
+    {
+        StartCoroutine(RestartLevel());
+    }
+
+    IEnumerator RestartLevel()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    public void PlayerDefeatPanelMapButton()
+    {
+        Debug.Log("NOT YET IMPLEMENTED");
+    }
+
+    public void PlayerDefeatPanelExitButton()
+    {
+        exitMenuPanelOrigin = 1;
+        exitMenuPanel.SetActive(true);
+        playerDefeatPanel.SetActive(false);
+    }
+
+    public void PlayerVictoryPanelContinueButton()
+    {
+        Debug.Log("NOT YET IMPLEMENTED");
     }
 }

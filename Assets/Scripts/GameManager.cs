@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public bool startupComplete = false;
     public bool runOnce = false;
     public bool turnComplete = false;
+    public bool levelComplete = false;
 
     public bool loading = false;
     public bool loadComplete = false;
@@ -110,6 +111,11 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        if (levelComplete)
+        {
+            return;
+        }
+
         //Enemy turn loop.
         else if (currentUnitTurn == "Enemy Unit")
         {
@@ -155,8 +161,12 @@ public class GameManager : MonoBehaviour
                         {
                             unit.Move();
                         }*/
-                        unit.gameObject.transform.position = unit.path.Last().transform.position;
-                        unit.CheckCurrentNode();
+                        if (unit.path.Count != 0)
+                        {
+                            unit.gameObject.transform.position = unit.path.Last().transform.position;
+                            unit.CheckCurrentNode();
+                        }
+                        
                         unit.Attack(unit.AttackChoice(), unit.WeaponDamage);
                     }
                     turnComplete = true;
@@ -176,7 +186,7 @@ public class GameManager : MonoBehaviour
         else if (currentUnitTurn == "Player Unit" && startupComplete)
         {
             //Sets up variables for player turn.
-            if (!turnSetupComplete && !turnSetupInProgress && !turnComplete)
+            if (!turnSetupComplete && !turnSetupInProgress && !turnComplete && !levelComplete)
             {
                 turnSetupInProgress = true;
                 turnUnits.Clear();
@@ -313,5 +323,30 @@ public class GameManager : MonoBehaviour
         }
         //StartTurn(unitTurn);
         return true;
+    }
+
+    public void Wipeout(string defeatedSide)
+    {
+        levelComplete = true;
+        if (defeatedSide == "Player Unit")
+        {
+            uIController.unitPanel.SetActive(false);
+            uIController.endTurnButton.SetActive(false);
+            uIController.infoPanel.SetActive(false);
+            uIController.movePanel.SetActive(false);
+            uIController.attackPanel.SetActive(false);
+            uIController.playerDefeatPanel.SetActive(true);
+            uIController.playerCanvas.SetActive(true);
+        }
+        else if (defeatedSide == "Enemy Unit")
+        {
+            uIController.unitPanel.SetActive(false);
+            uIController.endTurnButton.SetActive(false);
+            uIController.infoPanel.SetActive(false);
+            uIController.movePanel.SetActive(false);
+            uIController.attackPanel.SetActive(false);
+            uIController.playerVictoryPanel.SetActive(true);
+            uIController.playerCanvas.SetActive(true);
+        }
     }
 }

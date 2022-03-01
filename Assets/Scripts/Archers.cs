@@ -27,7 +27,6 @@ public class Archers : Unit
         RiverCost = 1.5f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
-        //Setup of MapNode edge costs for Archer Unit.
         
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         //GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true; Deprecated but kept for posterity
@@ -72,26 +71,32 @@ public class Archers : Unit
         {
             gameManager.unitAttackedDict.Remove(this);
         }
+        if (gameManager.enemyUnits.Count == 0)
+        {
+            gameManager.Wipeout("Enemy Unit");
+        }
+        else if (gameManager.playerUnits.Count == 0)
+        {
+            gameManager.Wipeout("Player Unit");
+        }
     }
 
     
     //Selects which possible move to take, based on the least number of any units on adjacent nodes.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
+        possibleMoveList.Add(currentMapNode);
         MapNode currentBest = null;
         float currentBestScore = Mathf.Infinity;
         foreach (MapNode node in possibleMoveList)
         {
-            if (mapGraph.tileOccupationDict[node] != null)
-            {
-                continue;
-            }
-            List<GameObject> unitDistList = new List<GameObject>();
             float distanceVar = 0;
+            float totaldistanceVar = 0;
 
             foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
             {
                 float distance = Mathf.Abs(node.transform.position.x - unit.transform.position.x) + Mathf.Abs(node.transform.position.y - unit.transform.position.y);
+                totaldistanceVar += Vector2.Distance(node.transform.position, unit.transform.position) / 10;
                 //Debug.Log("Distance from " + node.name.ToString() + " to " + unit.name.ToString() + " is " + distance.ToString());
                 if (distance > 6 && distance <= 10)
                 {
@@ -150,7 +155,10 @@ public class Archers : Unit
                         {
                             i--;
                         }
-
+                    }
+                    else if (gameManager.enemyUnits.Contains(mapGraph.tileOccupationDict[adjacentNode].gameObject))
+                    {
+                        i --;
                     }
                 }
                 else
@@ -162,12 +170,13 @@ public class Archers : Unit
             //Debug.Log("i: " + i.ToString());
             if (AttackOrDefence)
             {
-                score = i + distanceVar;
-                //Debug.Log("Score: " + score.ToString());
+                score = i * 2 + distanceVar + totaldistanceVar;
+                Debug.Log("i * 2: " + (i * 2).ToString() + " + distanceVar: " + distanceVar.ToString() + " - totalDistanceVar: " + totaldistanceVar.ToString());
+                Debug.Log("Score: " + score.ToString() + " Node: " + node.name);
             }
             else
             {
-                score = i - distanceVar;
+                score = i * 2 - distanceVar;
             }
             if (score <= currentBestScore)
             {
@@ -182,7 +191,7 @@ public class Archers : Unit
     {
         List<Unit> possibleTargets = new List<Unit>();
         Unit unitToAttack = null;
-        float currentBestScore = 0;
+        float currentBestScore = Mathf.NegativeInfinity;
         foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
         {
             float distance = Mathf.Abs(transform.position.x - unit.transform.position.x) + Mathf.Abs(transform.position.y - unit.transform.position.y);

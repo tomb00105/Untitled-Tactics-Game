@@ -72,6 +72,14 @@ public class Spearmen : Unit
         {
             gameManager.unitAttackedDict.Remove(this);
         }
+        if (gameManager.enemyUnits.Count == 0)
+        {
+            gameManager.Wipeout("Enemy Unit");
+        }
+        else if (gameManager.playerUnits.Count == 0)
+        {
+            gameManager.Wipeout("Player Unit");
+        }
     }
 
     
@@ -79,6 +87,7 @@ public class Spearmen : Unit
     //Selects which possible move to take, based on the least number of non-cavalry units adjacent to the node.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
+        possibleMoveList.Add(currentMapNode);
         MapNode currentBest = null;
         float currentBestScore = Mathf.Infinity;
         foreach (MapNode node in possibleMoveList)
@@ -88,7 +97,7 @@ public class Spearmen : Unit
 
             foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
             {
-                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position);
+                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position) / 10;
             }
             int i = 0;
             float score;
@@ -102,6 +111,11 @@ public class Spearmen : Unit
                     if (gameManager.playerUnits.Contains(mapGraph.tileOccupationDict[adjacentNode].gameObject))
                     {
                         if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Cavalry")
+                        {
+                            i -= 2;
+                            continue;
+                        }
+                        else
                         {
                             i--;
                             continue;
@@ -130,7 +144,7 @@ public class Spearmen : Unit
     public override Unit AttackChoice()
     {
         Unit unitToAttack = null;
-        float currentBestScore = 0;
+        float currentBestScore = Mathf.NegativeInfinity;
         foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
         {
             if (mapGraph.tileOccupationDict[adjacentNode] != null)
