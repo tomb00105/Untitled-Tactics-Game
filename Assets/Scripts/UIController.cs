@@ -57,6 +57,14 @@ public class UIController : MonoBehaviour
         {
             paused = false;
         }
+        if (gameManager.isMoving)
+        {
+            playerCanvas.SetActive(false);
+        }
+        if (!gameManager.isMoving)
+        {
+            playerCanvas.SetActive(true);
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -394,11 +402,12 @@ public class UIController : MonoBehaviour
     {
         if (selectedMoveMapNode == null)
         {
-            //Debug.Log("No MapNode chosen!");
+            Debug.Log("No MapNode chosen!");
             return;
         }
         else
         {
+            selectedInfoUnit.destination = selectedMoveMapNode.transform.position;
             selectedInfoUnit.path = selectedInfoUnit.GetComponent<Dijkstra>().BuildPath(selectedInfoUnit.currentMapNode, selectedMoveMapNode);
             selectedInfoUnit.Move();
             RemoveHighlight();

@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
     public bool turnSetupComplete = false;
     public bool turnSetupInProgress = false;
     public bool turnInProgress = false;
+    public bool isMoving = false;
+    public bool isAttacking = false;
+
+    public int unitTurnsTaken = 0;
 
     private void Awake()
     {
@@ -147,39 +151,35 @@ public class GameManager : MonoBehaviour
                 }
                 turnSetupComplete = true;
             }
-            //Runs the actual enemy turn, unit by unit.
-            if (turnSetupComplete && !turnInProgress && !turnComplete)
+            Unit unitTakingTurn = turnUnits[unitTurnsTaken];
+            //Debug.Log("Unit Taking Turn: " + unitTakingTurn.gameObject.name.ToString());
+            //Debug.Log("Unit Moved Status: " + unitMovedDict[unitTakingTurn].ToString());
+            //Debug.Log("Turn Setup Status: " + turnSetupComplete.ToString());
+            //Debug.Log("Not all units have moved: " + unitMovedDict.ContainsValue(false).ToString());
+            if (!unitMovedDict[unitTakingTurn] && turnSetupComplete)
             {
-                turnInProgress = true;
-                while (!turnComplete)
+                //Debug.Log("isMoving: " + isMoving.ToString());
+                if (!isMoving)
                 {
-                    foreach (Unit unit in turnUnits)
-                    {
-                        //Debug.Log("NodeCostDict Check at Update: " + unit.NodeCostDict.Keys.Count);
-                        unit.CheckCanMove();
-                        /*while (unit.transform.position.x != unit.path.Last().transform.position.x && unit.transform.position.y != unit.path.Last().transform.position.y)
-                        {
-                            unit.Move();
-                        }*/
-                        if (unit.path.Count != 0)
-                        {
-                            unit.gameObject.transform.position = unit.path.Last().transform.position;
-                            unit.CheckCurrentNode();
-                        }
-                        
-                        unit.Attack(unit.AttackChoice(), unit.WeaponDamage);
-                    }
-                    turnComplete = true;
+                    isMoving = true;
+                    unitTakingTurn.CheckCanMove();
+                    //Debug.Log("Destination: " + unitTakingTurn.destination.ToString());
                 }
             }
+            if (unitMovedDict[unitTakingTurn] && unitAttackedDict[unitTakingTurn] && turnSetupComplete)
+            {
+                unitTurnsTaken++;
+            }
+  
             //Resets turn variables and sets the current turn to the player.
-            if (turnComplete)
+            if (!unitMovedDict.ContainsValue(false) && !unitAttackedDict.ContainsValue(false) && turnSetupComplete)
             {
                 turnSetupComplete = false;
                 turnSetupInProgress = false;
                 turnInProgress = false;
                 currentUnitTurn = "Player Unit";
                 turnComplete = false;
+                unitTurnsTaken = 0;
             }
         }
         //Player turn loop.
@@ -232,15 +232,7 @@ public class GameManager : MonoBehaviour
                 uIController.playerTurn = true;
             }
             //Resets turn variables and changes turn to enemy turn.
-            if (turnComplete)
-            {
-                turnSetupComplete = false;
-                turnSetupInProgress = false;
-                turnInProgress = false;
-                uIController.playerCanvas.SetActive(false);
-                currentUnitTurn = "Enemy Unit";
-                turnComplete = false;
-            }
+            
         }
     }
 
@@ -309,11 +301,25 @@ public class GameManager : MonoBehaviour
         }
         if (unitTurn == "Player Unit")
         {
-            turnComplete = true;
+            unitTurnsTaken = 0;
+            turnUnits.Clear();
+            turnUnitsDict.Clear();
+            unitMovedDict.Clear();
+            unitAttackedDict.Clear();
+            uIController.highlightedObjects.Clear();
+            uIController.selectedInfoUnit = null;
+            uIController.selectedInfoMapNode = null;
+            uIController.selectedMoveMapNode = null;
+            uIController.selectedAttackUnit = null;
+            isMoving = false;
+            isAttacking = false;
+            turnSetupComplete = false;
+            turnSetupInProgress = false;
+            turnInProgress = false;
             uIController.playerTurn = false;
-            uIController.playerCanvas.SetActive(false); 
-            //TURN OFF UI AND OTHER UNWANTED INTERACTIONS
-            unitTurn = "Enemy Unit";
+            uIController.playerCanvas.SetActive(false);
+            currentUnitTurn = "Enemy Unit";
+            turnComplete = false;
         }
         else
         {

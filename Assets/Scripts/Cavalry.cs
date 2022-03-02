@@ -35,6 +35,10 @@ public class Cavalry : Unit
 
     private void OnDestroy()
     {
+        if (gameManager.currentUnitTurn == "Enemy Unit" && CompareTag("Enemy Unit"))
+        {
+            gameManager.unitTurnsTaken--;
+        }
         List<MapNode> mapList = new List<MapNode>();
         foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
         {
@@ -86,6 +90,14 @@ public class Cavalry : Unit
     //Selects which possible move to take, based on the least number of non-archer and non-swordsmen units adjacent to the node.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
+        List<MapNode> tempMoves = possibleMoveList;
+        foreach (MapNode node in tempMoves)
+        {
+            if (mapGraph.tileOccupationDict[node] != null)
+            {
+                possibleMoveList.Remove(node);
+            }
+        }
         possibleMoveList.Add(currentMapNode);
         MapNode currentBest = null;
         float currentBestScore = Mathf.Infinity;
@@ -133,6 +145,7 @@ public class Cavalry : Unit
                 currentBest = node;
             }
         }
+        destination = currentBest.transform.position;
         return currentBest;
     }
     //Chooses which unit to attack, prioritising Archers, Swordsmen and grassland.
@@ -191,6 +204,8 @@ public class Cavalry : Unit
         if (target == null)
         {
             //Debug.Log("NO TARGET");
+            gameManager.unitAttackedDict[this] = true;
+            gameManager.isAttacking = false;
             return false;
         }
         else if (target.UnitType == "Spearmen")
@@ -212,6 +227,8 @@ public class Cavalry : Unit
         if (target.CurrentHP <= 0)
         {
             Destroy(target.gameObject);
+            gameManager.isAttacking = false;
+            gameManager.unitAttackedDict[this] = true;
             return true;
         }
         else
@@ -251,10 +268,14 @@ public class Cavalry : Unit
         {
             uIController.UnitPanelsDefault();
             Destroy(target.gameObject);
+            gameManager.isAttacking = false;
+            gameManager.unitAttackedDict[target] = true;
             return true;
         }
         else
         {
+            gameManager.isAttacking = false;
+            gameManager.unitAttackedDict[target] = true;
             return false;
         }
     }

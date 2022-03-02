@@ -35,6 +35,10 @@ public class Swordsmen : Unit
 
     private void OnDestroy()
     {
+        if (gameManager.currentUnitTurn == "Enemy Unit" && CompareTag("Enemy Unit"))
+        {
+            gameManager.unitTurnsTaken--;
+        }
         List<MapNode> mapList = new List<MapNode>();
         foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
         {
@@ -86,6 +90,15 @@ public class Swordsmen : Unit
     //Selects which possible move to take, based on the least number of non-spearmen units adjacent to the node.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
+        List<MapNode> tempMoves = possibleMoveList;
+        foreach (MapNode node in tempMoves)
+        {
+            if (mapGraph.tileOccupationDict[node] != null)
+            {
+                possibleMoveList.Remove(node);
+            }
+        }
+
         possibleMoveList.Add(currentMapNode);
         MapNode currentBest = null;
         float currentBestScore = Mathf.Infinity;
@@ -135,6 +148,7 @@ public class Swordsmen : Unit
             }
         }
         //Debug.Log("Best Node to move to: " + currentBest.name.ToString());
+        destination = currentBest.transform.position;
         return currentBest;
     }
     //Chooses which unit to attack, prioritising spearmen and grassland;
@@ -198,9 +212,12 @@ public class Swordsmen : Unit
     //Damages the target based on the unit type and returns true if the unit is wiped out.
     public override bool Attack(Unit target, float damage)
     {
+        Debug.Log("Attacking");
         if (target == null)
         {
             //Debug.Log("NO TARGET");
+            gameManager.isAttacking = false;
+            gameManager.unitAttackedDict[this] = true;
             return false;
         }
         else if (target.UnitType == "Spearmen")
@@ -222,6 +239,8 @@ public class Swordsmen : Unit
         if (target.CurrentHP <= 0)
         {
             Destroy(target.gameObject);
+            gameManager.unitAttackedDict[this] = true;
+            gameManager.isAttacking = false;
             return true;
         }
         else
@@ -241,6 +260,7 @@ public class Swordsmen : Unit
     //If within range when attacked, this unit will retaliate, although will deal less damage than if attacking themselves.
     public override bool Reaction(Unit target, float damage)
     {
+        Debug.Log("Unit is Reacting");
         //Debug.Log("Reaction WeaponDamage: " + WeaponDamage.ToString());
         if (target.UnitType == "Spearmen")
         {
@@ -262,11 +282,17 @@ public class Swordsmen : Unit
         {
             uIController.UnitPanelsDefault();
             Destroy(target.gameObject);
+            gameManager.unitAttackedDict[target] = true;
+
+            gameManager.isAttacking = false;
             return true;
         }
         else
         {
             //Debug.Log("Reaction target HP: " + target.CurrentHP.ToString());
+            gameManager.unitAttackedDict[target] = true;
+
+            gameManager.isAttacking = false;
             return false;
         }
     }

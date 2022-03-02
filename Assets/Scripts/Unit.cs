@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour
     [SerializeField] protected MapGraph mapGraph;
     protected Dijkstra dijkstraScript;
     public string unitSide;
+    public Vector3 destination = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
 
     //Unit info declarations.
     public string unitName;
@@ -70,6 +71,92 @@ public class Unit : MonoBehaviour
         gameObject.name = unitName;
     }
 
+    private void Update()
+    {
+        if (gameManager.currentUnitTurn != tag)
+        {
+            return;
+        }
+        if (path.Count == 0 && destination == transform.position)
+        {
+            //Debug.Log("Unit has reached final destination");
+            transform.position = destination;
+            CheckCurrentNode();
+            path.Clear();
+            gameManager.unitMovedDict[this] = true;
+            gameManager.isMoving = false;
+            if (CompareTag("Enemy Unit"))
+            {
+                Attack(AttackChoice(), WeaponDamage);
+            }
+            if (CompareTag("Player Unit"))
+            {
+                uIController.playerCanvas.SetActive(true);
+            }
+            destination = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
+        }
+        if (path.Count != 0)
+        {
+            //Debug.Log("Path count greater than 0");
+            gameManager.isMoving = true;
+            
+            if (transform.position != destination && destination != new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity))
+            {
+                //Debug.Log("Current position is not equal to destination: " + path.First<MapNode>().transform.position.ToString());
+                if (path.First<MapNode>().transform.position.x < transform.position.x)
+                {
+                    transform.Translate(Vector2.left * 2f * Time.deltaTime);
+                }
+                else if (path.First<MapNode>().transform.position.x > transform.position.x)
+                {
+                    transform.Translate(Vector2.right * 2f * Time.deltaTime);
+                }
+                else if (path.First<MapNode>().transform.position.y < transform.position.y)
+                {
+                    transform.Translate(Vector2.down * 2f * Time.deltaTime);
+                }
+                else if (path.First<MapNode>().transform.position.y > transform.position.y)
+                {
+                    transform.Translate(Vector2.up * 2f * Time.deltaTime);
+                }
+                if (Vector3.Distance(transform.position, path.First<MapNode>().transform.position) <= 0.1f)
+                {
+                    transform.position = path.First<MapNode>().transform.position;
+                }
+                if (transform.position == path.First<MapNode>().transform.position)
+                {
+                    path.RemoveAt(0);
+                }
+            }
+            if (Vector3.Distance(transform.position, destination) <= 0.1f)
+            {
+                //Debug.Log("Unit has reached final destination");
+                transform.position = destination;
+                CheckCurrentNode();
+                path.Clear();
+                gameManager.unitMovedDict[this] = true;
+                gameManager.isMoving = false;
+                if (CompareTag("Enemy Unit"))
+                {
+                    Attack(AttackChoice(), WeaponDamage);
+                }
+                if (CompareTag("Player Unit"))
+                {
+                    uIController.playerCanvas.SetActive(true);
+                }
+                destination = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
+            }
+        }
+
+        /*else if (transform.position == destination && !gameManager.unitMovedDict[this])
+        {
+            destination = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
+            CheckCurrentNode();
+            gameManager.isMoving = false;
+            gameManager.unitMovedDict[this] = true;
+            
+        }*/
+    }
 
     //Checks which MapNode the unit is currently on.
     public virtual void CheckCurrentNode()
@@ -182,8 +269,6 @@ public class Unit : MonoBehaviour
                 i++;
             }
         }*/
-        transform.position = path.Last().transform.position;
-        CheckCurrentNode();
     }
 
     //Virtual method for deciding which possible node to move to, will be different for each unit.

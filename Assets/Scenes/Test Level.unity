@@ -2239,7 +2239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 219614287044044759, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_TagString
-      value: Player Unit
+      value: Enemy Unit
       objectReference: {fileID: 0}
     - target: {fileID: 4057441162283512519, guid: ab35f17226db603499c01d4cef63c13f, type: 3}
       propertyPath: m_RootOrder
@@ -3429,7 +3429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7735874157867040108, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
       propertyPath: m_TagString
-      value: Enemy Unit
+      value: Player Unit
       objectReference: {fileID: 0}
     - target: {fileID: 7735874157867040110, guid: 74167f175a471e443b3ac05192b0c88d, type: 3}
       propertyPath: m_RootOrder
@@ -5961,6 +5961,8 @@ MonoBehaviour:
   turnSetupComplete: 0
   turnSetupInProgress: 0
   turnInProgress: 0
+  isMoving: 0
+  isAttacking: 0
 --- !u!4 &798789669
 Transform:
   m_ObjectHideFlags: 0
@@ -11934,7 +11936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2363432248063378351, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
       propertyPath: m_TagString
-      value: Player Unit
+      value: Enemy Unit
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1926902583f6a1049b39f62023ec73b8, type: 3}
