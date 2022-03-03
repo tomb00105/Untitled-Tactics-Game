@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     //References to UI elements.
     public GameObject playerCanvas;
     public GameObject endTurnButton;
+    public GameObject levelStartPanel;
     public GameObject unitPanel;
     public GameObject infoPanel;
     public GameObject terrainPanel;
@@ -20,6 +21,8 @@ public class UIController : MonoBehaviour
     public GameObject exitMenuPanel;
     public GameObject exitToMainMenuPanel;
     public GameObject exitToDesktopPanel;
+    public GameObject playerDefeatPanel;
+    public GameObject playerVictoryPanel;
 
     //Initialisation of variables.
     public GameManager gameManager;
@@ -30,7 +33,9 @@ public class UIController : MonoBehaviour
     public MapNode selectedMoveMapNode;
     public Unit selectedAttackUnit;
     public bool playerTurn = false;
-    public bool paused = false;
+    public bool paused = true;
+
+    public int exitMenuPanelOrigin = 0;
 
     private void Awake()
     {
@@ -43,7 +48,7 @@ public class UIController : MonoBehaviour
         {
             return;
         }
-        if (pauseMenuPanel.activeInHierarchy || exitMenuPanel.activeInHierarchy || exitToMainMenuPanel.activeInHierarchy || exitToDesktopPanel.activeInHierarchy)
+        if (pauseMenuPanel.activeInHierarchy || exitMenuPanel.activeInHierarchy || exitToMainMenuPanel.activeInHierarchy || exitToDesktopPanel.activeInHierarchy || levelStartPanel.activeInHierarchy)
         {
             paused = true;
             return;
@@ -51,6 +56,14 @@ public class UIController : MonoBehaviour
         else
         {
             paused = false;
+        }
+        if (gameManager.isMoving)
+        {
+            playerCanvas.SetActive(false);
+        }
+        if (!gameManager.isMoving)
+        {
+            playerCanvas.SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -71,7 +84,7 @@ public class UIController : MonoBehaviour
                 RaycastHit2D[] hits = Physics2D.RaycastAll(rayPos, Vector2.zero);
                 if (hits.Count() == 0)
                 {
-                    Debug.Log("Raycast hit nothing!");
+                    //Debug.Log("Raycast hit nothing!");
                     /*if (hit.collider.gameObject.CompareTag("Terrain"))
                     {
                         selectedInfoMapNode = hit.collider.gameObject.GetComponent<MapNode>();
@@ -87,7 +100,7 @@ public class UIController : MonoBehaviour
                     {
                         if (hit.transform.gameObject.CompareTag("Player Unit") || hit.transform.gameObject.CompareTag("Enemy Unit"))
                         {
-                            Debug.Log("Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Raycast hit: " + hit.transform.gameObject.name.ToString());
                             selectedInfoUnit = hit.transform.gameObject.GetComponent<Unit>();
                             PopulateUnitPanels(selectedInfoUnit);
                             /*TerrainPanelDefault();
@@ -96,7 +109,7 @@ public class UIController : MonoBehaviour
                         }
                         else
                         {
-                            Debug.Log("Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Raycast hit: " + hit.transform.gameObject.name.ToString());
                         }
                     }
                     
@@ -116,20 +129,20 @@ public class UIController : MonoBehaviour
                     {
                         if (highlightedObjects.Contains(hit.collider.gameObject) && hit.collider.gameObject.CompareTag("Terrain"))
                         {
-                            Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
                             selectedMoveMapNode = hit.collider.gameObject.GetComponent<MapNode>();
                             PopulateMovePanel(selectedMoveMapNode, selectedInfoUnit);
                         }
                         else
                         {
-                            Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Move Raycast hit: " + hit.transform.gameObject.name.ToString());
                         }
                     }
                     
                 }
                 else
                 {
-                    Debug.Log("Not a valid space to move to!");
+                    //Debug.Log("Not a valid space to move to!");
                 }
             }
         }
@@ -146,18 +159,18 @@ public class UIController : MonoBehaviour
                     {
                         if (highlightedObjects.Contains(hit.collider.gameObject) && hit.collider.gameObject.CompareTag("Enemy Unit"))
                         {
-                            Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
                             selectedAttackUnit = hit.collider.gameObject.GetComponent<Unit>();
                             PopulateAttackPanel(selectedAttackUnit, selectedInfoUnit);
                         }
                         else
                         {
-                            Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
+                            //Debug.Log("Attack Raycast hit: " + hit.transform.gameObject.name.ToString());
                         }
                     }
                     else
                     {
-                        Debug.Log("Not a valid target!");
+                        //Debug.Log("Not a valid target!");
                     }
                 }
             }
@@ -215,8 +228,8 @@ public class UIController : MonoBehaviour
         foreach (GameObject enemyUnit in GameObject.FindGameObjectsWithTag("Enemy Unit"))
         {
             float distance = Mathf.Abs(unit.transform.position.x - enemyUnit.transform.position.x) + Mathf.Abs(unit.transform.position.y - enemyUnit.transform.position.y);
-            Debug.Log("Distance to enemy: " + distance.ToString());
-            Debug.Log("Weapon range: " + unit.WeaponRange.ToString());
+            //Debug.Log("Distance to enemy: " + distance.ToString());
+            //Debug.Log("Weapon range: " + unit.WeaponRange.ToString());
             if (distance <= unit.WeaponRange)
             {
                 enemyUnit.GetComponent<Unit>().currentMapNode.GetComponent<SpriteRenderer>().color = Color.red;
@@ -235,6 +248,18 @@ public class UIController : MonoBehaviour
             terrainTile.GetComponent<SpriteRenderer>().color = Color.white;
         }
         highlightedObjects.Clear();
+    }
+
+    public void LevelStartPanelStartLevelButton()
+    {
+        levelStartPanel.SetActive(false);
+        paused = false;
+        gameManager.levelStarted = true;
+    }
+
+    public void LevelStartPanelBackButton()
+    {
+        StartCoroutine(LoadMainMenu());
     }
 
     //Populates the unit and unit info UI elements with the information of the selected unit.
@@ -382,6 +407,7 @@ public class UIController : MonoBehaviour
         }
         else
         {
+            selectedInfoUnit.destination = selectedMoveMapNode.transform.position;
             selectedInfoUnit.path = selectedInfoUnit.GetComponent<Dijkstra>().BuildPath(selectedInfoUnit.currentMapNode, selectedMoveMapNode);
             selectedInfoUnit.Move();
             RemoveHighlight();
@@ -480,6 +506,7 @@ public class UIController : MonoBehaviour
 
     public void PauseMenuExitButton()
     {
+        exitMenuPanelOrigin = 0;
         exitMenuPanel.SetActive(true);
         pauseMenuPanel.SetActive(false);
     }
@@ -490,8 +517,6 @@ public class UIController : MonoBehaviour
         exitMenuPanel.SetActive(false);
     }
 
-    
-
     public void ExitMenuToDesktopButton()
     {
         exitToDesktopPanel.SetActive(true);
@@ -500,8 +525,16 @@ public class UIController : MonoBehaviour
 
     public void ExitMenuBackButton()
     {
-        pauseMenuPanel.SetActive(true);
-        exitMenuPanel.SetActive(false);
+        if (exitMenuPanelOrigin == 0)
+        {
+            pauseMenuPanel.SetActive(true);
+            exitMenuPanel.SetActive(false);
+        }
+        else if (exitMenuPanelOrigin == 1)
+        {
+            playerDefeatPanel.SetActive(true);
+            exitMenuPanel.SetActive(false);
+        }
     }
 
     public void ExitToMainMenuAcceptButton()
@@ -536,4 +569,35 @@ public class UIController : MonoBehaviour
         exitToDesktopPanel.SetActive(false);
     }
 
+    public void PlayerDefeatPanelRestartLevelButton()
+    {
+        StartCoroutine(RestartLevel());
+    }
+
+    IEnumerator RestartLevel()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
+
+    public void PlayerDefeatPanelMapButton()
+    {
+        Debug.Log("NOT YET IMPLEMENTED");
+    }
+
+    public void PlayerDefeatPanelExitButton()
+    {
+        exitMenuPanelOrigin = 1;
+        exitMenuPanel.SetActive(true);
+        playerDefeatPanel.SetActive(false);
+    }
+
+    public void PlayerVictoryPanelContinueButton()
+    {
+        Debug.Log("NOT YET IMPLEMENTED");
+    }
 }

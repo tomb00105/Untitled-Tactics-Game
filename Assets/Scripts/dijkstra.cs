@@ -67,10 +67,10 @@ public class Dijkstra : MonoBehaviour
 
         foreach (GameObject node in GameObject.FindGameObjectsWithTag("Terrain"))
         {
-            Debug.Log("dijkstraDict Count: " + dijkstraDict.Count);
+            //Debug.Log("dijkstraDict Count: " + dijkstraDict.Count);
             if (!dijkstraDict.ContainsKey(node.GetComponent<MapNode>()))
             {
-                Debug.Log("Node was not already in dijkstraDict");
+                //Debug.Log("Node was not already in dijkstraDict");
                 if (node.transform.position == transform.position)
                 {
                     dijkstraDict.Add(node.GetComponent<MapNode>(), 0);
@@ -145,7 +145,7 @@ public class Dijkstra : MonoBehaviour
                         }
                         if (i == startNode.adjacentNodeDict.Keys.Count)
                         {
-                            Debug.Log("No space to move into!");
+                            //Debug.Log("No space to move into!");
                             return false;
                         }
                     }
@@ -161,7 +161,7 @@ public class Dijkstra : MonoBehaviour
                         }
                         if (i == startNode.adjacentNodeDict.Keys.Count)
                         {
-                            Debug.Log("No space to move into!");
+                            //Debug.Log("No space to move into!");
                             return false;
                         }
                     }
@@ -173,8 +173,8 @@ public class Dijkstra : MonoBehaviour
             //Checks each neighbouring node of the current node being investigated and updates their costs and priority.
             foreach (MapNode nextNode in currentNode.adjacentNodeDict.Keys)
             {
-                Debug.Log("Current Unit Dijkstra: " + gameObject.name.ToString());
-                Debug.Log("Priority queue count: " + priorityQueue.Count.ToString());
+                //Debug.Log("Current Unit Dijkstra: " + gameObject.name.ToString());
+                //Debug.Log("Priority queue count: " + priorityQueue.Count.ToString());
                 float newScore;
                 if (visited[nextNode] == false)
                 {
@@ -186,7 +186,7 @@ public class Dijkstra : MonoBehaviour
                             {
                                 if (dijkstraDict.ContainsKey(nextNode))
                                 {
-                                    Debug.Log(nextNode.name.ToString() + "REMOVED from dijkstraDict");
+                                    //Debug.Log(nextNode.name.ToString() + "REMOVED from dijkstraDict");
                                     dijkstraDict.Remove(nextNode);
                                 }
                                 continue;
@@ -195,53 +195,48 @@ public class Dijkstra : MonoBehaviour
                             {
                                 if (dijkstraDict.ContainsKey(currentNode))
                                 {
-                                    Debug.Log("CurrentNode " + currentNode.name.ToString() + " is in dijkstraDict");
+                                    //Debug.Log("CurrentNode " + currentNode.name.ToString() + " is in dijkstraDict");
                                 }
                                 else if (dijkstraDict.ContainsKey(currentNode))
                                 {
-                                    Debug.Log("CurrentNode " + currentNode.name.ToString() + " is NOT in dijkstraDict");
+                                    //Debug.Log("CurrentNode " + currentNode.name.ToString() + " is NOT in dijkstraDict");
                                 }
-                                Debug.Log("NextNode terrainType: " + nextNode.terrainType.ToString());
+                                //Debug.Log("NextNode terrainType: " + nextNode.terrainType.ToString());
                                 if (nextNode.terrainType == "Grassland")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.GrassCost;
                                 }
                                 else if (nextNode.terrainType == "Arid")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString() + " unitScript.AridCost: " + unitScript.AridCost.ToString());
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString() + " unitScript.AridCost: " + unitScript.AridCost.ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.AridCost;
                                 }
                                 else if (nextNode.terrainType == "Icefield")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.IceCost;
                                 }
                                 else if (nextNode.terrainType == "Mountain")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.MountainCost;
                                 }
                                 else if (nextNode.terrainType == "River")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.RiverCost;
                                 }
                                 else
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.OceanCost;
                                 }
-                                Debug.Log("Current Next Node Cost: " + dijkstraDict[nextNode].ToString());
-                                Debug.Log("newScore: " + newScore.ToString());
+                                //Debug.Log("Current Next Node Cost: " + dijkstraDict[nextNode].ToString());
+                                //Debug.Log("newScore: " + newScore.ToString());
                                 if (newScore <= dijkstraDict[nextNode])
                                 {
-                                    Debug.Log("Score Changed!");
+                                    //Debug.Log("Score Changed!");
                                     dijkstraDict[nextNode] = newScore;
                                     bestAccessToNode[nextNode] = currentNode;
                                     priorityQueue.UpdatePriority(nextNode, newScore);
@@ -252,54 +247,48 @@ public class Dijkstra : MonoBehaviour
                         {
                             if (dijkstraDict.ContainsKey(currentNode))
                             {
-                                Debug.Log("CurrentNode" + currentNode.name.ToString() + " is in dijkstraDict");
+                                //Debug.Log("CurrentNode" + currentNode.name.ToString() + " is in dijkstraDict");
                             }
                             else
                             {
-                                Debug.Log("CurrentNode" + currentNode.name.ToString() + " is NOT in dijkstraDict");
+                                //Debug.Log("CurrentNode" + currentNode.name.ToString() + " is NOT in dijkstraDict");
                                 continue;
                             }
                             if (nextNode.terrainType == "Grassland")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.GrassCost;
                             }
                             else if (nextNode.terrainType == "Arid")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString() + " unitScript.AridCost: " + unitScript.AridCost.ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString() + " unitScript.AridCost: " + unitScript.AridCost.ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.AridCost;
                             }
                             else if (nextNode.terrainType == "Icefield")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.IceCost;
                             }
                             else if (nextNode.terrainType == "Mountain")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.MountainCost;
                             }
                             else if (nextNode.terrainType == "River")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.RiverCost;
                             }
                             else
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.OceanCost;
                             }
-                            Debug.Log("Current Next Node Cost: " + dijkstraDict[nextNode].ToString());
-                            Debug.Log("newScore: " + newScore.ToString());
+                            //Debug.Log("Current Next Node Cost: " + dijkstraDict[nextNode].ToString());
+                            //Debug.Log("newScore: " + newScore.ToString());
                             if (newScore <= dijkstraDict[nextNode])
                             {
-                                Debug.Log("Score Changed!");
+                                //Debug.Log("Score Changed!");
                                 dijkstraDict[nextNode] = newScore;
                                 bestAccessToNode[nextNode] = currentNode;
                                 priorityQueue.UpdatePriority(nextNode, newScore);
@@ -322,53 +311,48 @@ public class Dijkstra : MonoBehaviour
                             {
                                 if (dijkstraDict.ContainsKey(currentNode))
                                 {
-                                    Debug.Log("CurrentNode " + currentNode.name.ToString() + " is in dijkstraDict");
+                                    //Debug.Log("CurrentNode " + currentNode.name.ToString() + " is in dijkstraDict");
                                 }
                                 else if (dijkstraDict.ContainsKey(currentNode))
                                 {
-                                    Debug.Log("CurrentNode " + currentNode.name.ToString() + " is NOT in dijkstraDict");
+                                    //Debug.Log("CurrentNode " + currentNode.name.ToString() + " is NOT in dijkstraDict");
                                 }
-                                Debug.Log("NextNode terrainType: " + nextNode.terrainType.ToString());
+                                //Debug.Log("NextNode terrainType: " + nextNode.terrainType.ToString());
                                 if (nextNode.terrainType == "Grassland")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.GrassCost;
                                 }
                                 else if (nextNode.terrainType == "Arid")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString() + " unitScript.AridCost: " + unitScript.AridCost.ToString());
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString() + " unitScript.AridCost: " + unitScript.AridCost.ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.AridCost;
                                 }
                                 else if (nextNode.terrainType == "Icefield")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.IceCost;
                                 }
                                 else if (nextNode.terrainType == "Mountain")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.MountainCost;
                                 }
                                 else if (nextNode.terrainType == "River")
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.RiverCost;
                                 }
                                 else
                                 {
-                                    Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                    //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                     newScore = dijkstraDict[currentNode] + unitScript.OceanCost;
                                 }
-                                Debug.Log("Current Next Node Cost: " + dijkstraDict[nextNode].ToString());
-                                Debug.Log("newScore: " + newScore.ToString());
+                                //Debug.Log("Current Next Node Cost: " + dijkstraDict[nextNode].ToString());
+                                //Debug.Log("newScore: " + newScore.ToString());
                                 if (newScore <= dijkstraDict[nextNode])
                                 {
-                                    Debug.Log("Score Changed!");
+                                    //Debug.Log("Score Changed!");
                                     dijkstraDict[nextNode] = newScore;
                                     bestAccessToNode[nextNode] = currentNode;
                                     priorityQueue.UpdatePriority(nextNode, newScore);
@@ -379,54 +363,48 @@ public class Dijkstra : MonoBehaviour
                         {
                             if (dijkstraDict.ContainsKey(currentNode))
                             {
-                                Debug.Log("CurrentNode" + currentNode.name.ToString() + " is in dijkstraDict");
+                                //Debug.Log("CurrentNode" + currentNode.name.ToString() + " is in dijkstraDict");
                             }
                             else
                             {
-                                Debug.Log("CurrentNode" + currentNode.name.ToString() + " is NOT in dijkstraDict");
+                                //Debug.Log("CurrentNode" + currentNode.name.ToString() + " is NOT in dijkstraDict");
                                 continue;
                             }
                             if (nextNode.terrainType == "Grassland")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.GrassCost;
                             }
                             else if (nextNode.terrainType == "Arid")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString() + " unitScript.AridCost: " + unitScript.AridCost.ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString() + " unitScript.AridCost: " + unitScript.AridCost.ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.AridCost;
                             }
                             else if (nextNode.terrainType == "Icefield")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.IceCost;
                             }
                             else if (nextNode.terrainType == "Mountain")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.MountainCost;
                             }
                             else if (nextNode.terrainType == "River")
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.RiverCost;
                             }
                             else
                             {
-                                Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
-
+                                //Debug.Log("dijkstraDict[currentNode]: " + dijkstraDict[currentNode].ToString());
                                 newScore = dijkstraDict[currentNode] + unitScript.OceanCost;
                             }
-                            Debug.Log("Current Next Node Cost: " + dijkstraDict[nextNode].ToString());
-                            Debug.Log("newScore: " + newScore.ToString());
+                            //Debug.Log("Current Next Node Cost: " + dijkstraDict[nextNode].ToString());
+                            //Debug.Log("newScore: " + newScore.ToString());
                             if (newScore <= dijkstraDict[nextNode])
                             {
-                                Debug.Log("Score Changed!");
+                                //Debug.Log("Score Changed!");
                                 dijkstraDict[nextNode] = newScore;
                                 bestAccessToNode[nextNode] = currentNode;
                                 priorityQueue.UpdatePriority(nextNode, newScore);
@@ -453,28 +431,28 @@ public class Dijkstra : MonoBehaviour
     {
         List<MapNode> possibleMoves = new List<MapNode>();
         //Ensures that the unit can't end it's turn on the same space as another unit.
-        Debug.Log("Current stamina: " + unitScript.CurrentStamina.ToString());
-        Debug.Log("dijkstraDict PossibleMoves Count: " + dijkstraDict.Count.ToString());
+        //Debug.Log("Current stamina: " + unitScript.CurrentStamina.ToString());
+        //Debug.Log("dijkstraDict PossibleMoves Count: " + dijkstraDict.Count.ToString());
         //FIX BY COMPARING MAPNODE POSITION TO POSITION OF ALL UNITS IN A DICTIONARY
         foreach (KeyValuePair<MapNode, float> node in dijkstraDict)
         {
             if (node.Value != Mathf.Infinity)
             {
-                Debug.Log("Node cost lower than infinity");
+                //Debug.Log("Node cost lower than infinity");
             }
-            Debug.Log("dijkstraDict PossibleMoves Node: " + node.Key.name.ToString() + " Cost: " + node.Value.ToString());
+            //Debug.Log("dijkstraDict PossibleMoves Node: " + node.Key.name.ToString() + " Cost: " + node.Value.ToString());
             if (mapGraph.tileOccupationDict[node.Key] == null)
             {
-                Debug.Log("Node not occupied");
+                //Debug.Log("Node not occupied");
             }
             else
             {
-                Debug.Log("dijkstraDict PossibleMoves occupation: " + mapGraph.tileOccupationDict[node.Key].ToString());
+                //Debug.Log("dijkstraDict PossibleMoves occupation: " + mapGraph.tileOccupationDict[node.Key].ToString());
 
             }
             if (node.Value <= unitScript.CurrentStamina && mapGraph.tileOccupationDict[node.Key] == null)
             {
-                Debug.Log("Node added to possible moves.");
+                //Debug.Log("Node added to possible moves.");
                 possibleMoves.Add(node.Key);
             }
         }
@@ -492,7 +470,7 @@ public class Dijkstra : MonoBehaviour
         while (currentNode != startNode)
         {
             route.Add(currentNode);
-            Debug.Log("Route Count: " + route.Count + " " + currentNode.GetType().ToString());
+            //Debug.Log("Route Count: " + route.Count + " " + currentNode.GetType().ToString());
             //Debug.Log("Best access to node: " + bestAccessToNode[currentNode].name.ToString());
             if (bestAccessToNode.ContainsKey(currentNode))
             {
@@ -503,7 +481,7 @@ public class Dijkstra : MonoBehaviour
                 route.Reverse();
                 foreach (MapNode routeNode in route)
                 {
-                    Debug.Log("Route Node " + (route.IndexOf(routeNode)).ToString() + ": " + routeNode.name.ToString());
+                    //Debug.Log("Route Node " + (route.IndexOf(routeNode)).ToString() + ": " + routeNode.name.ToString());
                 }
                 return route;
             }
@@ -511,7 +489,7 @@ public class Dijkstra : MonoBehaviour
         route.Reverse();
         foreach (MapNode routeNode in route)
         {
-            Debug.Log("Route Node " + route.IndexOf(routeNode) + ": " + routeNode.name.ToString());
+            //Debug.Log("Route Node " + route.IndexOf(routeNode) + ": " + routeNode.name.ToString());
         }
         return route;
     }

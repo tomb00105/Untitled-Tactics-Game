@@ -27,59 +27,29 @@ public class Cavalry : Unit
         RiverCost = 1.5f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
-        //Setup of MapNode edge costs for cavalry unit.
-        
+
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
-    }
-
-    private void OnDestroy()
-    {
-        List<MapNode> mapList = new List<MapNode>();
-        foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
-        {
-            mapList.Add(node);
-        }
-        foreach (MapNode mapNode in mapList)
-        {
-            if (mapGraph.tileOccupationDict[mapNode] == this)
-            {
-                mapGraph.tileOccupationDict[mapNode] = null;
-            }
-            
-        }
-        gameManager.allUnits.Remove(this);
-        if (gameManager.turnUnits.Contains(this))
-        {
-            gameManager.turnUnits.Remove(this);
-        }
-        if (gameManager.playerUnits.Contains(this.gameObject))
-        {
-            gameManager.playerUnits.Remove(this.gameObject);
-        }
-        if (gameManager.enemyUnits.Contains(this.gameObject))
-        {
-            gameManager.enemyUnits.Remove(this.gameObject);
-        }
-        if (gameManager.turnUnitsDict.ContainsKey(this))
-        {
-            gameManager.turnUnitsDict.Remove(this);
-        }
-        if (gameManager.unitMovedDict.ContainsKey(this))
-        {
-            gameManager.unitMovedDict.Remove(this);
-        }
-        if (gameManager.unitAttackedDict.ContainsKey(this))
-        {
-            gameManager.unitAttackedDict.Remove(this);
-        }
     }
 
     //Selects which possible move to take, based on the least number of non-archer and non-swordsmen units adjacent to the node.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
+        //Ensures there are no occupied MapNodes in the list of possible moves.
+        List<MapNode> tempMoves = possibleMoveList;
+        foreach (MapNode node in tempMoves)
+        {
+            if (mapGraph.tileOccupationDict[node] != null)
+            {
+                possibleMoveList.Remove(node);
+            }
+        }
+        possibleMoveList.Add(currentMapNode);
+        //Sets up parameters for checking which MapNode is best to move to.
         MapNode currentBest = null;
         float currentBestScore = Mathf.Infinity;
+        //Iterates through each possible move and calculates a score based on the number of a particular type of player
+        //units adjacent to it and the distance to all player units.
         foreach (MapNode node in possibleMoveList)
         {
             List<GameObject> unitDistList = new List<GameObject>();
@@ -87,7 +57,7 @@ public class Cavalry : Unit
 
             foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
             {
-                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position);
+                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position) / 10;
             }
             int i = 0;
             float score;
@@ -102,17 +72,11 @@ public class Cavalry : Unit
                             i -= 2;
                             continue;
                         }
-                        else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Swordsmen")
+                        else
                         {
                             i--;
                             continue;
                         }
-                        else if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Spearmen")
-                        {
-                            i += 2;
-                            continue;
-                        }
-                        i++;
                     }
                 }
             }
@@ -130,13 +94,15 @@ public class Cavalry : Unit
                 currentBest = node;
             }
         }
+        destination = currentBest.transform.position;
         return currentBest;
     }
     //Chooses which unit to attack, prioritising Archers, Swordsmen and grassland.
     public override Unit AttackChoice()
     {
         Unit unitToAttack = null;
-        float currentBestScore = 0;
+        float currentBestScore = Mathf.NegativeInfinity;
+        //Checks each adjacent node and calculates a score for the unit there based on it's type and the terrain.
         foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
         {
             if (mapGraph.tileOccupationDict[adjacentNode] != null)
@@ -187,7 +153,9 @@ public class Cavalry : Unit
     {
         if (target == null)
         {
-            Debug.Log("NO TARGET");
+            //Debug.Log("NO TARGET");
+            gameManager.unitAttackedDict[this] = true;
+            gameManager.isAttacking = false;
             return false;
         }
         else if (target.UnitType == "Spearmen")
@@ -209,11 +177,14 @@ public class Cavalry : Unit
         if (target.CurrentHP <= 0)
         {
             Destroy(target.gameObject);
+            gameManager.isAttacking = false;
+            gameManager.unitAttackedDict[this] = true;
             return true;
         }
+        //If the target has not been killed, it attacks back.
         else
         {
-            Debug.Log("Target HP: " + target.CurrentHP.ToString());
+            //Debug.Log("Target HP: " + target.CurrentHP.ToString());
             if (target.UnitType != "Archers" && Vector2.Distance(currentMapNode.transform.position, target.currentMapNode.transform.position) <= 2)
             {
                 target.Reaction(this, target.WeaponDamage);
@@ -248,10 +219,14 @@ public class Cavalry : Unit
         {
             uIController.UnitPanelsDefault();
             Destroy(target.gameObject);
+            gameManager.isAttacking = false;
+            gameManager.unitAttackedDict[target] = true;
             return true;
         }
         else
         {
+            gameManager.isAttacking = false;
+            gameManager.unitAttackedDict[target] = true;
             return false;
         }
     }

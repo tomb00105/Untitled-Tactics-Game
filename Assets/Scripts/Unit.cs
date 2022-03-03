@@ -11,6 +11,7 @@ public class Unit : MonoBehaviour
     [SerializeField] protected MapGraph mapGraph;
     protected Dijkstra dijkstraScript;
     public string unitSide;
+    public Vector3 destination = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
 
     //Unit info declarations.
     public string unitName;
@@ -57,6 +58,64 @@ public class Unit : MonoBehaviour
     public MapNode currentMapNode = null;
     public List<MapNode> path = new List<MapNode>();
 
+    private void OnDestroy()
+    {
+        //If this is an enemy unit, it ensures that it is removed from the number of turns taken to avoid
+        //an out of range error.
+        if (gameManager.currentUnitTurn == "Enemy Unit" && CompareTag("Enemy Unit"))
+        {
+            gameManager.unitTurnsTaken--;
+        }
+        //Makes sure the MapNode this unit occupies has it's occupation set back to null.
+        List<MapNode> mapList = new List<MapNode>();
+        foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
+        {
+            mapList.Add(node);
+        }
+        foreach (MapNode mapNode in mapList)
+        {
+            if (mapGraph.tileOccupationDict[mapNode] == this)
+            {
+                mapGraph.tileOccupationDict[mapNode] = null;
+            }
+        }
+        //Removes the unit from game manager collections.
+        gameManager.allUnits.Remove(this);
+        if (gameManager.turnUnits.Contains(this))
+        {
+            gameManager.turnUnits.Remove(this);
+        }
+        if (gameManager.playerUnits.Contains(this.gameObject))
+        {
+            gameManager.playerUnits.Remove(this.gameObject);
+        }
+        if (gameManager.enemyUnits.Contains(this.gameObject))
+        {
+            gameManager.enemyUnits.Remove(this.gameObject);
+        }
+        if (gameManager.turnUnitsDict.ContainsKey(this))
+        {
+            gameManager.turnUnitsDict.Remove(this);
+        }
+        if (gameManager.unitMovedDict.ContainsKey(this))
+        {
+            gameManager.unitMovedDict.Remove(this);
+        }
+        if (gameManager.unitAttackedDict.ContainsKey(this))
+        {
+            gameManager.unitAttackedDict.Remove(this);
+        }
+        //Checks if either the player or enemy unit count is now zero and ends the level if it is.
+        if (gameManager.enemyUnits.Count == 0)
+        {
+            gameManager.Wipeout("Enemy Unit");
+        }
+        else if (gameManager.playerUnits.Count == 0)
+        {
+            gameManager.Wipeout("Player Unit");
+        }
+    }
+
     private void Awake()
     {
         gameObject.name = unitName;
@@ -70,6 +129,92 @@ public class Unit : MonoBehaviour
         gameObject.name = unitName;
     }
 
+    private void Update()
+    {
+        if (gameManager.currentUnitTurn != tag)
+        {
+            return;
+        }
+        if (path.Count == 0 && destination == transform.position)
+        {
+            //Debug.Log("Unit has reached final destination");
+            transform.position = destination;
+            CheckCurrentNode();
+            path.Clear();
+            gameManager.unitMovedDict[this] = true;
+            gameManager.isMoving = false;
+            if (CompareTag("Enemy Unit"))
+            {
+                Attack(AttackChoice(), WeaponDamage);
+            }
+            if (CompareTag("Player Unit"))
+            {
+                uIController.playerCanvas.SetActive(true);
+            }
+            destination = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
+        }
+        if (path.Count != 0)
+        {
+            //Debug.Log("Path count greater than 0");
+            gameManager.isMoving = true;
+            
+            if (transform.position != destination && destination != new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity))
+            {
+                //Debug.Log("Current position is not equal to destination: " + path.First<MapNode>().transform.position.ToString());
+                if (path.First<MapNode>().transform.position.x < transform.position.x)
+                {
+                    transform.Translate(Vector2.left * 2f * Time.deltaTime);
+                }
+                else if (path.First<MapNode>().transform.position.x > transform.position.x)
+                {
+                    transform.Translate(Vector2.right * 2f * Time.deltaTime);
+                }
+                else if (path.First<MapNode>().transform.position.y < transform.position.y)
+                {
+                    transform.Translate(Vector2.down * 2f * Time.deltaTime);
+                }
+                else if (path.First<MapNode>().transform.position.y > transform.position.y)
+                {
+                    transform.Translate(Vector2.up * 2f * Time.deltaTime);
+                }
+                if (Vector3.Distance(transform.position, path.First<MapNode>().transform.position) <= 0.1f)
+                {
+                    transform.position = path.First<MapNode>().transform.position;
+                }
+                if (transform.position == path.First<MapNode>().transform.position)
+                {
+                    path.RemoveAt(0);
+                }
+            }
+            if (Vector3.Distance(transform.position, destination) <= 0.1f)
+            {
+                //Debug.Log("Unit has reached final destination");
+                transform.position = destination;
+                CheckCurrentNode();
+                path.Clear();
+                gameManager.unitMovedDict[this] = true;
+                gameManager.isMoving = false;
+                if (CompareTag("Enemy Unit"))
+                {
+                    Attack(AttackChoice(), WeaponDamage);
+                }
+                if (CompareTag("Player Unit"))
+                {
+                    uIController.playerCanvas.SetActive(true);
+                }
+                destination = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
+            }
+        }
+
+        /*else if (transform.position == destination && !gameManager.unitMovedDict[this])
+        {
+            destination = new Vector3(Mathf.Infinity, Mathf.Infinity, Mathf.Infinity);
+            CheckCurrentNode();
+            gameManager.isMoving = false;
+            gameManager.unitMovedDict[this] = true;
+            
+        }*/
+    }
 
     //Checks which MapNode the unit is currently on.
     public virtual void CheckCurrentNode()
@@ -133,7 +278,7 @@ public class Unit : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("NO TERRAIN TYPE FOR THIS NODE: " + node.name.ToString());
+                //Debug.LogWarning("NO TERRAIN TYPE FOR THIS NODE: " + node.name.ToString());
             }
         }
     }
@@ -142,11 +287,11 @@ public class Unit : MonoBehaviour
     {
         if (!dijkstraScript.DijkstraCalc())
         {
-            Debug.Log("Cannot move!");
+            //Debug.Log("Cannot move!");
             return false;
         }
         List<MapNode> moves = dijkstraScript.PossibleMoves();
-        Debug.Log("Moves list count: " + moves.Count);
+        //Debug.Log("Moves list count: " + moves.Count);
         if (CompareTag("Enemy Unit"))
         {
             if (moves.Count != 0)
@@ -156,7 +301,7 @@ public class Unit : MonoBehaviour
             }
             else
             {
-                Debug.Log("Cannot move as stamina is too low!");
+                //Debug.Log("Cannot move as stamina is too low!");
                 return false;
             }
         }
@@ -182,8 +327,6 @@ public class Unit : MonoBehaviour
                 i++;
             }
         }*/
-        transform.position = path.Last().transform.position;
-        CheckCurrentNode();
     }
 
     //Virtual method for deciding which possible node to move to, will be different for each unit.

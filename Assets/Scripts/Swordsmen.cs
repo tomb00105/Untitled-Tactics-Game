@@ -27,67 +27,38 @@ public class Swordsmen : Unit
         RiverCost = 1.5f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
-        //Setup of MapNode edge costs for swordsmen unit.
         
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
     }
 
-    private void OnDestroy()
-    {
-        List<MapNode> mapList = new List<MapNode>();
-        foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
-        {
-            mapList.Add(node);
-        }
-        foreach (MapNode mapNode in mapList)
-        {
-            if (mapGraph.tileOccupationDict[mapNode] == this)
-            {
-                mapGraph.tileOccupationDict[mapNode] = null;
-            }
-        }
-        gameManager.allUnits.Remove(this);
-        if (gameManager.turnUnits.Contains(this))
-        {
-            gameManager.turnUnits.Remove(this);
-        }
-        if (gameManager.playerUnits.Contains(this.gameObject))
-        {
-            gameManager.playerUnits.Remove(this.gameObject);
-        }
-        if (gameManager.enemyUnits.Contains(this.gameObject))
-        {
-            gameManager.enemyUnits.Remove(this.gameObject);
-        }
-        if (gameManager.turnUnitsDict.ContainsKey(this))
-        {
-            gameManager.turnUnitsDict.Remove(this);
-        }
-        if (gameManager.unitMovedDict.ContainsKey(this))
-        {
-            gameManager.unitMovedDict.Remove(this);
-        }
-        if (gameManager.unitAttackedDict.ContainsKey(this))
-        {
-            gameManager.unitAttackedDict.Remove(this);
-        }
-    }
-
-    
     //Selects which possible move to take, based on the least number of non-spearmen units adjacent to the node.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
+        //Ensures there are no occupied MapNodes in the list of possible moves.
+        List<MapNode> tempMoves = possibleMoveList;
+        foreach (MapNode node in tempMoves)
+        {
+            if (mapGraph.tileOccupationDict[node] != null)
+            {
+                possibleMoveList.Remove(node);
+            }
+        }
+
+        possibleMoveList.Add(currentMapNode);
+        //Sets up parameters for checking which MapNode is best to move to.
         MapNode currentBest = null;
         float currentBestScore = Mathf.Infinity;
-        foreach  (MapNode node in possibleMoveList)
+        //Iterates through each possible move and calculates a score based on the number of a particular type of player
+        //units adjacent to it and the distance to all player units.
+        foreach (MapNode node in possibleMoveList)
         {
             List<GameObject> unitDistList = new List<GameObject>();
             float distanceVar = 0;
 
             foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Player Unit"))
             {
-                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position);
+                distanceVar += Vector2.Distance(node.transform.position, unit.transform.position) / 10;
             }
             int i = 0;
             float score;
@@ -97,19 +68,18 @@ public class Swordsmen : Unit
                 {
                     if (gameManager.playerUnits.Contains(mapGraph.tileOccupationDict[adjacentNode].gameObject))
                     {
-                        if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Swordsmen")
+                        if (mapGraph.tileOccupationDict[adjacentNode].UnitType == "Spearmen")
+                        {
+                            i -= 2;
+                            continue;
+                        }
+                        else
                         {
                             i--;
                             continue;
                         }
-                        i++;
                     }
                 }
-                else
-                {
-                    i++;
-                }
-                
             }
             if (AttackOrDefence)
             {
@@ -119,21 +89,23 @@ public class Swordsmen : Unit
             {
                 score = i * 2;
             }
-            Debug.Log(node.name.ToString() + " Score: " + score.ToString() + " Current Best Score: " + currentBestScore.ToString());
+            //Debug.Log(node.name.ToString() + " Score: " + score.ToString() + " Current Best Score: " + currentBestScore.ToString());
             if (score <= currentBestScore)
             {
                 currentBestScore = score;
                 currentBest = node;
             }
         }
-        Debug.Log("Best Node to move to: " + currentBest.name.ToString());
+        //Debug.Log("Best Node to move to: " + currentBest.name.ToString());
+        destination = currentBest.transform.position;
         return currentBest;
     }
     //Chooses which unit to attack, prioritising spearmen and grassland;
     public override Unit AttackChoice()
     {
         Unit unitToAttack = null;
-        float currentBestScore = 0;
+        float currentBestScore = Mathf.NegativeInfinity;
+        //Checks each adjacent node and calculates a score for the unit there based on it's type and the terrain.
         foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
         {
             if (mapGraph.tileOccupationDict[adjacentNode] != null)
@@ -149,8 +121,11 @@ public class Swordsmen : Unit
                     {
                         score += 5;
                     }
+                    else
+                    {
+                        score += 1;
+                    }
                 }
-
                 if (adjacentNode.terrainType == "Grassland")
                 {
                     score += 5;
@@ -163,8 +138,8 @@ public class Swordsmen : Unit
                 {
                     score = -10;
                 }
-                //Debug.Log("Attack Score: " + score.ToString());
-                //Debug.Log("Unit Tag: " + mapGraph.tileOccupationDict[adjacentNode].tag.ToString());
+                Debug.Log("Attack Score: " + score.ToString());
+                Debug.Log("Unit Tag: " + mapGraph.tileOccupationDict[adjacentNode].tag.ToString());
                 if (score >= currentBestScore && mapGraph.tileOccupationDict[adjacentNode].CompareTag("Player Unit"))
                 {
                     currentBestScore = score;
@@ -186,9 +161,12 @@ public class Swordsmen : Unit
     //Damages the target based on the unit type and returns true if the unit is wiped out.
     public override bool Attack(Unit target, float damage)
     {
+        Debug.Log("Attacking");
         if (target == null)
         {
-            Debug.Log("NO TARGET");
+            //Debug.Log("NO TARGET");
+            gameManager.isAttacking = false;
+            gameManager.unitAttackedDict[this] = true;
             return false;
         }
         else if (target.UnitType == "Spearmen")
@@ -210,11 +188,14 @@ public class Swordsmen : Unit
         if (target.CurrentHP <= 0)
         {
             Destroy(target.gameObject);
+            gameManager.unitAttackedDict[this] = true;
+            gameManager.isAttacking = false;
             return true;
         }
+        //If the target has not been killed, it attacks back.
         else
         {
-            Debug.Log("Target HP: " + target.CurrentHP.ToString());
+            //Debug.Log("Target HP: " + target.CurrentHP.ToString());
             if (target.UnitType != "Archers" && Vector2.Distance(transform.position, target.transform.position) <= 2)
             {
                 target.Reaction(GetComponent<Unit>(), target.WeaponDamage);
@@ -229,7 +210,8 @@ public class Swordsmen : Unit
     //If within range when attacked, this unit will retaliate, although will deal less damage than if attacking themselves.
     public override bool Reaction(Unit target, float damage)
     {
-        Debug.Log("Reaction WeaponDamage: " + WeaponDamage.ToString());
+        Debug.Log("Unit is Reacting");
+        //Debug.Log("Reaction WeaponDamage: " + WeaponDamage.ToString());
         if (target.UnitType == "Spearmen")
         {
             target.CurrentHP -= Mathf.RoundToInt(damage * 1.2f);
@@ -250,11 +232,17 @@ public class Swordsmen : Unit
         {
             uIController.UnitPanelsDefault();
             Destroy(target.gameObject);
+            gameManager.unitAttackedDict[target] = true;
+
+            gameManager.isAttacking = false;
             return true;
         }
         else
         {
-            Debug.Log("Reaction target HP: " + target.CurrentHP.ToString());
+            //Debug.Log("Reaction target HP: " + target.CurrentHP.ToString());
+            gameManager.unitAttackedDict[target] = true;
+
+            gameManager.isAttacking = false;
             return false;
         }
     }

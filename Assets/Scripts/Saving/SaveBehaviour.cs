@@ -274,7 +274,8 @@ public class SaveBehaviour : MonoBehaviour
             {
                 gameManager.unitAttackedDict.Add(playerObject.GetComponent<Unit>(), true);
             }
-
+            gameManager.allUnits.Add(playerObject.GetComponent<Unit>());
+            gameManager.playerUnits.Add(playerObject);
             playerObject.tag = "Player Unit";
         }
         foreach (KeyValuePair<string, List<float>> enemyUnit in save.enemyUnitData)
@@ -347,6 +348,8 @@ public class SaveBehaviour : MonoBehaviour
             enemyUnitScript.RiverCost = dataList[12];
             enemyUnitScript.OceanCost = dataList[13];
 
+            gameManager.allUnits.Add(enemyObject.GetComponent<Unit>());
+            gameManager.enemyUnits.Add(enemyObject);
             enemyObject.tag = "Enemy Unit";
         }
         foreach (string unit in save.allUnits)
