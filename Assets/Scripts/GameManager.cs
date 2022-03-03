@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
     
     private void Update()
     {
+        //Sets up unit collections for the level.
         if (!startupComplete)
         {
             foreach (GameObject playerUnit in GameObject.FindGameObjectsWithTag("Player Unit"))
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
             runOnce = true;
             currentUnitTurn = "Enemy Unit";
         }
-
+        //These ensure that the level logic/AI is not running if these conditions are met
         if (loading && !loadComplete)
         {
             return;
@@ -156,6 +157,8 @@ public class GameManager : MonoBehaviour
             //Debug.Log("Unit Moved Status: " + unitMovedDict[unitTakingTurn].ToString());
             //Debug.Log("Turn Setup Status: " + turnSetupComplete.ToString());
             //Debug.Log("Not all units have moved: " + unitMovedDict.ContainsValue(false).ToString());
+
+            //Starts the units move if it has not moved yet and is not currently moving.
             if (!unitMovedDict[unitTakingTurn] && turnSetupComplete)
             {
                 //Debug.Log("isMoving: " + isMoving.ToString());
@@ -166,6 +169,7 @@ public class GameManager : MonoBehaviour
                     //Debug.Log("Destination: " + unitTakingTurn.destination.ToString());
                 }
             }
+            //Checks that the unit has moved if it can and has attacked if it can, and moves onto the next unit if it has done both.
             if (unitMovedDict[unitTakingTurn] && unitAttackedDict[unitTakingTurn] && turnSetupComplete)
             {
                 unitTurnsTaken++;
@@ -331,6 +335,7 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    //Deals with UI for when a side is totally wiped out.
     public void Wipeout(string defeatedSide)
     {
         levelComplete = true;

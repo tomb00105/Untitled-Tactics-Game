@@ -58,6 +58,64 @@ public class Unit : MonoBehaviour
     public MapNode currentMapNode = null;
     public List<MapNode> path = new List<MapNode>();
 
+    private void OnDestroy()
+    {
+        //If this is an enemy unit, it ensures that it is removed from the number of turns taken to avoid
+        //an out of range error.
+        if (gameManager.currentUnitTurn == "Enemy Unit" && CompareTag("Enemy Unit"))
+        {
+            gameManager.unitTurnsTaken--;
+        }
+        //Makes sure the MapNode this unit occupies has it's occupation set back to null.
+        List<MapNode> mapList = new List<MapNode>();
+        foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
+        {
+            mapList.Add(node);
+        }
+        foreach (MapNode mapNode in mapList)
+        {
+            if (mapGraph.tileOccupationDict[mapNode] == this)
+            {
+                mapGraph.tileOccupationDict[mapNode] = null;
+            }
+        }
+        //Removes the unit from game manager collections.
+        gameManager.allUnits.Remove(this);
+        if (gameManager.turnUnits.Contains(this))
+        {
+            gameManager.turnUnits.Remove(this);
+        }
+        if (gameManager.playerUnits.Contains(this.gameObject))
+        {
+            gameManager.playerUnits.Remove(this.gameObject);
+        }
+        if (gameManager.enemyUnits.Contains(this.gameObject))
+        {
+            gameManager.enemyUnits.Remove(this.gameObject);
+        }
+        if (gameManager.turnUnitsDict.ContainsKey(this))
+        {
+            gameManager.turnUnitsDict.Remove(this);
+        }
+        if (gameManager.unitMovedDict.ContainsKey(this))
+        {
+            gameManager.unitMovedDict.Remove(this);
+        }
+        if (gameManager.unitAttackedDict.ContainsKey(this))
+        {
+            gameManager.unitAttackedDict.Remove(this);
+        }
+        //Checks if either the player or enemy unit count is now zero and ends the level if it is.
+        if (gameManager.enemyUnits.Count == 0)
+        {
+            gameManager.Wipeout("Enemy Unit");
+        }
+        else if (gameManager.playerUnits.Count == 0)
+        {
+            gameManager.Wipeout("Player Unit");
+        }
+    }
+
     private void Awake()
     {
         gameObject.name = unitName;

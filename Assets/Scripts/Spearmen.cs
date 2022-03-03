@@ -6,7 +6,7 @@ public class Spearmen : Unit
 {
     private void Awake()
     {
-        //Declaration of variables for speakmen unit.
+        //Declaration of variables for spearmen unit.
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         uIController = GameObject.Find("UIController").GetComponent<UIController>();
         mapGraph = GameObject.Find("MapGraph").GetComponent<MapGraph>();
@@ -27,70 +27,15 @@ public class Spearmen : Unit
         RiverCost = 2f;
         OceanCost = 10;
         NodeCostDict = new Dictionary<MapNode, float>();
-        //Setup of MapNode edge costs for spearmen unit.
         
         dijkstraScript = gameObject.GetComponent<Dijkstra>();
         GameObject.Find("GameManager").GetComponent<GameManager>().startupComplete = true;
     }
-
-    private void OnDestroy()
-    {
-        if (gameManager.currentUnitTurn == "Enemy Unit" && CompareTag("Enemy Unit"))
-        {
-            gameManager.unitTurnsTaken--;
-        }
-        List<MapNode> mapList = new List<MapNode>();
-        foreach (MapNode node in mapGraph.tileOccupationDict.Keys)
-        {
-            mapList.Add(node);
-        }
-        foreach (MapNode mapNode in mapList)
-        {
-            if (mapGraph.tileOccupationDict[mapNode] == this)
-            {
-                mapGraph.tileOccupationDict[mapNode] = null;
-            }
-        }
-        gameManager.allUnits.Remove(this);
-        if (gameManager.turnUnits.Contains(this))
-        {
-            gameManager.turnUnits.Remove(this);
-        }
-        if (gameManager.playerUnits.Contains(this.gameObject))
-        {
-            gameManager.playerUnits.Remove(this.gameObject);
-        }
-        if (gameManager.enemyUnits.Contains(this.gameObject))
-        {
-            gameManager.enemyUnits.Remove(this.gameObject);
-        }
-        if (gameManager.turnUnitsDict.ContainsKey(this))
-        {
-            gameManager.turnUnitsDict.Remove(this);
-        }
-        if (gameManager.unitMovedDict.ContainsKey(this))
-        {
-            gameManager.unitMovedDict.Remove(this);
-        }
-        if (gameManager.unitAttackedDict.ContainsKey(this))
-        {
-            gameManager.unitAttackedDict.Remove(this);
-        }
-        if (gameManager.enemyUnits.Count == 0)
-        {
-            gameManager.Wipeout("Enemy Unit");
-        }
-        else if (gameManager.playerUnits.Count == 0)
-        {
-            gameManager.Wipeout("Player Unit");
-        }
-    }
-
-    
     
     //Selects which possible move to take, based on the least number of non-cavalry units adjacent to the node.
     public override MapNode MovePriority(List<MapNode> possibleMoveList)
     {
+        //Ensures there are no occupied MapNodes in the list of possible moves.
         List<MapNode> tempMoves = possibleMoveList;
         foreach (MapNode node in tempMoves)
         {
@@ -99,10 +44,12 @@ public class Spearmen : Unit
                 possibleMoveList.Remove(node);
             }
         }
-
         possibleMoveList.Add(currentMapNode);
+        //Sets up parameters for checking which MapNode is best to move to.
         MapNode currentBest = null;
         float currentBestScore = Mathf.Infinity;
+        //Iterates through each possible move and calculates a score based on the number of a particular type of player
+        //units adjacent to it and the distance to all player units.
         foreach (MapNode node in possibleMoveList)
         {
             List<GameObject> unitDistList = new List<GameObject>();
@@ -159,6 +106,7 @@ public class Spearmen : Unit
     {
         Unit unitToAttack = null;
         float currentBestScore = Mathf.NegativeInfinity;
+        //Checks each adjacent node and calculates a score for the unit there based on it's type and the terrain.
         foreach (MapNode adjacentNode in currentMapNode.adjacentNodeDict.Keys)
         {
             if (mapGraph.tileOccupationDict[adjacentNode] != null)
@@ -190,7 +138,6 @@ public class Spearmen : Unit
                     unitToAttack = mapGraph.tileOccupationDict[adjacentNode];
                 }
             }
-            
         }
         if (currentBestScore <= -10)
         {
@@ -234,6 +181,7 @@ public class Spearmen : Unit
             gameManager.unitAttackedDict[this] = true;
             return true;
         }
+        //If the target has not been killed, it attacks back.
         else
         {
             if (target.UnitType != "Archers" && Vector2.Distance(currentMapNode.transform.position, target.currentMapNode.transform.position) <= 2)
