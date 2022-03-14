@@ -6,7 +6,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SaveBehaviour : MonoBehaviour
+public class LevelSaveBehaviour : MonoBehaviour
 {
     GameManager gameManager;
     Dictionary<int, Scene> levelCodeDict = new Dictionary<int, Scene>();

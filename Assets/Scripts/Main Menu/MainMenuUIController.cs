@@ -35,7 +35,7 @@ public class MainMenuUIController : MonoBehaviour
 
     public void LoadPanelLoadLevelButton()
     {
-        GameObject.Find("SaveManager").GetComponent<SaveBehaviour>().LoadGame();
+        GameObject.Find("SaveManager").GetComponent<LevelSaveBehaviour>().LoadGame();
     }
 
     public void LoadPanelLoadSaveButton()

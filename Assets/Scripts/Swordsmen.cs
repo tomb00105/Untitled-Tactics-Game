@@ -138,8 +138,8 @@ public class Swordsmen : Unit
                 {
                     score = -10;
                 }
-                Debug.Log("Attack Score: " + score.ToString());
-                Debug.Log("Unit Tag: " + mapGraph.tileOccupationDict[adjacentNode].tag.ToString());
+                //Debug.Log("Attack Score: " + score.ToString());
+                //Debug.Log("Unit Tag: " + mapGraph.tileOccupationDict[adjacentNode].tag.ToString());
                 if (score >= currentBestScore && mapGraph.tileOccupationDict[adjacentNode].CompareTag("Player Unit"))
                 {
                     currentBestScore = score;
@@ -161,7 +161,7 @@ public class Swordsmen : Unit
     //Damages the target based on the unit type and returns true if the unit is wiped out.
     public override bool Attack(Unit target, float damage)
     {
-        Debug.Log("Attacking");
+        //Debug.Log("Attacking");
         if (target == null)
         {
             //Debug.Log("NO TARGET");
@@ -210,7 +210,7 @@ public class Swordsmen : Unit
     //If within range when attacked, this unit will retaliate, although will deal less damage than if attacking themselves.
     public override bool Reaction(Unit target, float damage)
     {
-        Debug.Log("Unit is Reacting");
+        //Debug.Log("Unit is Reacting");
         //Debug.Log("Reaction WeaponDamage: " + WeaponDamage.ToString());
         if (target.UnitType == "Spearmen")
         {
