@@ -496,7 +496,7 @@ public class UIController : MonoBehaviour
 
     public void PauseMenuSaveButton()
     {
-        GameObject.Find("SaveManager").GetComponent<SaveBehaviour>().SaveGame();
+        GameObject.Find("SaveManager").GetComponent<LevelSaveBehaviour>().SaveGame();
     }
 
     public void PauseMenuSettingsButton()
