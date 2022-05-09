@@ -5963,6 +5963,7 @@ MonoBehaviour:
   turnInProgress: 0
   isMoving: 0
   isAttacking: 0
+  unitTurnsTaken: 0
 --- !u!4 &798789669
 Transform:
   m_ObjectHideFlags: 0
